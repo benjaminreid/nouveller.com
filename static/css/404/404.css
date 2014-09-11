@@ -1,0 +1,224 @@
+.top-bar {
+  width: 100%;
+  height: 17px;
+  border-bottom: 1px solid #9c9c9c;
+  -webkit-box-shadow: 0 1px 0 #000;
+  background: #dedede;
+}
+
+.mute-icon {
+  width: 18px;
+  height: 12px;
+  background: url(../../img/404/mute-icon.png) no-repeat;
+  background-position: 0 -12px;
+  display: block;
+  position: absolute;
+  top: 2px;
+  right: 55px;
+  z-index: 1;
+}
+
+.mute-icon.active {
+  background-position: 0 0;
+}
+
+.close-btn {
+  width: 30px;
+  height: 17px;
+  display: block;
+  background: url(../../img/404/close.gif) no-repeat 50% 50%;
+  position: absolute;
+  top: 0;
+  right: 15px;
+  z-index: 1;
+}
+
+.terminal-container {
+  position: absolute;
+  top: 70px;
+  left: -10px;
+  width: 628px;
+  height: 447px;
+  background: url(../../img/404/pane-terminal.gif);
+  padding: 27px 6px 6px 6px;
+  -moz-box-shadow: 1px 1px 1px #000;
+  -webkit-box-shadow: 1px 1px 1px #000;
+  box-shadow: 1px 1px 1px #000;
+  z-index: 1000;
+}
+
+.terminal {
+	height: 100%;
+	position: relative;
+	overflow: hidden;
+	background: #0a2d7f;
+}
+
+.terminal-window {
+	padding: 10px;
+	color: #fff;
+	color: rgba(255,255,255,0.7);
+	background: #0a2d7f;
+	font-family: "Courier New", Courier, monospace;
+	font-size: 15px;
+  -webkit-font-smoothing: none;
+  -moz-font-smoothing: none;
+  -o-font-smoothing: none;
+  -ms-font-smoothing: none;
+	font-smoothing: none;
+	font-smoothing: none;
+	position: absolute;
+	z-index: 0;
+	bottom: 0;
+	left: 0;
+}
+
+.terminal-window a {
+  text-decoration: underline;
+}
+
+.terminal-output {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+.terminal-output li {
+	height: 25px;
+	line-height: 25px;
+	display: block;
+	overflow: hidden;
+}
+
+.terminal-prompt {
+	width: 20px;
+	float: left;
+}
+
+.terminal-message {
+	float: left;
+}
+
+.terminal-blinker {
+	width: 12px;
+	height: 18px;
+	float: left;
+	background-color: #1ba793;
+	margin-top: 3px;
+	margin-left: 2px;
+}
+
+.terminal-blinker.terminal-blink {
+	display: none;
+}
+
+.t-message-disable .terminal-blinker {
+	display: none;
+}
+
+.t-message-success {
+  color: #22c34c;
+}
+
+.t-message-info {
+  color: #c8c623;
+}
+
+.t-message-alert {
+  color: red;
+}
+
+.popup {
+	display: none;
+}
+
+.handle {
+  display: block;
+  width: 100%;
+  height: 26px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+}
+
+.magic-word {
+  position: absolute;
+  top: 110px;
+  right: 70px;
+  width: 400px;
+  height: 324px;
+  z-index: 2010;
+  background: url(../../img/404/pane-magic-word.gif);
+  -moz-box-shadow: 1px 1px 1px #000;
+  -webkit-box-shadow: 1px 1px 1px #000;
+  box-shadow: 1px 1px 1px #000;
+}
+
+.magic-word .uh-uh-uh {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -100px;
+  margin-left: -149px;
+}
+
+.jurassic-park {
+  width: 100%;
+  height: 100%;
+  background: #9c9cce;
+  background: rgba(156,156,206,0.7);
+  position: fixed;
+  top: 0; right: 0; bottom: 0; left: 0;
+  z-index: 1993; /* JURASSIC PARK RELEASE DATE! */
+  display: none;
+}
+
+.jurassic-park .inner-wrapper {
+  position: relative;
+}
+
+.jungle-babes {
+  position: absolute;
+  top: 160px;
+  left: 590px;
+  z-index: 999;
+  width: 350px;
+  height: 400px;
+  background: url(../../img/404/pane-jungle-babe.gif);
+  -moz-box-shadow: 1px 1px 1px #000;
+  -webkit-box-shadow: 1px 1px 1px #000;
+  box-shadow: 1px 1px 1px #000;
+  padding: 27px 6px 6px 6px;
+}
+
+.back-in-business {
+  position: absolute;
+  top: 90px;
+  left: 200px;
+  z-index: 2010;
+  width: 640px;
+  height: 360px;
+  background: #fff;
+  background: url(../../img/404/pane-power.gif);
+  -moz-box-shadow: 1px 1px 1px #000;
+  -webkit-box-shadow: 1px 1px 1px #000;
+  box-shadow: 1px 1px 1px #000;
+  padding: 27px 6px 6px 6px;
+}
+
+.pane-share {
+  width: 297px;
+  height: 115px;
+  padding: 40px 0 0 0;
+  background: url(../../img/404/pane-share.gif) no-repeat;
+  position: absolute;
+  z-index: 1;
+  top: 500px;
+  left: 360px;
+  z-index: 2000;
+}
+
+.pane-share .end {
+  padding-top: 38px;
+}

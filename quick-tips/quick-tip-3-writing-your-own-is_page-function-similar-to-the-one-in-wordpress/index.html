@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7  closed balloons"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8  closed balloons"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9  closed balloons"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js  closed balloons"> <!--<![endif]-->
+  <head>
+<base href="http://nouveller.com" />
+
+    <meta charset="utf-8">
+
+    <title>Quick Tip #3 &#8211; Writing your own &#8216;is_page&#8217; function similar to the one in WordPress &mdash; Nouveller</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="">
+
+    <link href="http://fonts.googleapis.com/css?family=Glegoo|Inconsolata|Open+Sans:400italic,400,700" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/screen.css">
+    
+    <script src="/static/js/libs/modernizr-2.6.2.min.js"></script>
+
+		
+<link rel='stylesheet' id='jetpack-subscriptions-css'  href='http://nouveller.com/wp/wp-content/plugins/jetpack/modules/subscriptions/subscriptions.css?ver=3.8.3' type='text/css' media='all' />
+<link rel='stylesheet' id='jetpack-widgets-css'  href='http://nouveller.com/wp/wp-content/plugins/jetpack/modules/widgets/widgets.css?ver=20121003' type='text/css' media='all' />
+<script type='text/javascript' src='http://nouveller.com/wp/wp-includes/js/jquery/jquery.js?ver=1.10.2'></script>
+<script type='text/javascript' src='http://nouveller.com/wp/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
+
+ 
+
+<link rel='next' title='Win yourself a copy of Picturesque!' href='http://nouveller.com/competitions/win-yourself-a-copy-of-picturesque/' />
+<link rel='canonical' href='http://nouveller.com/quick-tips/quick-tip-3-writing-your-own-is_page-function-similar-to-the-one-in-wordpress/' />
+<link rel='shortlink' href='http://wp.me/px2hb-dT' />
+<style type='text/css'>img#wpstats{display:none}</style>
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Quick Tip #3 - Writing your own &#039;is_page&#039; function similar to the one in WordPress" />
+<meta property="og:url" content="http://nouveller.com/quick-tips/quick-tip-3-writing-your-own-is_page-function-similar-to-the-one-in-wordpress/" />
+<meta property="og:description" content="After building several WordPress sites lately, I&#039;ve been getting used to writing it&#039;s common, but useful functions to do various different things. I&#039;ve now come to write new sites that don&#039;t use Wo..." />
+<meta property="article:published_time" content="2009-06-17T19:43:26+00:00" />
+<meta property="article:modified_time" content="2009-06-17T19:43:26+00:00" />
+<meta property="article:author" content="http://nouveller.com/author/benjamin/" />
+<meta property="og:site_name" content="Nouveller" />
+<meta property="og:image" content="http://wordpress.com/i/blank.jpg" />
+<meta name="twitter:site" content="@jetpack" />
+<meta name="twitter:card" content="summary" />
+
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-8404687-2']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+	</head>
+
+	<body class="single single-post postid-861 single-format-standard">
+
+    <header class="page-header fixed-top">
+      <div class="wrapper">
+        
+        <a href="http://nouveller.com" class="opacity-hover offset-bottom nouveller-logo">
+        	<img src="/static/img/logo-nouveller.png" alt="Nouveller logo">
+        </a>
+
+        <nav class="offset-bottom pos-right">
+          <ul class="main-nav">
+            <li class="nav-work"><a href="http://nouveller.com/work">Work</a></li>
+            <li class="nav-articles"><a href="http://nouveller.com/articles">Articles</a></li>
+            <li class="nav-labs"><a href="http://nouveller.com/labs">Labs</a></li>
+            <li class="nav-contact"><a href="http://nouveller.com/contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <a href="" class="nav-btn" id="displayNav">Display nav</a>
+
+      </div><!-- /.wrapper -->
+    </header><!-- /.page-header .fixed-top -->
+<div class="content inner-wrapper clearfix">
+      
+  <div class="main">
+
+		
+			<header>
+	      <h1>Quick Tip #3 &#8211; Writing your own &#8216;is_page&#8217; function similar to the one in WordPress</h1>
+	      <p class="meta">Posted on <time>June 17, 2009</time></p>
+	    </header>
+
+	    <p>After building several WordPress sites lately, I've been getting used to writing it's common, but useful functions to do various different things. I've now come to write new sites that don't use WordPress and I miss those functions! So I've created my own version of the <code>is_page</code> function among others. <a href="http://codex.wordpress.org/Function_Reference/is_page" target="_blank">View the is_page function in the WordPress Codex</a>.</p>
+<p>The <code>is_page</code> function is great for non WordPress sites that use lots of includes, such as menus. Say if you have two different includes that are included into different types of pages, you can put them in one include and use this conditional function to detect the page.</p>
+<div class="download zip"><a title="Download the files" href="http://nouveller.com/downloads/is_page.zip">Download the demo files</a></div>
+<h2>Defining the page</h2>
+<p>First I set the page name in a value called <code>$page</code> and <code>echo</code> it into the title of the document. It's not necessary to <code>echo</code> it but it makes sense to.</p>
+<p><strong>index.php</strong></p>
+<pre lang="PHP">
+
+</pre>
+<h2>Writing the 'is_page' function</h2>
+<p>Now in my <code>index.php</code> file I'll include a <code>functions.php</code> file at the top of the page before the doctype.</p>
+<pre lang="html4strict">
+<?php
+
+	require_once('inc/functions.php');
+
+?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base href="http://nouveller.com" />
+
+
+	
+
+</head>
+</pre>
+<p>Next place the <code>is_page</code> function into <code>inc/functions.php</code>. First we define the function name with a value called <code>$current_page</code> that we can set when writing the function. Then set the <code>$page</code> value to <code>global</code> so that it can be read from outside the function. All that's left is a simple <code>if</code> statement that checks whether our page name entered into the function's brackets matches our title we set at the top of our <code>index.php</code> page in <code>$title</code>. If <code>$page</code> and <code>$current_page</code> match, it will <code>return true</code> if not, it will <code>return false</code>.</p>
+<p><strong>inc/functions.php</strong></p>
+<pre lang="PHP">
+<?php 
+
+function is_page($current_page)
+{
+	global $page;
+	
+	if($page == $current_page)
+	{
+		return true;
+		
+	} else {
+	
+		return false;
+	
+	}
+	
+}
+
+?>
+</pre>
+<h2>Calling the 'is_page' function on our page</h2>
+<p>Back on the <code>index.php</code> add call the function and enter the matching page name.</p>
+<pre lang="PHP">
+<?php 
+		
+	if(is_page('home')) {
+	
+		echo 'Home page';
+		
+	}
+
+?>
+</pre>
+<p>Now a live demo wouldn't be much help unless you could see the un-generated code, so download the files and give it a blast. Let me know you thoughts/improvements or if you use it, below.</p>
+<div class="download zip"><a title="Download the files" href="http://nouveller.com/downloads/is_page.zip">Download the demo files</a></div>
+
+	    
+<div class="comments">
+
+			
+		<h3>18 comments</h3>
+
+		<ul class="comments-list">
+					<li id="li-comment-750">
+			<div class="comment" id="comment-750">
+
+				<img alt='' src='http://1.gravatar.com/avatar/3690438ba022c31166bc90ba4cade2e2?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://twitter.com/foGGyX' rel='external nofollow' class='url'>Liam Goodacre</a> wrote on <time>17th June 2009</time></p>
+				
+				<p>Cool, nice tip <img src="http://nouveller.com/wp/wp-includes/images/smilies/icon_smile.gif" alt=":)" class="wp-smiley" /><br />
+used something similar to this awhile back, where I used a &#8216;select&#8217; to determine which page content to include, in relation to what the current page title was.</p>
+<p>&#8211;Liam Goodacre</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/quick-tips/quick-tip-3-writing-your-own-is_page-function-similar-to-the-one-in-wordpress/?replytocom=750#respond' onclick='return addComment.moveForm("comment-750", "750", "respond", "861")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li class="pingback even thread-even depth-1" id="comment-751">
+			<p>Pingback: <a href='http://weblogtoolscollection.com/archives/2009/06/17/wordpress-tips-from-twitter-digest-1/' rel='external nofollow' class='url'>WordPress Tips From Twitter, Digest #1 | Weblog Tools Collection</a> </p>
+		</li><!-- #comment-## -->
+		<li id="li-comment-752">
+			<div class="comment" id="comment-752">
+
+				<img alt='' src='http://0.gravatar.com/avatar/2defe1ba8963085b92f23aef74239cfa?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://twitter.com/jdhartley' rel='external nofollow' class='url'>JD Hartley</a> wrote on <time>18th June 2009</time></p>
+				
+				<p>Looks great!</p>
+<p>You could even simplify the title tag</p>
+<p>To this:</p>
+<p>Thanks for the code, Benjamin.</p>
+<p>-JD</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/quick-tips/quick-tip-3-writing-your-own-is_page-function-similar-to-the-one-in-wordpress/?replytocom=752#respond' onclick='return addComment.moveForm("comment-752", "752", "respond", "861")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-753">
+			<div class="comment" id="comment-753">
+
+				<img alt='' src='http://0.gravatar.com/avatar/47b65bd91deb884a6a4db475b099c6f0?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.golbym.com' rel='external nofollow' class='url'>Xs</a> wrote on <time>20th December 2009</time></p>
+				
+				<p>function is_page($current_page, $page, $title){</p>
+<p>if($current_page == $page)<br />
+  echo $title;</p>
+<p>}</p>
+<p>This function could save you a bit more of time <img src="http://nouveller.com/wp/wp-includes/images/smilies/icon_wink.gif" alt=";)" class="wp-smiley" /> </p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/quick-tips/quick-tip-3-writing-your-own-is_page-function-similar-to-the-one-in-wordpress/?replytocom=753#respond' onclick='return addComment.moveForm("comment-753", "753", "respond", "861")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-754">
+			<div class="comment" id="comment-754">
+
+				<img alt='' src='http://1.gravatar.com/avatar/57af01cbc209bf13b8249df68a331201?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">Marc wrote on <time>16th January 2010</time></p>
+				
+				<p>Hey Benjamin, thanks for this helpful little post. It&#8217;s exactly what I was looking for. I do have a problem though and I was wandering if you&#8217;d help me solve it? </p>
+<p>I pull my header[dot]php with the PHP function requier into all my pages. Now all of my pages are having the same name. </p>
+<p>I&#8217;m not good enough to find a work around myself. Could you help me with a quick fix? Many thanks Marc</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/quick-tips/quick-tip-3-writing-your-own-is_page-function-similar-to-the-one-in-wordpress/?replytocom=754#respond' onclick='return addComment.moveForm("comment-754", "754", "respond", "861")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		<ul class="children">
+		<li id="li-comment-755">
+			<div class="comment" id="comment-755">
+
+				<img alt='' src='http://1.gravatar.com/avatar/f3bcfa4a2b1b0fe7adcd7c92c9baa5ef?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.nouveller.com/' rel='external nofollow' class='url'>Nouveller</a> wrote on <time>17th January 2010</time></p>
+				
+				<p>Instead of defining $page in the page title just add it above you&#8217;re header.php include, that should sort it out. If you&#8217;re still having problems, send me a message using my contact form.</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/quick-tips/quick-tip-3-writing-your-own-is_page-function-similar-to-the-one-in-wordpress/?replytocom=755#respond' onclick='return addComment.moveForm("comment-755", "755", "respond", "861")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li id="li-comment-756">
+			<div class="comment" id="comment-756">
+
+				<img alt='' src='http://1.gravatar.com/avatar/57af01cbc209bf13b8249df68a331201?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">Marc wrote on <time>17th January 2010</time></p>
+				
+				<p>Thanks Benjamin, I just moved the entire title tag including you PHP snippet from above onto my page befor my require (include) header. It works perfect!</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/quick-tips/quick-tip-3-writing-your-own-is_page-function-similar-to-the-one-in-wordpress/?replytocom=756#respond' onclick='return addComment.moveForm("comment-756", "756", "respond", "861")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		<ul class="children">
+		<li id="li-comment-757">
+			<div class="comment" id="comment-757">
+
+				<img alt='' src='http://1.gravatar.com/avatar/f3bcfa4a2b1b0fe7adcd7c92c9baa5ef?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.nouveller.com/' rel='external nofollow' class='url'>Nouveller</a> wrote on <time>18th January 2010</time></p>
+				
+				<p>Great! Glad you got it sorted.</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/quick-tips/quick-tip-3-writing-your-own-is_page-function-similar-to-the-one-in-wordpress/?replytocom=757#respond' onclick='return addComment.moveForm("comment-757", "757", "respond", "861")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="trackback odd alt thread-odd thread-alt depth-1" id="comment-758">
+			<p>Pingback: <a href='http://www.babyszuhause.de/wp-login.php?redirect_to=http%3A%2F%2Fwww.babyszuhause.de%2Falvi-maxchen-baby-schlafsack-light-gr-70-modell-112-9.html' rel='external nofollow' class='url'>baby möbel shop</a> </p>
+		</li><!-- #comment-## -->
+		<li id="li-comment-759">
+			<div class="comment" id="comment-759">
+
+				<img alt='' src='http://1.gravatar.com/avatar/58daa833bb3943f6d553c841824d7527?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://hostgatorforfree' rel='external nofollow' class='url'>HostGatorForFree - Coupon for HostGator</a> wrote on <time>27th November 2011</time></p>
+				
+				<p>It&#8217;s actually a great and useful piece of information. I&#8217;m satisfied that you shared this useful info with us. Please keep us up to date like this. Thank you for sharing.</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/quick-tips/quick-tip-3-writing-your-own-is_page-function-similar-to-the-one-in-wordpress/?replytocom=759#respond' onclick='return addComment.moveForm("comment-759", "759", "respond", "861")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-760">
+			<div class="comment" id="comment-760">
+
+				<img alt='' src='http://1.gravatar.com/avatar/def618fe1acfec0a4b2f611cad236b47?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://buildyourownsoftware.com/about/' rel='external nofollow' class='url'>build your own software</a> wrote on <time>4th December 2011</time></p>
+				
+				<p>Great blog here! Also your website so much up very fast! What web host are you using? Can I get your associate link in your host? I want my website loaded up as quickly as yours lol</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/quick-tips/quick-tip-3-writing-your-own-is_page-function-similar-to-the-one-in-wordpress/?replytocom=760#respond' onclick='return addComment.moveForm("comment-760", "760", "respond", "861")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-761">
+			<div class="comment" id="comment-761">
+
+				<img alt='' src='http://0.gravatar.com/avatar/0522706dc297c6364b70c1719d46c279?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://testing' rel='external nofollow' class='url'>sameed</a> wrote on <time>4th December 2011</time></p>
+				
+				<p>I need to have one css file for home page and another one for all other pages. It is simply PHP files not using any CMS.</p>
+<p>Can you help me please</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/quick-tips/quick-tip-3-writing-your-own-is_page-function-similar-to-the-one-in-wordpress/?replytocom=761#respond' onclick='return addComment.moveForm("comment-761", "761", "respond", "861")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-762">
+			<div class="comment" id="comment-762">
+
+				<img alt='' src='http://0.gravatar.com/avatar/0522706dc297c6364b70c1719d46c279?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://testing' rel='external nofollow' class='url'>sameed</a> wrote on <time>4th December 2011</time></p>
+				
+				<p>thanks a lot for your very useful code for the php novice like me&#8230;</p>
+<p>It works as follow, if any one needed.</p>
+<p>I called the following in my header.php</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/quick-tips/quick-tip-3-writing-your-own-is_page-function-similar-to-the-one-in-wordpress/?replytocom=762#respond' onclick='return addComment.moveForm("comment-762", "762", "respond", "861")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-763">
+			<div class="comment" id="comment-763">
+
+				<img alt='' src='http://0.gravatar.com/avatar/0522706dc297c6364b70c1719d46c279?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://testing' rel='external nofollow' class='url'>sameed</a> wrote on <time>4th December 2011</time></p>
+				
+								
+				<div class="reply">
+					<a class='comment-reply-link' href='/quick-tips/quick-tip-3-writing-your-own-is_page-function-similar-to-the-one-in-wordpress/?replytocom=763#respond' onclick='return addComment.moveForm("comment-763", "763", "respond", "861")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li class="trackback even thread-even depth-1" id="comment-764">
+			<p>Pingback: <a href='http://tablets-4less.com/tablet-news/specials-on-lenovo-tablet-pc-26/' rel='external nofollow' class='url'>Find Tablet Computer Discounts</a> </p>
+		</li><!-- #comment-## -->
+		<li id="li-comment-765">
+			<div class="comment" id="comment-765">
+
+				<img alt='' src='http://0.gravatar.com/avatar/29a53ea9a5cec98a2708ceff9fd21443?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://permainanzuma.blogspot.com/' rel='external nofollow' class='url'>game zuma</a> wrote on <time>1st May 2012</time></p>
+				
+				<p>It’s actually a great and useful piece of information. I’m satisfied that you shared this useful info with us. Please keep us up to date like this. Thank you for sharing.</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/quick-tips/quick-tip-3-writing-your-own-is_page-function-similar-to-the-one-in-wordpress/?replytocom=765#respond' onclick='return addComment.moveForm("comment-765", "765", "respond", "861")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-766">
+			<div class="comment" id="comment-766">
+
+				<img alt='' src='http://1.gravatar.com/avatar/f5578cd7f19b6313059a3b53cfc8edde?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">a wrote on <time>24th May 2012</time></p>
+				
+				<p>Eat a balanced and healthy meal.  <a href="http://www.totalrock.hu" rel="nofollow">viagra</a> <a href="http://www.totalrock.hu" rel="nofollow">http://www.totalrock.hu</a></p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/quick-tips/quick-tip-3-writing-your-own-is_page-function-similar-to-the-one-in-wordpress/?replytocom=766#respond' onclick='return addComment.moveForm("comment-766", "766", "respond", "861")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-2133">
+			<div class="comment" id="comment-2133">
+
+				<img alt='' src='http://0.gravatar.com/avatar/c35c79dabbef44a2421dd7227473e416?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">Louie wrote on <time>7th July 2013</time></p>
+				
+				<p>Very useful thank you.</p>
+<p>To save some lines, you could also replace the &#8220;if ($page == $current)&#8221; statement with a nice ternary operator:</p>
+<p>return ($page == $current) ? true : false;</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/quick-tips/quick-tip-3-writing-your-own-is_page-function-similar-to-the-one-in-wordpress/?replytocom=2133#respond' onclick='return addComment.moveForm("comment-2133", "2133", "respond", "861")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		</ul><!-- .commentlist -->
+
+		
+		
+	</div><!-- /.comments -->
+
+<div class="comment-form">
+									<div id="respond" class="comment-respond">
+				<h3 id="reply-title" class="comment-reply-title">Add your comment <small><a rel="nofollow" id="cancel-comment-reply-link" href="/quick-tips/quick-tip-3-writing-your-own-is_page-function-similar-to-the-one-in-wordpress/#respond" style="display:none;">Cancel reply</a></small></h3>
+									<form action="http://nouveller.com/wp/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+																										<div class="form-details"><input id="author" name="author" class="input-text" type="text" placeholder="Name" value="">
+<input id="email" name="email" class="input-text" type="text" placeholder="Email" value="">
+<input id="url" name="url" class="input-text" type="text" placeholder="Website (optional)" value=""></div>
+												<textarea id="comment" name="comment" class="input-textarea" placeholder="Comment"></textarea>						<p class="form-allowed-tags">You may use these <abbr title="HyperText Markup Language">HTML</abbr> tags and attributes:  <code>&lt;a href=&quot;&quot; title=&quot;&quot;&gt; &lt;abbr title=&quot;&quot;&gt; &lt;acronym title=&quot;&quot;&gt; &lt;b&gt; &lt;blockquote cite=&quot;&quot;&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=&quot;&quot;&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=&quot;&quot;&gt; &lt;strike&gt; &lt;strong&gt; </code></p>						<p class="form-submit">
+							<input name="submit" type="submit" id="submit" value="Post Comment" />
+							<input type='hidden' name='comment_post_ID' value='861' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+						</p>
+						<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="52528f7ba8" /></p><p class="comment-subscription-form"><input type="checkbox" name="subscribe_comments" id="subscribe_comments" value="subscribe" style="width: auto; -moz-appearance: checkbox; -webkit-appearance: checkbox;" /> <label class="subscribe-label" id="subscribe-label" for="subscribe_comments">Notify me of follow-up comments by email.</label></p><p class="comment-subscription-form"><input type="checkbox" name="subscribe_blog" id="subscribe_blog" value="subscribe" style="width: auto; -moz-appearance: checkbox; -webkit-appearance: checkbox;" /> <label class="subscribe-label" id="subscribe-blog-label" for="subscribe_blog">Notify me of new posts by email.</label></p><script type='text/javascript' src='http://nouveller.com/wp/wp-content/plugins/akismet/_inc/form.js?ver=3.0.0'></script>
+<p style="display: none;"><input type="hidden" id="ak_js" name="ak_js" value="32"/></p>					</form>
+							</div><!-- #respond -->
+			</div>
+	  
+	</div><!-- /.main -->
+
+	<div class="sidebar articles-sidebar">
+		<h5>Category</h5>
+<ul class="post-categories">
+	<li><a href="http://nouveller.com/category/quick-tips/" title="View all posts in Quick Tips" rel="category tag">Quick Tips</a></li>
+	<li><a href="http://nouveller.com/category/wordpress/" title="View all posts in wordpress" rel="category tag">wordpress</a></li></ul>
+
+
+<h5>tags</h5><ul class="plain-list inline-list clearfix"><li><a href="http://nouveller.com/tag/download/" rel="tag">Download</a></li><li><a href="http://nouveller.com/tag/functions/" rel="tag">Functions</a></li><li><a href="http://nouveller.com/tag/html/" rel="tag">HTML</a></li><li><a href="http://nouveller.com/tag/wordpress/" rel="tag">wordpress</a></li><li><a href="http://nouveller.com/tag/xhtml/" rel="tag">XHTML</a></li></ul>
+<h5>Share</h5>
+<ul class="plain-list share-list">
+	<li><a data-related="nouveller,benjaminreid" data-text="Quick Tip #3 &#8211; Writing your own &#8216;is_page&#8217; function similar to the one in WordPress" data-url="http://nouveller.com/quick-tips/quick-tip-3-writing-your-own-is_page-function-similar-to-the-one-in-wordpress/" href="https://twitter.com/share" class="twitter-share-button" data-lang="en">Tweet</a></li>
+	<li><iframe src="//www.facebook.com/plugins/like.php?href=http://nouveller.com/quick-tips/quick-tip-3-writing-your-own-is_page-function-similar-to-the-one-in-wordpress/&amp;send=false&amp;layout=button_count&amp;width=140&amp;show_faces=false&amp;font&amp;colorscheme=light&amp;action=like&amp;height=21&amp;appId=253536277996804" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:140px; height:21px;" allowTransparency="true"></iframe></li>
+	<li><div class="g-plusone" data-size="medium"></div></li>
+</ul>	</div>
+
+</div><!-- /.content -->
+
+    <footer class="section-footer">
+      <div class="content inner-wrapper">
+
+        <div class="row">
+          <div class="about-me">
+            <h2>About</h2>
+            <p>Nouveller is a creative outlet for me to talk about what I learn and show the world what I create. I like sharing what I learn, in hope it can help others learning as well so you'll hopefully see plenty of articles on HTML, CSS, JavaScript, PHP and Ruby. There's also plenty of experiments and hidden gems to be found! <a href="http://www.youtube.com/watch?v=F5zboV3_9KY" target="_blank">Luck dip?</a></p>
+          </div>
+          <div class="social-links">
+            <h2>You can find me on</h2>
+            <ul class="two-column-list">
+              <li><a target="_blank" href="https://twitter.com/BenjaminReid" class="twitter">Twitter</a></li>
+              <li><a target="_blank" href="https://www.facebook.com/fb.nouveller" class="facebook">Facebook</a></li>
+              <li><a target="_blank" href="http://forrst.com/people/nouveller/" class="forrst">Forrst</a></li>
+              <li><a target="_blank" href="http://www.flickr.com/photos/nouveller" class="flick">Flick<span class="r">r</span></a></li>
+              <li><a target="_blank" href="http://pinterest.com/benjaminreid/" class="pinterest">Pinterest</a></li>
+              <li><a target="_blank" href="http://www.youtube.com/user/semper0fi" class="you">You<span class="tube">Tube</span></a></li>
+              <li><a target="_blank" href="http://www.strava.com/athletes/238785" class="strava">Strava</a></li>
+              <li><a target="_blank" href="http://vimeo.com/nouveller" class="vimeo">Vimeo</a></li>
+            </ul>
+          </div><!-- /.social-links -->
+        </div><!-- /.row -->
+
+        <div class="break"></div>
+
+        <div class="twitter-feed aligncentre">
+          <img src="/static/img/twitter-logo.png" alt="Twitter logo">
+          <p><span class="twitter">@BenjaminReid:</span> Clever girl...</p>
+          <a href="https://twitter.com/BenjaminReid" class="twitter-follow-button" data-show-count="false">Follow @BenjaminReid</a>
+        </div><!-- /.twitter-feed -->
+
+      </div><!-- /.content inner-wrapper -->
+
+      <section class="section-footnotes">
+        <div class="inner-wrapper aligncentre">
+          <p>Nouveller &mdash; Seeker | <a href="mailto:benjamin@nouveller.com">benjamin@nouveller.com</a><br />
+          &copy; Nouveller 2014 | Designed &amp; built by <a href="http://www.benjaminreid.me/">Benjamin Reid</a> in the &hearts; of <a href="https://www.google.com/maps?q=Bristol,+UK">Bristol</a> | Hosted by <a href="http://www.memset.com/">Memset</a></p>
+        </div><!-- /.inner-wrapper -->
+      </section>
+
+    </footer>
+
+
+        <script src="/static/js/seeker.build.js"></script>
+    
+        	<div style="display:none">
+	<div class="grofile-hash-map-3690438ba022c31166bc90ba4cade2e2">
+	</div>
+	<div class="grofile-hash-map-2defe1ba8963085b92f23aef74239cfa">
+	</div>
+	<div class="grofile-hash-map-47b65bd91deb884a6a4db475b099c6f0">
+	</div>
+	<div class="grofile-hash-map-57af01cbc209bf13b8249df68a331201">
+	</div>
+	<div class="grofile-hash-map-f3bcfa4a2b1b0fe7adcd7c92c9baa5ef">
+	</div>
+	<div class="grofile-hash-map-4e74720aed848d6e6f7324671c1e2a3f">
+	</div>
+	<div class="grofile-hash-map-522677434de306aa108ba04a2336e013">
+	</div>
+	<div class="grofile-hash-map-0522706dc297c6364b70c1719d46c279">
+	</div>
+	<div class="grofile-hash-map-29a53ea9a5cec98a2708ceff9fd21443">
+	</div>
+	<div class="grofile-hash-map-3e24866b52c98faaac6f1738540512fd">
+	</div>
+	<div class="grofile-hash-map-02877b4673bfc2ec4254d8778fcef8c4">
+	</div>
+	</div>
+<script type='text/javascript' src='http://s0.wp.com/wp-content/js/devicepx-jetpack.js?ver=201437'></script>
+<script type='text/javascript' src='http://s.gravatar.com/js/gprofiles.js?ver=2014Sepaa'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var WPGroHo = {"my_hash":""};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://nouveller.com/wp/wp-content/plugins/jetpack/modules/wpgroho.js?ver=3.8.3'></script>
+
+	<script src="http://stats.wordpress.com/e-201437.js" type="text/javascript"></script>
+	<script type="text/javascript">
+	st_go({v:'ext',j:'1:2.9.3',blog:'7873577',post:'861',tz:'0'});
+	var load_cmc = function(){linktracker_init(7873577,861,2);};
+	if ( typeof addLoadEvent != 'undefined' ) addLoadEvent(load_cmc);
+	else load_cmc();
+	</script>    
+  </body>
+</html>

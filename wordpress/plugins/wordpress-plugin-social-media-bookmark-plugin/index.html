@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7  closed balloons"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8  closed balloons"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9  closed balloons"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js  closed balloons"> <!--<![endif]-->
+  <head>
+<base href="http://nouveller.com" />
+
+    <meta charset="utf-8">
+
+    <title>WordPress plugin: Social Media Bookmark Plugin + &mdash; Nouveller</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="">
+
+    <link href="http://fonts.googleapis.com/css?family=Glegoo|Inconsolata|Open+Sans:400italic,400,700" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/screen.css">
+    
+    <script src="/static/js/libs/modernizr-2.6.2.min.js"></script>
+
+		
+<link rel='stylesheet' id='jetpack-subscriptions-css'  href='http://nouveller.com/wp/wp-content/plugins/jetpack/modules/subscriptions/subscriptions.css?ver=3.8.3' type='text/css' media='all' />
+<link rel='stylesheet' id='jetpack-widgets-css'  href='http://nouveller.com/wp/wp-content/plugins/jetpack/modules/widgets/widgets.css?ver=20121003' type='text/css' media='all' />
+<script type='text/javascript' src='http://nouveller.com/wp/wp-includes/js/jquery/jquery.js?ver=1.10.2'></script>
+<script type='text/javascript' src='http://nouveller.com/wp/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
+
+ 
+
+<link rel='next' title='How to design a super slick UI button in Photoshop' href='http://nouveller.com/design/how-to-design-a-super-slick-ui-button-in-photoshop/' />
+<link rel='canonical' href='http://nouveller.com/wordpress/plugins/wordpress-plugin-social-media-bookmark-plugin/' />
+<link rel='shortlink' href='http://wp.me/px2hb-uk' />
+<style type='text/css'>img#wpstats{display:none}</style>
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="WordPress plugin: Social Media Bookmark Plugin +" />
+<meta property="og:url" content="http://nouveller.com/wordpress/plugins/wordpress-plugin-social-media-bookmark-plugin/" />
+<meta property="og:description" content="I&#039;ve knocked together a little WordPress plugin for my Social Media Bookmark + icon set. At the moment it contains a couple of useful functions to add the icons into your WordPress website/blog (re..." />
+<meta property="article:published_time" content="2010-03-08T13:36:33+00:00" />
+<meta property="article:modified_time" content="2010-03-08T13:36:33+00:00" />
+<meta property="article:author" content="http://nouveller.com/author/benjamin/" />
+<meta property="og:site_name" content="Nouveller" />
+<meta property="og:image" content="http://wordpress.com/i/blank.jpg" />
+<meta name="twitter:site" content="@jetpack" />
+<meta name="twitter:card" content="summary" />
+
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-8404687-2']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+	</head>
+
+	<body class="single single-post postid-1880 single-format-standard">
+
+    <header class="page-header fixed-top">
+      <div class="wrapper">
+        
+        <a href="http://nouveller.com" class="opacity-hover offset-bottom nouveller-logo">
+        	<img src="/static/img/logo-nouveller.png" alt="Nouveller logo">
+        </a>
+
+        <nav class="offset-bottom pos-right">
+          <ul class="main-nav">
+            <li class="nav-work"><a href="http://nouveller.com/work">Work</a></li>
+            <li class="nav-articles"><a href="http://nouveller.com/articles">Articles</a></li>
+            <li class="nav-labs"><a href="http://nouveller.com/labs">Labs</a></li>
+            <li class="nav-contact"><a href="http://nouveller.com/contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <a href="" class="nav-btn" id="displayNav">Display nav</a>
+
+      </div><!-- /.wrapper -->
+    </header><!-- /.page-header .fixed-top -->
+<div class="content inner-wrapper clearfix">
+      
+  <div class="main">
+
+		
+			<header>
+	      <h1>WordPress plugin: Social Media Bookmark Plugin +</h1>
+	      <p class="meta">Posted on <time>March 8, 2010</time></p>
+	    </header>
+
+	    <p>I've knocked together a little WordPress plugin for my <a href="http://nouveller.com/general/new-icons-added-to-the-social-media-bookmark-icon-pack-featuring-113-socialicious-icons/">Social Media Bookmark +  icon set</a>. At the moment it contains a couple of useful functions to add the icons into your WordPress website/blog (read on for full explanation of these) and of course contains all the icons in it too! This will be updated every time the icon set is updated.</p>
+<p>Just like the icon set, I want you to suggest things you'd like to see in the plugin. It may be a feature that already exists in similar plugins but you'd just like my icons in place or a completely new feature that you're dying to get on your website, <strong>so please shoot some suggestions in the comments</strong>.</p>
+<div class="download zip"><a title="Download the Social Media Bookmark Plugin +" href="http://nouveller.com/downloads/smbp.zip">Download the Social Media Bookmark Plugin +</a></div>
+<h2>What the plugin does and how to use it</h2>
+<h3>Easily add icons through WordPress posts/pages/comments</h3>
+<p>Now you can add icons super-easily! Use this little snippet below in your content, excerpt or comments fields for the icon to appear.</p>
+<pre lang="html4strict">
+[twitter 32]
+</pre>
+<p>This will generate a Twitter icon at 32x32 pixels. Just replace 'twitter' with any icon name in the set (no spaces or hyphens) and '32' with any of the available sizes (32, 16, button).</p>
+<h3>Add icons into your theme files</h3>
+<p>This is just as easy as adding icons into your content! Place this snippet into any of your theme files and replace 'twitter' with any icon name in the set (no spaces or hyphens) and '32' with any of the available sizes (32, 16, button).</p>
+<pre lang="PHP">
+<?php
+echo icon('twitter', '32');
+?>
+</pre>
+
+	    
+<div class="comments">
+
+			
+		<h3>49 comments</h3>
+
+		<ul class="comments-list">
+					<li id="li-comment-1261">
+			<div class="comment" id="comment-1261">
+
+				<img alt='' src='http://0.gravatar.com/avatar/4aad73cb9eba535665b2f5a201d439ce?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://minute44.com' rel='external nofollow' class='url'>Dan</a> wrote on <time>19th April 2010</time></p>
+				
+				<p>So&#8230; wait? It doesn&#8217;t make the icons link anywhere? =/</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/wordpress/plugins/wordpress-plugin-social-media-bookmark-plugin/?replytocom=1261#respond' onclick='return addComment.moveForm("comment-1261", "1261", "respond", "1880")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		<ul class="children">
+		<li id="li-comment-1262">
+			<div class="comment" id="comment-1262">
+
+				<img alt='' src='http://1.gravatar.com/avatar/f3bcfa4a2b1b0fe7adcd7c92c9baa5ef?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.nouveller.com/' rel='external nofollow' class='url'>Nouveller</a> wrote on <time>19th April 2010</time></p>
+				
+				<p>At the moment it doesn&#8217;t. But as I said, suggest features and they will be added. Do you want something (for example) that would add the icons to the bottom of the post then automatically set up links for Digg, Twitter etc&#8230;?</p>
+<p>The initial release was aimed at people wanting to add icons to their website and allow them to put personalised profile links.</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/wordpress/plugins/wordpress-plugin-social-media-bookmark-plugin/?replytocom=1262#respond' onclick='return addComment.moveForm("comment-1262", "1262", "respond", "1880")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		<ul class="children">
+		<li id="li-comment-1266">
+			<div class="comment" id="comment-1266">
+
+				<img alt='' src='http://1.gravatar.com/avatar/d0687e867e14f4d0c750af162a0ac006?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://gamerkaos.blogspot.com' rel='external nofollow' class='url'>Tony</a> wrote on <time>30th September 2010</time></p>
+				
+				<p>Yes it would be great if I can put all these especially the playstation one glossy if possible the size 32 to put on my blogger after every post and on my side bar. If you are ablr to do this please reply and I will definitely donate for a job well done plus I can put a link for your website thanks buddy</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li id="li-comment-1263">
+			<div class="comment" id="comment-1263">
+
+				<img alt='' src='http://0.gravatar.com/avatar/090964fcf0af96970c108ded04b3a7e0?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.myboni.com' rel='external nofollow' class='url'>Boni</a> wrote on <time>26th April 2010</time></p>
+				
+				<p>You have a great complete list icon. I use the button, with &#8220;share&#8221; beside it.<br />
+Thanks</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/wordpress/plugins/wordpress-plugin-social-media-bookmark-plugin/?replytocom=1263#respond' onclick='return addComment.moveForm("comment-1263", "1263", "respond", "1880")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1264">
+			<div class="comment" id="comment-1264">
+
+				<img alt='' src='http://0.gravatar.com/avatar/e9cf4a4f8c1319bdf95b57cc1e96c4f1?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://visionarytraveller.com' rel='external nofollow' class='url'>Jimmy</a> wrote on <time>29th June 2010</time></p>
+				
+				<p>hello,</p>
+<p>&#8220;Do you want something (for example) that would add the icons to the bottom of the post then automatically set up links for Digg, Twitter etc…?&#8221;</p>
+<p>this is something that i would defintely.. i am a beginners so do not really know much.. but would like the help of an expert</p>
+<p>thanks<br />
+Jimmy Eriksson</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/wordpress/plugins/wordpress-plugin-social-media-bookmark-plugin/?replytocom=1264#respond' onclick='return addComment.moveForm("comment-1264", "1264", "respond", "1880")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1265">
+			<div class="comment" id="comment-1265">
+
+				<img alt='' src='http://0.gravatar.com/avatar/aa9dfe0687aaabcbd78cea36a5076929?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">Amanda wrote on <time>24th September 2010</time></p>
+				
+				<p>Would be nice if this would work in a widget &#8212; I tried adding [twitter 32] in a text widget in my footer, but nothing was displayed <img src="http://nouveller.com/wp/wp-includes/images/smilies/icon_sad.gif" alt=":(" class="wp-smiley" /> </p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/wordpress/plugins/wordpress-plugin-social-media-bookmark-plugin/?replytocom=1265#respond' onclick='return addComment.moveForm("comment-1265", "1265", "respond", "1880")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		<ul class="children">
+		<li id="li-comment-1272">
+			<div class="comment" id="comment-1272">
+
+				<img alt='' src='http://0.gravatar.com/avatar/c39368cec65b0147e823ffb86b5cbaae?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.konradprojects.net' rel='external nofollow' class='url'>Michael Konrad</a> wrote on <time>13th March 2011</time></p>
+				
+				<p>Here&#8217;s a work around:</p>
+<p>Put [twitter 32] in a blank post. Then copy the address of the icon to your clipboard and paste into HTML on a text widget. That will work, it&#8217;s how I did it.</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/wordpress/plugins/wordpress-plugin-social-media-bookmark-plugin/?replytocom=1272#respond' onclick='return addComment.moveForm("comment-1272", "1272", "respond", "1880")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li id="li-comment-1267">
+			<div class="comment" id="comment-1267">
+
+				<img alt='' src='http://0.gravatar.com/avatar/2f73205b609ceb795c1631d118e52e45?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://kreviii.com' rel='external nofollow' class='url'>Kreviii</a> wrote on <time>20th December 2010</time></p>
+				
+				<p>Thanx so much this is really great concept for a plug-in — 5 stars. Looking forward to any further developments on this idea.</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/wordpress/plugins/wordpress-plugin-social-media-bookmark-plugin/?replytocom=1267#respond' onclick='return addComment.moveForm("comment-1267", "1267", "respond", "1880")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1268">
+			<div class="comment" id="comment-1268">
+
+				<img alt='' src='http://0.gravatar.com/avatar/6555961454448e0d2a746a561c950a67?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.ipad-os.net/' rel='external nofollow' class='url'>iPadOS</a> wrote on <time>15th February 2011</time></p>
+				
+				<p>Thank you, three days looking for these icons</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/wordpress/plugins/wordpress-plugin-social-media-bookmark-plugin/?replytocom=1268#respond' onclick='return addComment.moveForm("comment-1268", "1268", "respond", "1880")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1269">
+			<div class="comment" id="comment-1269">
+
+				<img alt='' src='http://1.gravatar.com/avatar/569ec086002387bb7b811adb585604f5?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">Jay wrote on <time>7th March 2011</time></p>
+				
+				<p>Nice plugin <img src="http://nouveller.com/wp/wp-includes/images/smilies/icon_smile.gif" alt=":)" class="wp-smiley" />  To top it off, would you please add a SoundCloud icon?</p>
+<p>#thnx</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/wordpress/plugins/wordpress-plugin-social-media-bookmark-plugin/?replytocom=1269#respond' onclick='return addComment.moveForm("comment-1269", "1269", "respond", "1880")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1270">
+			<div class="comment" id="comment-1270">
+
+				<img alt='' src='http://1.gravatar.com/avatar/569ec086002387bb7b811adb585604f5?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">Jay wrote on <time>7th March 2011</time></p>
+				
+				<p>&#8230; Ah, the soundcloud is missing from the plugin, but there in the normal icon download pack <img src="http://nouveller.com/wp/wp-includes/images/smilies/icon_smile.gif" alt=":)" class="wp-smiley" /> </p>
+<p>thnx!</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/wordpress/plugins/wordpress-plugin-social-media-bookmark-plugin/?replytocom=1270#respond' onclick='return addComment.moveForm("comment-1270", "1270", "respond", "1880")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1271">
+			<div class="comment" id="comment-1271">
+
+				<img alt='' src='http://0.gravatar.com/avatar/c39368cec65b0147e823ffb86b5cbaae?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.konradprojects.net' rel='external nofollow' class='url'>Michael Konrad</a> wrote on <time>13th March 2011</time></p>
+				
+				<p>Great plugin. I actually like that it&#8217;s just the icons with no links so that I can link easily personalize them on my site.</p>
+<p>I have two suggestions:</p>
+<p>1. The Twitter icon is out-of-date. Twitter uses a bird logo now, and the old &#8220;T&#8221; logo can be confused with Tumblr.</p>
+<p>2. RSS buttons in a variety of colors. I know orange is the standard, but I&#8217;m trying to come up with a way to differentiate between 2 links on the same page to different RSS feeds.</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/wordpress/plugins/wordpress-plugin-social-media-bookmark-plugin/?replytocom=1271#respond' onclick='return addComment.moveForm("comment-1271", "1271", "respond", "1880")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		<ul class="children">
+		<li id="li-comment-1273">
+			<div class="comment" id="comment-1273">
+
+				<img alt='' src='http://1.gravatar.com/avatar/f3bcfa4a2b1b0fe7adcd7c92c9baa5ef?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.nouveller.com/' rel='external nofollow' class='url'>Benjamin Reid</a> wrote on <time>13th March 2011</time></p>
+				
+				<p>Hi Michael,</p>
+<p>Thanks for your comments. I think it&#8217;s about time this got a bit of an update anyway!</p>
+<p>So I&#8217;ll take your thoughts on board.<br />
+ <img src="http://nouveller.com/wp/wp-includes/images/smilies/icon_smile.gif" alt=":)" class="wp-smiley" /> </p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/wordpress/plugins/wordpress-plugin-social-media-bookmark-plugin/?replytocom=1273#respond' onclick='return addComment.moveForm("comment-1273", "1273", "respond", "1880")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li id="li-comment-1274">
+			<div class="comment" id="comment-1274">
+
+				<img alt='' src='http://1.gravatar.com/avatar/f23fab56fb233a270abdb8471bd1fcbb?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.dailymorningcoffee.com' rel='external nofollow' class='url'>Praveen Rajarao</a> wrote on <time>10th June 2011</time></p>
+				
+				<p>Awesome post for icons. Thanks bud.</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/wordpress/plugins/wordpress-plugin-social-media-bookmark-plugin/?replytocom=1274#respond' onclick='return addComment.moveForm("comment-1274", "1274", "respond", "1880")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li class="pingback even thread-even depth-1" id="comment-1275">
+			<p>Pingback: <a href='http://bestsoftwarehere.com/Autodesk-AutoCAD-Mechanical-2011.php' rel='external nofollow' class='url'>Buy Autodesk Software Online</a> </p>
+		</li><!-- #comment-## -->
+		<li class="pingback odd alt thread-odd thread-alt depth-1" id="comment-1276">
+			<p>Pingback: <a href='http://www.webmasterfavorites.com/?p=62' rel='external nofollow' class='url'>Free ‘Social Media Bookmark Icon +’ pack, the ever growing icon set : Webmaster Favorites</a> </p>
+		</li><!-- #comment-## -->
+		<li class="pingback even thread-even depth-1" id="comment-1277">
+			<p>Pingback: <a href='http://itechreader.com/2010/09/download-free-social-media-bookmark-icon/' rel='external nofollow' class='url'>Download Free Social Media Bookmark Icon | _Latest Tech News!!!&nbsp;|&nbsp;Latest Tech News!!!</a> </p>
+		</li><!-- #comment-## -->
+		<li id="li-comment-1278">
+			<div class="comment" id="comment-1278">
+
+				<img alt='' src='http://0.gravatar.com/avatar/e718575fc681f003ce99c32c648d7bb3?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.dizili.net/' rel='external nofollow' class='url'>dizili</a> wrote on <time>14th July 2011</time></p>
+				
+				<p>I discovered your blog website on google and check a number of of your early posts. Proceed to keep up the superb operate. I just further up your RSS feed to my MSN News Reader. In search of forward to studying more from you afterward!…</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/wordpress/plugins/wordpress-plugin-social-media-bookmark-plugin/?replytocom=1278#respond' onclick='return addComment.moveForm("comment-1278", "1278", "respond", "1880")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1279">
+			<div class="comment" id="comment-1279">
+
+				<img alt='' src='http://0.gravatar.com/avatar/ab8dcced89cdf15d87e7a1347fc5438b?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.fireboyandwatergirl.co.uk' rel='external nofollow' class='url'>fireboy and watergirl</a> wrote on <time>8th September 2011</time></p>
+				
+				<p>Enjoyed  looking through  this, very good stuff,  appreciate it. &#8220;It is in justice that the ordering of society is centered.&#8221; by Aristotle.</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/wordpress/plugins/wordpress-plugin-social-media-bookmark-plugin/?replytocom=1279#respond' onclick='return addComment.moveForm("comment-1279", "1279", "respond", "1880")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1280">
+			<div class="comment" id="comment-1280">
+
+				<img alt='' src='http://0.gravatar.com/avatar/879e6fa20b4e2b58181e955d2c22044d?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://shoeihelmetsreview.bestpricenewyear2012.com' rel='external nofollow' class='url'>shoeihelmetsreview</a> wrote on <time>22nd September 2011</time></p>
+				
+				<p>I can`t read the most part o text  is site down?</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/wordpress/plugins/wordpress-plugin-social-media-bookmark-plugin/?replytocom=1280#respond' onclick='return addComment.moveForm("comment-1280", "1280", "respond", "1880")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li class="trackback odd alt thread-odd thread-alt depth-1" id="comment-1281">
+			<p>Pingback: <a href='http://wpthemesdownload.net/10-best-new-premium-wordpress-business-themes/' rel='external nofollow' class='url'>wordpress business themes,best wordpress business themes,business themes wordpress</a> </p>
+		</li><!-- #comment-## -->
+		<li class="trackback even thread-even depth-1" id="comment-1282">
+			<p>Pingback: <a href='http://buy' rel='external nofollow' class='url'>http://www.swim-articles.com/Art/182278/88/Venapro-Side-Effects-And-What-I-Should-Expect.html</a> </p>
+		</li><!-- #comment-## -->
+		<li id="li-comment-1283">
+			<div class="comment" id="comment-1283">
+
+				<img alt='' src='http://1.gravatar.com/avatar/f86cd0221a33ff74544c466e1968508e?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">tim wrote on <time>22nd October 2011</time></p>
+				
+				<p>im looking to add your bookmarks to my wp site the way they are on this site<br />
+<a href="http://www.tuckermax.com/" rel="nofollow">http://www.tuckermax.com/</a><br />
+do you have any idea how i can do this?</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/wordpress/plugins/wordpress-plugin-social-media-bookmark-plugin/?replytocom=1283#respond' onclick='return addComment.moveForm("comment-1283", "1283", "respond", "1880")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1284">
+			<div class="comment" id="comment-1284">
+
+				<img alt='' src='http://0.gravatar.com/avatar/4cf60881c88b111ddb8e869a1c893a57?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://trafficboosterprov3.ru/examples/' rel='external nofollow' class='url'>wordpress plugin</a> wrote on <time>26th October 2011</time></p>
+				
+				<p>Hi my friend! I want to say that this article is awesome, nice written and come with approximately all vital infos. I&#8217;d like to see extra posts like this .</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/wordpress/plugins/wordpress-plugin-social-media-bookmark-plugin/?replytocom=1284#respond' onclick='return addComment.moveForm("comment-1284", "1284", "respond", "1880")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1285">
+			<div class="comment" id="comment-1285">
+
+				<img alt='' src='http://1.gravatar.com/avatar/f389ed207b42292ed2cb09212a8a8b0a?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://a.w1g.biz' rel='external nofollow' class='url'>wigbizaa</a> wrote on <time>14th November 2011</time></p>
+				
+				<p>E-Plus	1.67=0.84 EUR	*36.34</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/wordpress/plugins/wordpress-plugin-social-media-bookmark-plugin/?replytocom=1285#respond' onclick='return addComment.moveForm("comment-1285", "1285", "respond", "1880")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li class="trackback odd alt thread-odd thread-alt depth-1" id="comment-1286">
+			<p>Pingback: <a href='http://www.scebs.com/social-bookmarking-tool/tag/dietadukan-perder-peso/' rel='external nofollow' class='url'>dietadukan</a> </p>
+		</li><!-- #comment-## -->
+		<li id="li-comment-1287">
+			<div class="comment" id="comment-1287">
+
+				<img alt='' src='http://0.gravatar.com/avatar/66938f14757f243e7064a06f8c651bb7?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://Watchthisfree' rel='external nofollow' class='url'>Marina Abramovitz</a> wrote on <time>28th November 2011</time></p>
+				
+				<p>i admire what you have done right here. i really like the aspect where by you say you are performing this to give back but i would presume by all the responses that is doing work for you as well. do you have any far more data on this?</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/wordpress/plugins/wordpress-plugin-social-media-bookmark-plugin/?replytocom=1287#respond' onclick='return addComment.moveForm("comment-1287", "1287", "respond", "1880")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1288">
+			<div class="comment" id="comment-1288">
+
+				<img alt='' src='http://0.gravatar.com/avatar/84b0c00414aee8c17b0e0a9f7ff86ddc?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://Letmewatchthis' rel='external nofollow' class='url'>Cathern Schraub</a> wrote on <time>29th November 2011</time></p>
+				
+				<p>this is my first time i pay a visit to right here. i observed so lots of entertaining stuff in your website, specifically its discussion. from the tons of comments on your posts. many thanks</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/wordpress/plugins/wordpress-plugin-social-media-bookmark-plugin/?replytocom=1288#respond' onclick='return addComment.moveForm("comment-1288", "1288", "respond", "1880")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li class="trackback even thread-even depth-1" id="comment-1289">
+			<p>Pingback: <a href='http://00tips.wordpress.com/page/8/' rel='external nofollow' class='url'>bloging</a> </p>
+		</li><!-- #comment-## -->
+		<li class="trackback odd alt thread-odd thread-alt depth-1" id="comment-1290">
+			<p>Pingback: <a href='http://www.ovcio.com/century-21-broker-properti-jual-beli-sewa-rumah-indonesia.html' rel='external nofollow' class='url'>free money online,no work get money</a> </p>
+		</li><!-- #comment-## -->
+		<li id="li-comment-1291">
+			<div class="comment" id="comment-1291">
+
+				<img alt='' src='http://0.gravatar.com/avatar/8752fd9a506f886efdaf8c480b2b389e?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.squidoo.com/iphonesim4554' rel='external nofollow' class='url'>Catherine McKerrall</a> wrote on <time>5th January 2012</time></p>
+				
+				<p>Hello my friend! I want to say that this article is amazing, nice written and include approximately all important infos. I’d like to see more posts like this.</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/wordpress/plugins/wordpress-plugin-social-media-bookmark-plugin/?replytocom=1291#respond' onclick='return addComment.moveForm("comment-1291", "1291", "respond", "1880")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1292">
+			<div class="comment" id="comment-1292">
+
+				<img alt='' src='http://0.gravatar.com/avatar/ef8523de3240cb6b5801954fc274c153?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.glamourtalk.net' rel='external nofollow' class='url'>Bruno Manetti</a> wrote on <time>21st February 2012</time></p>
+				
+				<p>Nuff respect</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/wordpress/plugins/wordpress-plugin-social-media-bookmark-plugin/?replytocom=1292#respond' onclick='return addComment.moveForm("comment-1292", "1292", "respond", "1880")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li class="trackback even thread-even depth-1" id="comment-1293">
+			<p>Pingback: <a href='http://wordpressblogshosting.com/choosing-the-best-wordpress-hosting-to-support-your-commercial-website/' rel='external nofollow' class='url'>Wordpress Blog Hosting</a> </p>
+		</li><!-- #comment-## -->
+		<li id="li-comment-1294">
+			<div class="comment" id="comment-1294">
+
+				<img alt='' src='http://1.gravatar.com/avatar/9531da32c95e78991c4da99878f965aa?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='https://www.google.com/#q=krisstina%20wise%20scam' rel='external nofollow' class='url'>Fabian Ruhenkamp</a> wrote on <time>1st March 2012</time></p>
+				
+				<p>Your webpage won&#8217;t show up appropriately on my iphone 4 &#8211; you may want to try and fix that</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/wordpress/plugins/wordpress-plugin-social-media-bookmark-plugin/?replytocom=1294#respond' onclick='return addComment.moveForm("comment-1294", "1294", "respond", "1880")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1295">
+			<div class="comment" id="comment-1295">
+
+				<img alt='' src='http://0.gravatar.com/avatar/4d3e634d35e98aa504750e9f8cd15381?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://studentlife.org.uk/category/power/batteries' rel='external nofollow' class='url'>student laptops</a> wrote on <time>10th March 2012</time></p>
+				
+				<p>Someone necessarily lend a hand to make seriously posts I might state. That is the very first time I frequented your website page and thus far? I amazed with the analysis you made to create this particular post incredible. Wonderful process!</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/wordpress/plugins/wordpress-plugin-social-media-bookmark-plugin/?replytocom=1295#respond' onclick='return addComment.moveForm("comment-1295", "1295", "respond", "1880")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1296">
+			<div class="comment" id="comment-1296">
+
+				<img alt='' src='http://1.gravatar.com/avatar/3fe4f16f531787f3350f81aca6ec6bfc?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">Herb Brabec wrote on <time>19th March 2012</time></p>
+				
+				<p>You forgot wuala I guess. Encrypted before sending, no way for the storage provider to decrypt it on its own if you don&#8217;t make your folder / files public. And they don&#8217;t store your password anywhere.</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/wordpress/plugins/wordpress-plugin-social-media-bookmark-plugin/?replytocom=1296#respond' onclick='return addComment.moveForm("comment-1296", "1296", "respond", "1880")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1297">
+			<div class="comment" id="comment-1297">
+
+				<img alt='' src='http://0.gravatar.com/avatar/0fd45092c9764b9673251cb2f5aac646?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://.' rel='external nofollow' class='url'>Colton Ashbaugh</a> wrote on <time>20th March 2012</time></p>
+				
+				<p>I feel that is one of the most vital info for me. And i&#8217;m happy reading your article. However wanna commentary on some basic issues, The web site taste is ideal, the articles is really great : D. Excellent process, cheers , London Escorts Agency, 020 3011 7825</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/wordpress/plugins/wordpress-plugin-social-media-bookmark-plugin/?replytocom=1297#respond' onclick='return addComment.moveForm("comment-1297", "1297", "respond", "1880")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1298">
+			<div class="comment" id="comment-1298">
+
+				<img alt='' src='http://1.gravatar.com/avatar/7106e7aade7d9d907ae8b934ac01608a?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://.' rel='external nofollow' class='url'>Jeffery Kertesz</a> wrote on <time>21st March 2012</time></p>
+				
+				<p>Heya i’m for the primary time here. I came across this board and I find It really useful &amp; it helped me out a lot. I&#8217;m hoping to give one thing back and help others such as you aided me. Elegant Models, 68,Lombard Street, London, EC3V 9LJ, 020 3011 2893</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/wordpress/plugins/wordpress-plugin-social-media-bookmark-plugin/?replytocom=1298#respond' onclick='return addComment.moveForm("comment-1298", "1298", "respond", "1880")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1299">
+			<div class="comment" id="comment-1299">
+
+				<img alt='' src='http://1.gravatar.com/avatar/bc9d0a20f1a3fca9241ffc553a42e057?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">Ivory Lonsdale wrote on <time>22nd March 2012</time></p>
+				
+				<p>For the same reason you wrote here that I&#8217;m still keeping a backup storage for my files  just in case I can&#8217;t access the clouds. You just feel helpless when these third party sites are down and having a safety net will save you from all those frustrations. Unless there&#8217;s a 99.99% uptime all the time service out there, I&#8217;ll have to hold on to the old way of doing things.</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/wordpress/plugins/wordpress-plugin-social-media-bookmark-plugin/?replytocom=1299#respond' onclick='return addComment.moveForm("comment-1299", "1299", "respond", "1880")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li class="trackback odd alt thread-odd thread-alt depth-1" id="comment-1300">
+			<p>Pingback: <a href='http://blog.u-like.gr/2012/04/' rel='external nofollow' class='url'>u-like.gr blog</a> </p>
+		</li><!-- #comment-## -->
+		<li id="li-comment-1301">
+			<div class="comment" id="comment-1301">
+
+				<img alt='' src='http://1.gravatar.com/avatar/7e941b938754f74ff57da6d1e427ec8e?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://ÿþ' rel='external nofollow' class='url'>Darcy Cribbin</a> wrote on <time>16th April 2012</time></p>
+				
+				<p>you&#8217;ve an excellent weblog here! would you prefer to make some invite posts on my blog?</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/wordpress/plugins/wordpress-plugin-social-media-bookmark-plugin/?replytocom=1301#respond' onclick='return addComment.moveForm("comment-1301", "1301", "respond", "1880")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li class="trackback even thread-even depth-1" id="comment-1302">
+			<p>Pingback: <a href='http://www.qoxy.com/virtual-private-servers/linux-vps/' rel='external nofollow' class='url'>my website</a> </p>
+		</li><!-- #comment-## -->
+		<li id="li-comment-1303">
+			<div class="comment" id="comment-1303">
+
+				<img alt='' src='http://0.gravatar.com/avatar/c0d69f92bcc5aef5d8432f5c8deca7ca?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://e-audytenergetyczny.pl/page2.html' rel='external nofollow' class='url'>audyt energetyczny przykład</a> wrote on <time>29th May 2012</time></p>
+				
+				<p>Wow! This can be one particular of the most useful blogs We have ever arrive across on this subject. Actually Wonderful. I&#8217;m also a specialist in this topic therefore I can understand your effort.</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/wordpress/plugins/wordpress-plugin-social-media-bookmark-plugin/?replytocom=1303#respond' onclick='return addComment.moveForm("comment-1303", "1303", "respond", "1880")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1304">
+			<div class="comment" id="comment-1304">
+
+				<img alt='' src='http://1.gravatar.com/avatar/fdb68966449cae2adab51c8d500e271a?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.yahoo.com/0f4d100eef74d62b0b8bbd95ef848ec051a887a4' rel='external nofollow' class='url'>news</a> wrote on <time>30th May 2012</time></p>
+				
+				<p>I believe one of your ads caused my internet browser to resize, you may well want to set up that on your blacklist.</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/wordpress/plugins/wordpress-plugin-social-media-bookmark-plugin/?replytocom=1304#respond' onclick='return addComment.moveForm("comment-1304", "1304", "respond", "1880")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1306">
+			<div class="comment" id="comment-1306">
+
+				<img alt='' src='http://0.gravatar.com/avatar/4a91e78925f7e9a28639c9281c1dab9e?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://ivendo.ru' rel='external nofollow' class='url'>Алексей</a> wrote on <time>4th August 2012</time></p>
+				
+				<p>Современная реклама в интернете с помощью удобного ,а также надёжного ресурса ivendo.</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/wordpress/plugins/wordpress-plugin-social-media-bookmark-plugin/?replytocom=1306#respond' onclick='return addComment.moveForm("comment-1306", "1306", "respond", "1880")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1307">
+			<div class="comment" id="comment-1307">
+
+				<img alt='' src='http://1.gravatar.com/avatar/17c3e957e44c89fdeb28d6fd6dd839df?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://lovetunes.org/' rel='external nofollow' class='url'>Дмитрий</a> wrote on <time>5th August 2012</time></p>
+				
+				<p>Web-ресурс посвящен клубной музыкальной тематике. У нас сможете найти самые последние хиты, а также трансляции клубных, трансовых радиостанций планеты</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/wordpress/plugins/wordpress-plugin-social-media-bookmark-plugin/?replytocom=1307#respond' onclick='return addComment.moveForm("comment-1307", "1307", "respond", "1880")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1308">
+			<div class="comment" id="comment-1308">
+
+				<img alt='' src='http://0.gravatar.com/avatar/4ebedd7208b35961e575b0bf2bc72f4f?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://phone7.com.ua/новости-и-новинки/' rel='external nofollow' class='url'>Сергей</a> wrote on <time>15th August 2012</time></p>
+				
+				<p>Обзоры устройств работающих под управлением Windows Phone 7. Windows Phone в Украине. Новинки Marketplace. Игры, новости</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/wordpress/plugins/wordpress-plugin-social-media-bookmark-plugin/?replytocom=1308#respond' onclick='return addComment.moveForm("comment-1308", "1308", "respond", "1880")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1309">
+			<div class="comment" id="comment-1309">
+
+				<img alt='' src='http://1.gravatar.com/avatar/7c15ca95c1fd38db698fe8f7a759f7d1?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://video174.ru' rel='external nofollow' class='url'>Сергей</a> wrote on <time>19th August 2012</time></p>
+				
+				<p>Системы видеонаблюдения, проектирование, монтаж, обслуживание, продажа видеорегистраторов, аналоговых и IP видеокамер, уличных и внутреннего наблюдения</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/wordpress/plugins/wordpress-plugin-social-media-bookmark-plugin/?replytocom=1309#respond' onclick='return addComment.moveForm("comment-1309", "1309", "respond", "1880")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1310">
+			<div class="comment" id="comment-1310">
+
+				<img alt='' src='http://1.gravatar.com/avatar/5cfb6987fd744b12f22a83117adb54d9?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://anysmart.ru' rel='external nofollow' class='url'>mutychko2008</a> wrote on <time>15th September 2012</time></p>
+				
+				<p>У нас можно скачать софт для андройд. Прочитать интересные новости о вашем смартфоне и прочих девайсах. Сделать смартфон быстрее и многое другое.</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/wordpress/plugins/wordpress-plugin-social-media-bookmark-plugin/?replytocom=1310#respond' onclick='return addComment.moveForm("comment-1310", "1310", "respond", "1880")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		</ul><!-- .commentlist -->
+
+		
+		
+	</div><!-- /.comments -->
+
+<div class="comment-form">
+									<div id="respond" class="comment-respond">
+				<h3 id="reply-title" class="comment-reply-title">Add your comment <small><a rel="nofollow" id="cancel-comment-reply-link" href="/wordpress/plugins/wordpress-plugin-social-media-bookmark-plugin/#respond" style="display:none;">Cancel reply</a></small></h3>
+									<form action="http://nouveller.com/wp/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+																										<div class="form-details"><input id="author" name="author" class="input-text" type="text" placeholder="Name" value="">
+<input id="email" name="email" class="input-text" type="text" placeholder="Email" value="">
+<input id="url" name="url" class="input-text" type="text" placeholder="Website (optional)" value=""></div>
+												<textarea id="comment" name="comment" class="input-textarea" placeholder="Comment"></textarea>						<p class="form-allowed-tags">You may use these <abbr title="HyperText Markup Language">HTML</abbr> tags and attributes:  <code>&lt;a href=&quot;&quot; title=&quot;&quot;&gt; &lt;abbr title=&quot;&quot;&gt; &lt;acronym title=&quot;&quot;&gt; &lt;b&gt; &lt;blockquote cite=&quot;&quot;&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=&quot;&quot;&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=&quot;&quot;&gt; &lt;strike&gt; &lt;strong&gt; </code></p>						<p class="form-submit">
+							<input name="submit" type="submit" id="submit" value="Post Comment" />
+							<input type='hidden' name='comment_post_ID' value='1880' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+						</p>
+						<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="ac2fdf90b2" /></p><p class="comment-subscription-form"><input type="checkbox" name="subscribe_comments" id="subscribe_comments" value="subscribe" style="width: auto; -moz-appearance: checkbox; -webkit-appearance: checkbox;" /> <label class="subscribe-label" id="subscribe-label" for="subscribe_comments">Notify me of follow-up comments by email.</label></p><p class="comment-subscription-form"><input type="checkbox" name="subscribe_blog" id="subscribe_blog" value="subscribe" style="width: auto; -moz-appearance: checkbox; -webkit-appearance: checkbox;" /> <label class="subscribe-label" id="subscribe-blog-label" for="subscribe_blog">Notify me of new posts by email.</label></p><script type='text/javascript' src='http://nouveller.com/wp/wp-content/plugins/akismet/_inc/form.js?ver=3.0.0'></script>
+<p style="display: none;"><input type="hidden" id="ak_js" name="ak_js" value="4"/></p>					</form>
+							</div><!-- #respond -->
+			</div>
+	  
+	</div><!-- /.main -->
+
+	<div class="sidebar articles-sidebar">
+		<h5>Category</h5>
+<ul class="post-categories">
+	<li><a href="http://nouveller.com/category/wordpress/plugins/" title="View all posts in Plugins" rel="category tag">Plugins</a></li></ul>
+
+
+
+<h5>Share</h5>
+<ul class="plain-list share-list">
+	<li><a data-related="nouveller,benjaminreid" data-text="WordPress plugin: Social Media Bookmark Plugin +" data-url="http://nouveller.com/wordpress/plugins/wordpress-plugin-social-media-bookmark-plugin/" href="https://twitter.com/share" class="twitter-share-button" data-lang="en">Tweet</a></li>
+	<li><iframe src="//www.facebook.com/plugins/like.php?href=http://nouveller.com/wordpress/plugins/wordpress-plugin-social-media-bookmark-plugin/&amp;send=false&amp;layout=button_count&amp;width=140&amp;show_faces=false&amp;font&amp;colorscheme=light&amp;action=like&amp;height=21&amp;appId=253536277996804" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:140px; height:21px;" allowTransparency="true"></iframe></li>
+	<li><div class="g-plusone" data-size="medium"></div></li>
+</ul>	</div>
+
+</div><!-- /.content -->
+
+    <footer class="section-footer">
+      <div class="content inner-wrapper">
+
+        <div class="row">
+          <div class="about-me">
+            <h2>About</h2>
+            <p>Nouveller is a creative outlet for me to talk about what I learn and show the world what I create. I like sharing what I learn, in hope it can help others learning as well so you'll hopefully see plenty of articles on HTML, CSS, JavaScript, PHP and Ruby. There's also plenty of experiments and hidden gems to be found! <a href="http://www.youtube.com/watch?v=n3ylBgdURzs" target="_blank">Luck dip?</a></p>
+          </div>
+          <div class="social-links">
+            <h2>You can find me on</h2>
+            <ul class="two-column-list">
+              <li><a target="_blank" href="https://twitter.com/BenjaminReid" class="twitter">Twitter</a></li>
+              <li><a target="_blank" href="https://www.facebook.com/fb.nouveller" class="facebook">Facebook</a></li>
+              <li><a target="_blank" href="http://forrst.com/people/nouveller/" class="forrst">Forrst</a></li>
+              <li><a target="_blank" href="http://www.flickr.com/photos/nouveller" class="flick">Flick<span class="r">r</span></a></li>
+              <li><a target="_blank" href="http://pinterest.com/benjaminreid/" class="pinterest">Pinterest</a></li>
+              <li><a target="_blank" href="http://www.youtube.com/user/semper0fi" class="you">You<span class="tube">Tube</span></a></li>
+              <li><a target="_blank" href="http://www.strava.com/athletes/238785" class="strava">Strava</a></li>
+              <li><a target="_blank" href="http://vimeo.com/nouveller" class="vimeo">Vimeo</a></li>
+            </ul>
+          </div><!-- /.social-links -->
+        </div><!-- /.row -->
+
+        <div class="break"></div>
+
+        <div class="twitter-feed aligncentre">
+          <img src="/static/img/twitter-logo.png" alt="Twitter logo">
+          <p><span class="twitter">@BenjaminReid:</span> Clever girl...</p>
+          <a href="https://twitter.com/BenjaminReid" class="twitter-follow-button" data-show-count="false">Follow @BenjaminReid</a>
+        </div><!-- /.twitter-feed -->
+
+      </div><!-- /.content inner-wrapper -->
+
+      <section class="section-footnotes">
+        <div class="inner-wrapper aligncentre">
+          <p>Nouveller &mdash; Seeker | <a href="mailto:benjamin@nouveller.com">benjamin@nouveller.com</a><br />
+          &copy; Nouveller 2014 | Designed &amp; built by <a href="http://www.benjaminreid.me/">Benjamin Reid</a> in the &hearts; of <a href="https://www.google.com/maps?q=Bristol,+UK">Bristol</a> | Hosted by <a href="http://www.memset.com/">Memset</a></p>
+        </div><!-- /.inner-wrapper -->
+      </section>
+
+    </footer>
+
+
+        <script src="/static/js/seeker.build.js"></script>
+    
+        	<div style="display:none">
+	<div class="grofile-hash-map-4aad73cb9eba535665b2f5a201d439ce">
+	</div>
+	<div class="grofile-hash-map-f3bcfa4a2b1b0fe7adcd7c92c9baa5ef">
+	</div>
+	<div class="grofile-hash-map-d0687e867e14f4d0c750af162a0ac006">
+	</div>
+	<div class="grofile-hash-map-090964fcf0af96970c108ded04b3a7e0">
+	</div>
+	<div class="grofile-hash-map-e9cf4a4f8c1319bdf95b57cc1e96c4f1">
+	</div>
+	<div class="grofile-hash-map-aa9dfe0687aaabcbd78cea36a5076929">
+	</div>
+	<div class="grofile-hash-map-c39368cec65b0147e823ffb86b5cbaae">
+	</div>
+	<div class="grofile-hash-map-2f73205b609ceb795c1631d118e52e45">
+	</div>
+	<div class="grofile-hash-map-6555961454448e0d2a746a561c950a67">
+	</div>
+	<div class="grofile-hash-map-569ec086002387bb7b811adb585604f5">
+	</div>
+	<div class="grofile-hash-map-f23fab56fb233a270abdb8471bd1fcbb">
+	</div>
+	<div class="grofile-hash-map-2e5490d2a3ae6a58f91ae196c591d796">
+	</div>
+	<div class="grofile-hash-map-a1b8fc1b9289ca15b5a8e7ebc30ee8c4">
+	</div>
+	<div class="grofile-hash-map-c860a9f59599c0def017af30f40f4430">
+	</div>
+	<div class="grofile-hash-map-f86cd0221a33ff74544c466e1968508e">
+	</div>
+	<div class="grofile-hash-map-ff154f37111716e4b15ddca575f76918">
+	</div>
+	<div class="grofile-hash-map-f389ed207b42292ed2cb09212a8a8b0a">
+	</div>
+	<div class="grofile-hash-map-5ca79a412bb52ee19e789e30f91a98fa">
+	</div>
+	<div class="grofile-hash-map-6edbfe8fb8602b1274b7148f7ca3eb07">
+	</div>
+	<div class="grofile-hash-map-8752fd9a506f886efdaf8c480b2b389e">
+	</div>
+	<div class="grofile-hash-map-ef8523de3240cb6b5801954fc274c153">
+	</div>
+	<div class="grofile-hash-map-7302b8a7d188bb26d3814f8afb913861">
+	</div>
+	<div class="grofile-hash-map-e805f1a802955d6187ec6035dcab7657">
+	</div>
+	<div class="grofile-hash-map-3707a0d4cdfec57fde1f19d608c6f7e4">
+	</div>
+	<div class="grofile-hash-map-3ac6c5af9614be33dc838c0702fd9eb1">
+	</div>
+	<div class="grofile-hash-map-1238e8e3204aad29895dd2b2f4f70bc7">
+	</div>
+	<div class="grofile-hash-map-6516e827d6ab57190c884f2d70cf118d">
+	</div>
+	<div class="grofile-hash-map-a47f102f4581146512761f7df88a550a">
+	</div>
+	<div class="grofile-hash-map-0ad217e85ca1ca250cd8e5b2a08a1cb0">
+	</div>
+	<div class="grofile-hash-map-18d67afd1673664391b621df2bc913be">
+	</div>
+	<div class="grofile-hash-map-4a91e78925f7e9a28639c9281c1dab9e">
+	</div>
+	<div class="grofile-hash-map-17c3e957e44c89fdeb28d6fd6dd839df">
+	</div>
+	<div class="grofile-hash-map-4ebedd7208b35961e575b0bf2bc72f4f">
+	</div>
+	<div class="grofile-hash-map-7c15ca95c1fd38db698fe8f7a759f7d1">
+	</div>
+	<div class="grofile-hash-map-ef63ce37aa962dc8562ef1bebfa95442">
+	</div>
+	</div>
+<script type='text/javascript' src='http://s0.wp.com/wp-content/js/devicepx-jetpack.js?ver=201437'></script>
+<script type='text/javascript' src='http://s.gravatar.com/js/gprofiles.js?ver=2014Sepaa'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var WPGroHo = {"my_hash":""};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://nouveller.com/wp/wp-content/plugins/jetpack/modules/wpgroho.js?ver=3.8.3'></script>
+
+	<script src="http://stats.wordpress.com/e-201437.js" type="text/javascript"></script>
+	<script type="text/javascript">
+	st_go({v:'ext',j:'1:2.9.3',blog:'7873577',post:'1880',tz:'0'});
+	var load_cmc = function(){linktracker_init(7873577,1880,2);};
+	if ( typeof addLoadEvent != 'undefined' ) addLoadEvent(load_cmc);
+	else load_cmc();
+	</script>    
+  </body>
+</html>

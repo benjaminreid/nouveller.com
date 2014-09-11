@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7  closed balloons"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8  closed balloons"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9  closed balloons"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js  closed balloons"> <!--<![endif]-->
+  <head>
+<base href="http://nouveller.com" />
+
+    <meta charset="utf-8">
+
+    <title>Quick Tip #8 &#8211; Limit the length of &#8216;the_excerpt&#8217; in WordPress &mdash; Nouveller</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="">
+
+    <link href="http://fonts.googleapis.com/css?family=Glegoo|Inconsolata|Open+Sans:400italic,400,700" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/screen.css">
+    
+    <script src="/static/js/libs/modernizr-2.6.2.min.js"></script>
+
+		
+<link rel='stylesheet' id='jetpack-subscriptions-css'  href='http://nouveller.com/wp/wp-content/plugins/jetpack/modules/subscriptions/subscriptions.css?ver=3.8.3' type='text/css' media='all' />
+<link rel='stylesheet' id='jetpack-widgets-css'  href='http://nouveller.com/wp/wp-content/plugins/jetpack/modules/widgets/widgets.css?ver=20121003' type='text/css' media='all' />
+<script type='text/javascript' src='http://nouveller.com/wp/wp-includes/js/jquery/jquery.js?ver=1.10.2'></script>
+<script type='text/javascript' src='http://nouveller.com/wp/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
+
+ 
+
+<link rel='next' title='Muse &#8211; New Born (HAARP) guitar tab' href='http://nouveller.com/tab/muse-new-born-haarp-guitar-tab/' />
+<link rel='canonical' href='http://nouveller.com/quick-tips/quick-tip-8-limit-the-length-of-the_excerpt-in-wordpress/' />
+<link rel='shortlink' href='http://wp.me/px2hb-si' />
+<style type='text/css'>img#wpstats{display:none}</style>
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Quick Tip #8 - Limit the length of &#039;the_excerpt&#039; in WordPress" />
+<meta property="og:url" content="http://nouveller.com/quick-tips/quick-tip-8-limit-the-length-of-the_excerpt-in-wordpress/" />
+<meta property="og:description" content="Right here&#039;s the scenario. On one of your clients post page&#039;s you use the_excerpt function to display an excerpt for each post. You&#039;ve got room for a decent size excerpt and explain to them they ca..." />
+<meta property="article:published_time" content="2010-01-08T13:25:27+00:00" />
+<meta property="article:modified_time" content="2010-01-08T13:25:27+00:00" />
+<meta property="article:author" content="http://nouveller.com/author/benjamin/" />
+<meta property="og:site_name" content="Nouveller" />
+<meta property="og:image" content="http://wordpress.com/i/blank.jpg" />
+<meta name="twitter:site" content="@jetpack" />
+<meta name="twitter:card" content="summary" />
+
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-8404687-2']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+	</head>
+
+	<body class="single single-post postid-1754 single-format-standard">
+
+    <header class="page-header fixed-top">
+      <div class="wrapper">
+        
+        <a href="http://nouveller.com" class="opacity-hover offset-bottom nouveller-logo">
+        	<img src="/static/img/logo-nouveller.png" alt="Nouveller logo">
+        </a>
+
+        <nav class="offset-bottom pos-right">
+          <ul class="main-nav">
+            <li class="nav-work"><a href="http://nouveller.com/work">Work</a></li>
+            <li class="nav-articles"><a href="http://nouveller.com/articles">Articles</a></li>
+            <li class="nav-labs"><a href="http://nouveller.com/labs">Labs</a></li>
+            <li class="nav-contact"><a href="http://nouveller.com/contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <a href="" class="nav-btn" id="displayNav">Display nav</a>
+
+      </div><!-- /.wrapper -->
+    </header><!-- /.page-header .fixed-top -->
+<div class="content inner-wrapper clearfix">
+      
+  <div class="main">
+
+		
+			<header>
+	      <h1>Quick Tip #8 &#8211; Limit the length of &#8216;the_excerpt&#8217; in WordPress</h1>
+	      <p class="meta">Posted on <time>January 8, 2010</time></p>
+	    </header>
+
+	    <p>Right here's the scenario. On one of your clients post page's you use <code>the_excerpt</code> function to display an excerpt for each post. You've got room for a decent size excerpt and explain to them they can put about a paragraph into each excerpt, 100 words or so.</p>
+<p>They then ask for a mini news feed that they want to appear on the homepage. You go ahead and add it and all of a sudden you've got paragraphs of text cluttering up the home page. You can either now go and tell them they can only use 10 words in each excerpt (which will look ridiculous on the posts page) or explain to them how to create a custom field which is an excerpt of the excerpt... or...</p>
+<p>Rather than confuse them we're just going to create a really simple way to limit the amount of words when displaying <code>the_excerpt</code>, we're not limiting the word count from the posts edit screen remember. Just the small excerpt that we want to appear in mini news feed on the home page, only about 10 words.</p>
+<h2>Open up functions.php</h2>
+<p>Let's start by writing our function that will shorten <code>the_excerpt</code>. Open up <code>functions.php</code> from your theme folder and add this function in. The explanation is commented for you.</p>
+<pre lang="PHP">
+function limit_words($string, $word_limit) {
+	
+	// creates an array of words from $string (this will be our excerpt)
+	// explode divides the excerpt up by using a space character
+	
+	$words = explode(' ', $string);
+	
+	// this next bit chops the $words array and sticks it back together
+	// starting at the first word '0' and ending at the $word_limit
+	// the $word_limit which is passed in the function will be the number
+	// of words we want to use
+	// implode glues the chopped up array back together using a space character
+	
+	return implode(' ', array_slice($words, 0, $word_limit));
+	
+}
+</pre>
+<h2>Go to your loop where you're using the_excerpt</h2>
+<p>I'm doing this in the mini news feed loop. So find:</p>
+<pre lang="PHP">
+<?php the_excerpt(); ?>
+</pre>
+<p>And replace it with this:</p>
+<pre lang="PHP">
+<?php echo limit_words(get_the_excerpt(), '10'); ?>
+</pre>
+<p>First we <code>echo</code> our function (as it <code>returns</code> a value), we then pass the string through that we want to chop. You have to use <code>get_the_excerpt</code> as this <code>returns</code> the excerpt rather than echo'ing it like <code>the_excerpt</code> does. Finally we pass the number of words we want, in this case 10.</p>
+<p>Voila! Easy right? Have any questions please leave them in the comments. </p>
+
+	    
+<div class="comments">
+
+			
+		<h3>54 comments</h3>
+
+		<ul class="comments-list">
+					<li id="li-comment-1180">
+			<div class="comment" id="comment-1180">
+
+				<img alt='' src='http://1.gravatar.com/avatar/b2bfb4d42ec3e3ed3abb2b8d4754d4c6?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.thenoughtiespage,info' rel='external nofollow' class='url'>Spyro</a> wrote on <time>24th January 2010</time></p>
+				
+				<p>Hi , unfortunately I can&#8217;t do it <img src="http://nouveller.com/wp/wp-includes/images/smilies/icon_sad.gif" alt=":(" class="wp-smiley" />  &#8230; I post the function in the functions.php and then I replace the  with the one you say above and i get fatal error. what do i do wrong? check this out  &#8211; <a href="http://thenoughtiespage.info/tag/madonna/" rel="nofollow">http://thenoughtiespage.info/tag/madonna/</a></p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/quick-tips/quick-tip-8-limit-the-length-of-the_excerpt-in-wordpress/?replytocom=1180#respond' onclick='return addComment.moveForm("comment-1180", "1180", "respond", "1754")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		<ul class="children">
+		<li id="li-comment-1181">
+			<div class="comment" id="comment-1181">
+
+				<img alt='' src='http://1.gravatar.com/avatar/f3bcfa4a2b1b0fe7adcd7c92c9baa5ef?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.nouveller.com/' rel='external nofollow' class='url'>Nouveller</a> wrote on <time>24th January 2010</time></p>
+				
+				<p>Are you running PHP 4 or above?</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/quick-tips/quick-tip-8-limit-the-length-of-the_excerpt-in-wordpress/?replytocom=1181#respond' onclick='return addComment.moveForm("comment-1181", "1181", "respond", "1754")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li id="li-comment-1182">
+			<div class="comment" id="comment-1182">
+
+				<img alt='' src='http://1.gravatar.com/avatar/f3e31e245475dc66605967f1273b138b?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://seo.blog.br' rel='external nofollow' class='url'>Ronaldo Bitencourt</a> wrote on <time>29th January 2010</time></p>
+				
+				<p>helpful!</p>
+<p>Tkss.</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/quick-tips/quick-tip-8-limit-the-length-of-the_excerpt-in-wordpress/?replytocom=1182#respond' onclick='return addComment.moveForm("comment-1182", "1182", "respond", "1754")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1183">
+			<div class="comment" id="comment-1183">
+
+				<img alt='' src='http://0.gravatar.com/avatar/0be55853d044b3afe1efe44d4031cf06?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://jaytillery.com' rel='external nofollow' class='url'>Jay Tillery</a> wrote on <time>14th February 2010</time></p>
+				
+				<p>Isn&#8217;t it easier to just use the_content_rss(&#8216;more&#8230;&#8217;, &#8221;, &#8221;, 10); to limit the number of words on the homepage? That way you don&#8217;t get that [...] and you can place whatever you want for the more text.</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/quick-tips/quick-tip-8-limit-the-length-of-the_excerpt-in-wordpress/?replytocom=1183#respond' onclick='return addComment.moveForm("comment-1183", "1183", "respond", "1754")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		<ul class="children">
+		<li id="li-comment-1184">
+			<div class="comment" id="comment-1184">
+
+				<img alt='' src='http://1.gravatar.com/avatar/f3bcfa4a2b1b0fe7adcd7c92c9baa5ef?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.nouveller.com/' rel='external nofollow' class='url'>Nouveller</a> wrote on <time>16th February 2010</time></p>
+				
+				<p>It would be easier yes but It&#8217;s more about learning how the script works and how you could then apply it else where.</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/quick-tips/quick-tip-8-limit-the-length-of-the_excerpt-in-wordpress/?replytocom=1184#respond' onclick='return addComment.moveForm("comment-1184", "1184", "respond", "1754")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1185">
+			<div class="comment" id="comment-1185">
+
+				<img alt='' src='http://0.gravatar.com/avatar/483a73f3e1701c7908a4a816fa49c0a6?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">Jim wrote on <time>25th March 2010</time></p>
+				
+				<p>the_content_rss is depreciated, which means it is not a long term solution</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/quick-tips/quick-tip-8-limit-the-length-of-the_excerpt-in-wordpress/?replytocom=1185#respond' onclick='return addComment.moveForm("comment-1185", "1185", "respond", "1754")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li id="li-comment-1186">
+			<div class="comment" id="comment-1186">
+
+				<img alt='' src='http://1.gravatar.com/avatar/faafd2d15e6310865352ff18c708e697?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://travisstowe.com' rel='external nofollow' class='url'>Ttravis Stowe</a> wrote on <time>26th March 2010</time></p>
+				
+				<p>if you want to have the  [...]  after the words.  All you have to do copy this.</p>
+<p>[...]</p>
+<p>All you have to do is place the [...] after the echo function.  It will show up right after the limited word count you choose.  I replaced the &#8217;10&#8242; word count with &#8217;150&#8242; to give more wording to pull.</p>
+<p>Enjoy!</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/quick-tips/quick-tip-8-limit-the-length-of-the_excerpt-in-wordpress/?replytocom=1186#respond' onclick='return addComment.moveForm("comment-1186", "1186", "respond", "1754")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		<ul class="children">
+		<li id="li-comment-1187">
+			<div class="comment" id="comment-1187">
+
+				<img alt='' src='http://1.gravatar.com/avatar/faafd2d15e6310865352ff18c708e697?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://travisstowe.com' rel='external nofollow' class='url'>Ttravis Stowe</a> wrote on <time>26th March 2010</time></p>
+				
+				<p>oops.</p>
+<p>the code despaired. : ) </p>
+<p>echo limit_words(get_the_excerpt(), &#8217;150&#8242;); ?&gt; [...] </p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/quick-tips/quick-tip-8-limit-the-length-of-the_excerpt-in-wordpress/?replytocom=1187#respond' onclick='return addComment.moveForm("comment-1187", "1187", "respond", "1754")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		<ul class="children">
+		<li id="li-comment-1188">
+			<div class="comment" id="comment-1188">
+
+				<img alt='' src='http://1.gravatar.com/avatar/f3bcfa4a2b1b0fe7adcd7c92c9baa5ef?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.nouveller.com/' rel='external nofollow' class='url'>Nouveller</a> wrote on <time>27th March 2010</time></p>
+				
+				<p>Thanks for the tip! <img src="http://nouveller.com/wp/wp-includes/images/smilies/icon_smile.gif" alt=":)" class="wp-smiley" /> </p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1225">
+			<div class="comment" id="comment-1225">
+
+				<img alt='' src='http://1.gravatar.com/avatar/d12d86c68b05b921e41c1a55a5cf9041?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">Hardik Chauhan wrote on <time>7th February 2012</time></p>
+				
+				<p>You can also used the substr function&#8230;<br />
+e.g.</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li id="li-comment-1234">
+			<div class="comment" id="comment-1234">
+
+				<img alt='' src='http://0.gravatar.com/avatar/855d800878a9c1013b5bb85906d1857b?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.vikomtebaron.net' rel='external nofollow' class='url'>Fernandez</a> wrote on <time>13th December 2012</time></p>
+				
+				<p>Very smart! Thanks for the tips!! <img src="http://nouveller.com/wp/wp-includes/images/smilies/icon_wink.gif" alt=";)" class="wp-smiley" /> </p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/quick-tips/quick-tip-8-limit-the-length-of-the_excerpt-in-wordpress/?replytocom=1234#respond' onclick='return addComment.moveForm("comment-1234", "1234", "respond", "1754")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li id="li-comment-1189">
+			<div class="comment" id="comment-1189">
+
+				<img alt='' src='http://0.gravatar.com/avatar/8355027ef4c8ffedc86149ddcfae1939?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.thiagoramiro.com' rel='external nofollow' class='url'>Thiramiro</a> wrote on <time>7th May 2010</time></p>
+				
+				<p>Works perfectly.</p>
+<p>Thanks!!!</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/quick-tips/quick-tip-8-limit-the-length-of-the_excerpt-in-wordpress/?replytocom=1189#respond' onclick='return addComment.moveForm("comment-1189", "1189", "respond", "1754")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1190">
+			<div class="comment" id="comment-1190">
+
+				<img alt='' src='http://0.gravatar.com/avatar/66569e4450c9eebcd3a66db014f0260c?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">age wrote on <time>26th May 2010</time></p>
+				
+				<p>thx for the tip,<br />
+but.. how if some post doesn&#8217;t have any excrept?</p>
+<p>i can not simply wrote:</p>
+<p>the word is still cut into default WP 55 chars (with the [...]</p>
+<p>?</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/quick-tips/quick-tip-8-limit-the-length-of-the_excerpt-in-wordpress/?replytocom=1190#respond' onclick='return addComment.moveForm("comment-1190", "1190", "respond", "1754")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1191">
+			<div class="comment" id="comment-1191">
+
+				<img alt='' src='http://0.gravatar.com/avatar/66569e4450c9eebcd3a66db014f0260c?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">age wrote on <time>26th May 2010</time></p>
+				
+				<p>update -&gt;the code is:</p>
+<p>if (the_excrept!==&#8221;"){<br />
+                    	echo limit_words(get_the_excerpt(), &#8217;25&#8242;);<br />
+                    }else{<br />
+                    	echo limit_words(the_content, &#8217;25&#8242;);<br />
+                    }</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/quick-tips/quick-tip-8-limit-the-length-of-the_excerpt-in-wordpress/?replytocom=1191#respond' onclick='return addComment.moveForm("comment-1191", "1191", "respond", "1754")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		<ul class="children">
+		<li id="li-comment-1192">
+			<div class="comment" id="comment-1192">
+
+				<img alt='' src='http://1.gravatar.com/avatar/faafd2d15e6310865352ff18c708e697?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://travisstowe.com' rel='external nofollow' class='url'>Ttravis Stowe</a> wrote on <time>26th May 2010</time></p>
+				
+				<p>nice,  I didn&#8217;t think about that.  thanks for the share.. : )</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/quick-tips/quick-tip-8-limit-the-length-of-the_excerpt-in-wordpress/?replytocom=1192#respond' onclick='return addComment.moveForm("comment-1192", "1192", "respond", "1754")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1224">
+			<div class="comment" id="comment-1224">
+
+				<img alt='' src='http://1.gravatar.com/avatar/d12d86c68b05b921e41c1a55a5cf9041?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">Hardik Chauhan wrote on <time>7th February 2012</time></p>
+				
+				<p>Nice logic really awesome&#8230;</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/quick-tips/quick-tip-8-limit-the-length-of-the_excerpt-in-wordpress/?replytocom=1224#respond' onclick='return addComment.moveForm("comment-1224", "1224", "respond", "1754")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li id="li-comment-1193">
+			<div class="comment" id="comment-1193">
+
+				<img alt='' src='http://0.gravatar.com/avatar/ef8427564dfd4a5d6bc591c39dd5e695?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.socialblogr.com/' rel='external nofollow' class='url'>Gojeg</a> wrote on <time>27th May 2010</time></p>
+				
+				<p>Nice trick! I will try it.. <img src="http://nouveller.com/wp/wp-includes/images/smilies/icon_biggrin.gif" alt=":D" class="wp-smiley" /> </p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/quick-tips/quick-tip-8-limit-the-length-of-the_excerpt-in-wordpress/?replytocom=1193#respond' onclick='return addComment.moveForm("comment-1193", "1193", "respond", "1754")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1194">
+			<div class="comment" id="comment-1194">
+
+				<img alt='' src='http://0.gravatar.com/avatar/23957b5dc049f978f18b75ce62d32d31?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">Kawauso wrote on <time>2nd August 2010</time></p>
+				
+				<p><a href="http://codex.wordpress.org/Function_Reference/the_excerpt#Control_Excerpt_Length_using_Filters" rel="nofollow">http://codex.wordpress.org/Function_Reference/the_excerpt#Control_Excerpt_Length_using_Filters</a></p>
+<p>No need to rewrite the wheel.</p>
+<p>Also see:<br />
+<a href="http://codex.wordpress.org/Function_Reference/the_excerpt#Remove_.5B" rel="nofollow">http://codex.wordpress.org/Function_Reference/the_excerpt#Remove_.5B</a>&#8230;.5D_string_using_Filters</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/quick-tips/quick-tip-8-limit-the-length-of-the_excerpt-in-wordpress/?replytocom=1194#respond' onclick='return addComment.moveForm("comment-1194", "1194", "respond", "1754")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		<ul class="children">
+		<li id="li-comment-1195">
+			<div class="comment" id="comment-1195">
+
+				<img alt='' src='http://1.gravatar.com/avatar/f3bcfa4a2b1b0fe7adcd7c92c9baa5ef?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.nouveller.com/' rel='external nofollow' class='url'>Nouveller</a> wrote on <time>3rd August 2010</time></p>
+				
+				<p>No there isn&#8217;t, but you can apply the technique in other applications &#8211; not just WordPress. It&#8217;s good to know how things work.</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/quick-tips/quick-tip-8-limit-the-length-of-the_excerpt-in-wordpress/?replytocom=1195#respond' onclick='return addComment.moveForm("comment-1195", "1195", "respond", "1754")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1196">
+			<div class="comment" id="comment-1196">
+
+				<img alt='' src='http://1.gravatar.com/avatar/f3bcfa4a2b1b0fe7adcd7c92c9baa5ef?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.nouveller.com/' rel='external nofollow' class='url'>Nouveller</a> wrote on <time>3rd August 2010</time></p>
+				
+				<p>Plus I think what you posted will globally change the_excerpt. In this case I needed to modify one particular excerpt without changing the other.</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/quick-tips/quick-tip-8-limit-the-length-of-the_excerpt-in-wordpress/?replytocom=1196#respond' onclick='return addComment.moveForm("comment-1196", "1196", "respond", "1754")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="pingback even thread-even depth-1" id="comment-1197">
+			<p>Pingback: <a href='http://wp-popular.com/popular-word-press-websites/quick-tip-8-limit-the-length-of-the_excerpt-in-wordpress-nouveller/' rel='external nofollow' class='url'>wp-popular.com &raquo; Blog Archive &raquo; Quick Tip #8 &#8211; Limit the length of the_excerpt&#8217; in WordPress | Nouveller</a> </p>
+		</li><!-- #comment-## -->
+		<li id="li-comment-1198">
+			<div class="comment" id="comment-1198">
+
+				<img alt='' src='http://1.gravatar.com/avatar/7b60f180a7ddef4b0cd3edf7784af7b8?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.digigraph-design.com' rel='external nofollow' class='url'>Mike Freeman</a> wrote on <time>17th August 2010</time></p>
+				
+				<p>Awesome, thanks! What about changing it so it shows characters, not words?</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/quick-tips/quick-tip-8-limit-the-length-of-the_excerpt-in-wordpress/?replytocom=1198#respond' onclick='return addComment.moveForm("comment-1198", "1198", "respond", "1754")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		<ul class="children">
+		<li id="li-comment-1199">
+			<div class="comment" id="comment-1199">
+
+				<img alt='' src='http://1.gravatar.com/avatar/f3bcfa4a2b1b0fe7adcd7c92c9baa5ef?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.nouveller.com/' rel='external nofollow' class='url'>Nouveller</a> wrote on <time>17th August 2010</time></p>
+				
+				<p>Thanks for the comment Mike, you should check out the <a href="http://php.net/manual/en/function.substr.php" rel="nofollow">substr</a> PHP function, that should do away with any un-wanted characters.</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/quick-tips/quick-tip-8-limit-the-length-of-the_excerpt-in-wordpress/?replytocom=1199#respond' onclick='return addComment.moveForm("comment-1199", "1199", "respond", "1754")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li id="li-comment-1200">
+			<div class="comment" id="comment-1200">
+
+				<img alt='' src='http://1.gravatar.com/avatar/3a43e7e91cc3014bc3b626da1bc74179?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.sagive.co.il' rel='external nofollow' class='url'>sagive</a> wrote on <time>23rd August 2010</time></p>
+				
+				<p>thanks man.. exactly what i searched for. maybe you could include in this post a link to add &#8220;read more&#8221; link in the end</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/quick-tips/quick-tip-8-limit-the-length-of-the_excerpt-in-wordpress/?replytocom=1200#respond' onclick='return addComment.moveForm("comment-1200", "1200", "respond", "1754")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1201">
+			<div class="comment" id="comment-1201">
+
+				<img alt='' src='http://1.gravatar.com/avatar/7b2d52f77635835bf2eb4573359186ed?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">Nick wrote on <time>9th December 2010</time></p>
+				
+				<p>Tried a number of different ways to do this&#8230;yours finally worked. Thanks!</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/quick-tips/quick-tip-8-limit-the-length-of-the_excerpt-in-wordpress/?replytocom=1201#respond' onclick='return addComment.moveForm("comment-1201", "1201", "respond", "1754")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1202">
+			<div class="comment" id="comment-1202">
+
+				<img alt='' src='http://1.gravatar.com/avatar/7fb54c1dc7df41f70e3b106a4e3c33b7?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">james wrote on <time>16th December 2010</time></p>
+				
+				<p>thanks &#8211; great help!</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/quick-tips/quick-tip-8-limit-the-length-of-the_excerpt-in-wordpress/?replytocom=1202#respond' onclick='return addComment.moveForm("comment-1202", "1202", "respond", "1754")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1203">
+			<div class="comment" id="comment-1203">
+
+				<img alt='' src='http://1.gravatar.com/avatar/d133150b12fe846c79ecbd4453d72688?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">dh wrote on <time>24th January 2011</time></p>
+				
+				<p>Awesome, thanks.</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/quick-tips/quick-tip-8-limit-the-length-of-the_excerpt-in-wordpress/?replytocom=1203#respond' onclick='return addComment.moveForm("comment-1203", "1203", "respond", "1754")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1204">
+			<div class="comment" id="comment-1204">
+
+				<img alt='' src='http://0.gravatar.com/avatar/a19132b532b87ce9a62865d1e5eb0553?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.stylishandtrendy.com' rel='external nofollow' class='url'>Katie @ women magazine</a> wrote on <time>3rd March 2011</time></p>
+				
+				<p>Excellent tips for trimming the excerpt lenght. I also found that you can change it via </p>
+<p><code><br />
+add_filter('excerpt_length', 'my_excerpt_length');<br />
+function my_excerpt_length($length) {<br />
+return 10; // Or whatever you want the length to be.<br />
+</code></p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/quick-tips/quick-tip-8-limit-the-length-of-the_excerpt-in-wordpress/?replytocom=1204#respond' onclick='return addComment.moveForm("comment-1204", "1204", "respond", "1754")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		<ul class="children">
+		<li id="li-comment-1205">
+			<div class="comment" id="comment-1205">
+
+				<img alt='' src='http://1.gravatar.com/avatar/f3bcfa4a2b1b0fe7adcd7c92c9baa5ef?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.nouveller.com/' rel='external nofollow' class='url'>Benjamin Reid</a> wrote on <time>3rd March 2011</time></p>
+				
+				<p>Very nice tip Katie.<br />
+ <img src="http://nouveller.com/wp/wp-includes/images/smilies/icon_smile.gif" alt=":)" class="wp-smiley" /> </p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/quick-tips/quick-tip-8-limit-the-length-of-the_excerpt-in-wordpress/?replytocom=1205#respond' onclick='return addComment.moveForm("comment-1205", "1205", "respond", "1754")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li id="li-comment-1206">
+			<div class="comment" id="comment-1206">
+
+				<img alt='' src='http://0.gravatar.com/avatar/45ebb745f2f5d6190e97a2c9a60e61c0?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.teknomodel.net' rel='external nofollow' class='url'>teknomodel</a> wrote on <time>23rd April 2011</time></p>
+				
+				<p>thanks for code.. <img src="http://nouveller.com/wp/wp-includes/images/smilies/icon_wink.gif" alt=";)" class="wp-smiley" /> </p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/quick-tips/quick-tip-8-limit-the-length-of-the_excerpt-in-wordpress/?replytocom=1206#respond' onclick='return addComment.moveForm("comment-1206", "1206", "respond", "1754")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1207">
+			<div class="comment" id="comment-1207">
+
+				<img alt='' src='http://0.gravatar.com/avatar/ab3791e91e7a48f435add893b6110ee6?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">Sam wrote on <time>5th August 2011</time></p>
+				
+				<p>t</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/quick-tips/quick-tip-8-limit-the-length-of-the_excerpt-in-wordpress/?replytocom=1207#respond' onclick='return addComment.moveForm("comment-1207", "1207", "respond", "1754")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1208">
+			<div class="comment" id="comment-1208">
+
+				<img alt='' src='http://0.gravatar.com/avatar/ab3791e91e7a48f435add893b6110ee6?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">Sam wrote on <time>5th August 2011</time></p>
+				
+				<p>this is a befokte example</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/quick-tips/quick-tip-8-limit-the-length-of-the_excerpt-in-wordpress/?replytocom=1208#respond' onclick='return addComment.moveForm("comment-1208", "1208", "respond", "1754")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1209">
+			<div class="comment" id="comment-1209">
+
+				<img alt='' src='http://1.gravatar.com/avatar/3c3749620f32bde973251bf3dad27149?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">yash wrote on <time>9th August 2011</time></p>
+				
+				<p>you made my day thanks i was searching this post but how to add [...] after excerpts</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/quick-tips/quick-tip-8-limit-the-length-of-the_excerpt-in-wordpress/?replytocom=1209#respond' onclick='return addComment.moveForm("comment-1209", "1209", "respond", "1754")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1210">
+			<div class="comment" id="comment-1210">
+
+				<img alt='' src='http://0.gravatar.com/avatar/4493daefd13d49e169d7db0ba7cb40d8?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">Navaneethan wrote on <time>10th August 2011</time></p>
+				
+				<p>dude superb&#8230; Its working good.. you Have any wordpress tips just mail to me&#8230; I am new for wordpress not for PHP</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/quick-tips/quick-tip-8-limit-the-length-of-the_excerpt-in-wordpress/?replytocom=1210#respond' onclick='return addComment.moveForm("comment-1210", "1210", "respond", "1754")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1211">
+			<div class="comment" id="comment-1211">
+
+				<img alt='' src='http://0.gravatar.com/avatar/698cfa20d46cd412781e0f9ffe2f5e63?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">Greg wrote on <time>16th August 2011</time></p>
+				
+				<p>Possibly a bit late to the party, seriously useful post man. Am brand new to WordPress but you learn what work tells you to, haha. I got this all working nice and quickly thanks to you, good job!</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/quick-tips/quick-tip-8-limit-the-length-of-the_excerpt-in-wordpress/?replytocom=1211#respond' onclick='return addComment.moveForm("comment-1211", "1211", "respond", "1754")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1212">
+			<div class="comment" id="comment-1212">
+
+				<img alt='' src='http://1.gravatar.com/avatar/f3fe2ddcdb10922c06b48d020adf2a16?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.deemtech.com' rel='external nofollow' class='url'>Rakesh</a> wrote on <time>20th August 2011</time></p>
+				
+				<p>Excellent tips for trimming the excerpt lenght. I also found that you can change it via this post</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/quick-tips/quick-tip-8-limit-the-length-of-the_excerpt-in-wordpress/?replytocom=1212#respond' onclick='return addComment.moveForm("comment-1212", "1212", "respond", "1754")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1213">
+			<div class="comment" id="comment-1213">
+
+				<img alt='' src='http://1.gravatar.com/avatar/f3fe2ddcdb10922c06b48d020adf2a16?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.deemtech.com' rel='external nofollow' class='url'>Rakesh</a> wrote on <time>20th August 2011</time></p>
+				
+				<p>Thanks help for this post<br />
+you can add this post read more option</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/quick-tips/quick-tip-8-limit-the-length-of-the_excerpt-in-wordpress/?replytocom=1213#respond' onclick='return addComment.moveForm("comment-1213", "1213", "respond", "1754")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1214">
+			<div class="comment" id="comment-1214">
+
+				<img alt='' src='http://1.gravatar.com/avatar/f714aa966d4b2129ba7a610874e8c9de?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">Sharon wrote on <time>5th September 2011</time></p>
+				
+				<p>Thank you Dan &#8211; really quick and easy to implement.</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/quick-tips/quick-tip-8-limit-the-length-of-the_excerpt-in-wordpress/?replytocom=1214#respond' onclick='return addComment.moveForm("comment-1214", "1214", "respond", "1754")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1215">
+			<div class="comment" id="comment-1215">
+
+				<img alt='' src='http://1.gravatar.com/avatar/5e78fe14a332c6447f7cb570f244b3d9?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">Misha wrote on <time>29th October 2011</time></p>
+				
+				<p>Hey Dan, I just wanted to say thank you!! You really helped me with this quick and easy fix! I am thankful the more that I don&#8217;t have any knowledge of php whatsoever! And still was able to implement your code! Your are the master! <img src="http://nouveller.com/wp/wp-includes/images/smilies/icon_smile.gif" alt=":)" class="wp-smiley" />  Thank you again! All the best from Misha</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/quick-tips/quick-tip-8-limit-the-length-of-the_excerpt-in-wordpress/?replytocom=1215#respond' onclick='return addComment.moveForm("comment-1215", "1215", "respond", "1754")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1216">
+			<div class="comment" id="comment-1216">
+
+				<img alt='' src='http://1.gravatar.com/avatar/5e78fe14a332c6447f7cb570f244b3d9?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">Misha wrote on <time>29th October 2011</time></p>
+				
+				<p>Ha, sorry for getting wrong your name! I wanted to say thank you, Benjamin!</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/quick-tips/quick-tip-8-limit-the-length-of-the_excerpt-in-wordpress/?replytocom=1216#respond' onclick='return addComment.moveForm("comment-1216", "1216", "respond", "1754")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1217">
+			<div class="comment" id="comment-1217">
+
+				<img alt='' src='http://1.gravatar.com/avatar/5363b9876f811ac7e20afb23d3881897?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.seomagic.biz' rel='external nofollow' class='url'>Magdalene Capicotto</a> wrote on <time>7th December 2011</time></p>
+				
+				<p>Oh, I remember those 3d&#8217;s from back then, on tv and in the cinema once. The glasses itself were already great fun. I don&#8217;t miss dimension on tv right now, but hey .. might be nice towatch now and then. Those cinema&#8217;s which give you movies all around you .. I think those more cool. They make me dizzy and such, certain scenes (flying above water and stuff like that).</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/quick-tips/quick-tip-8-limit-the-length-of-the_excerpt-in-wordpress/?replytocom=1217#respond' onclick='return addComment.moveForm("comment-1217", "1217", "respond", "1754")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1218">
+			<div class="comment" id="comment-1218">
+
+				<img alt='' src='http://1.gravatar.com/avatar/f995810ca985e95ef79e0531013aa871?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">Plaidmelon wrote on <time>12th December 2011</time></p>
+				
+				<p>Thanks for the code, I was originally using substr, but I like this method better.</p>
+<p>There was some discussion regarding adding the ellipsis(&#8230;). I also wanted to add the ellipsis to the end, but got to thinking, what if my excerpt is shorter than the word limit. The ellipsis would be pointless. So I modified the function a bit, and the call to it in the template file. I figured I could let the function do the echo of the excerpt, much the way wordpress&#8217; own functions do.</p>
+<p>Anyway, thought I&#8217;d share.</p>
+<p>First, the code for functions.php:</p>
+<p>function custom_excerpt($string, $word_limit) {<br />
+    $words = explode(&#8216; &#8216;, $string);</p>
+<p>    $count = count($words);<br />
+    if ($count &gt; $word_limit) {<br />
+        echo (implode(&#8216; &#8216;, array_slice($words, 0, $word_limit)) . &#8216;&#8230;&#8217;);<br />
+    }<br />
+    else {<br />
+        echo implode(&#8216; &#8216;, array_slice($words, 0, $word_limit));<br />
+    }<br />
+}</p>
+<p>and here&#8217;s the code for the template file:</p>
+<p>if (the_excerpt !== &#8220;&#8221;) {<br />
+    custom_excerpt(get_the_excerpt(), &#8217;100&#8242;);<br />
+}</p>
+<p>else {<br />
+    custom_excerpt(the_content, &#8217;10&#8242;);<br />
+}</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/quick-tips/quick-tip-8-limit-the-length-of-the_excerpt-in-wordpress/?replytocom=1218#respond' onclick='return addComment.moveForm("comment-1218", "1218", "respond", "1754")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li class="trackback odd alt thread-odd thread-alt depth-1" id="comment-1219">
+			<p>Pingback: <a href='http://bloggingasbiz.tumblr.com/post/14854178670/starting-a-blog' rel='external nofollow' class='url'>make money at homeblogging tips</a> </p>
+		</li><!-- #comment-## -->
+		<li id="li-comment-1220">
+			<div class="comment" id="comment-1220">
+
+				<img alt='' src='http://1.gravatar.com/avatar/73acfec26f5988db289e98e3992d5583?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://lonchbox.com' rel='external nofollow' class='url'>Pancho</a> wrote on <time>4th January 2012</time></p>
+				
+				<p>Hi,</p>
+<p>Great code and it works, but I have a problem. If the content have a italic (<em></em>) text at the beging of the text and the closing tag of this text is further than the count limit it show in the theme only the first tag (<em>) and the rest don´t so it´s an open tag afecting all theme design.</p>
+<p>Any idea of how to close those tags?</p>
+<p>Much thanx and Happy New Year :9</em></p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/quick-tips/quick-tip-8-limit-the-length-of-the_excerpt-in-wordpress/?replytocom=1220#respond' onclick='return addComment.moveForm("comment-1220", "1220", "respond", "1754")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1221">
+			<div class="comment" id="comment-1221">
+
+				<img alt='' src='http://0.gravatar.com/avatar/c637eeac237e701d540c9e760af0993b?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://reformas.serviciosobrasyreformas.es/r,9,Reformas.html' rel='external nofollow' class='url'>empresa de reformas Barcelona</a> wrote on <time>5th January 2012</time></p>
+				
+				<p>You can certainly see your skills within the work you write. The world hopes for more passionate writers such as you who are not afraid to mention how they believe. At all times follow your heart.</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/quick-tips/quick-tip-8-limit-the-length-of-the_excerpt-in-wordpress/?replytocom=1221#respond' onclick='return addComment.moveForm("comment-1221", "1221", "respond", "1754")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1222">
+			<div class="comment" id="comment-1222">
+
+				<img alt='' src='http://0.gravatar.com/avatar/8defe5fae947695429ac51fd2d29e0f8?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">Gab wrote on <time>12th January 2012</time></p>
+				
+				<p>This is very nice, thanks a lot.<br />
+Been looking around for another way to reduce the excerpt length without using the wordpress filter (due to using the_title and the_ excerpt inline, using the WP filter still keeps a line break after the_title&#8230;)<br />
+this works perfectly <img src="http://nouveller.com/wp/wp-includes/images/smilies/icon_wink.gif" alt=";)" class="wp-smiley" /><br />
+thanks again.</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/quick-tips/quick-tip-8-limit-the-length-of-the_excerpt-in-wordpress/?replytocom=1222#respond' onclick='return addComment.moveForm("comment-1222", "1222", "respond", "1754")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li class="trackback even thread-even depth-1" id="comment-1223">
+			<p>Pingback: <a href='http://freesocialcrm.com/blog/2012/01/04/why-building-a-business-in-a-boring-industry-can-pay-off-video/' rel='external nofollow' class='url'>social crm|free social crm tools|social crm tools|social media|social crm software|social crm companies|social crm market size|social crm market|social crm wiki|social crm nyc|social networking crm|social crm definition|collective intellect social media c</a> </p>
+		</li><!-- #comment-## -->
+		<li id="li-comment-1226">
+			<div class="comment" id="comment-1226">
+
+				<img alt='' src='http://0.gravatar.com/avatar/8437f68d5b9a765c67f33e9b174e1d3d?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.appswoo.com/' rel='external nofollow' class='url'>Premium Wordpress Themes | Iphone 4s Themes and Wallpapers</a> wrote on <time>2nd March 2012</time></p>
+				
+				<p>That really helps me a lot. Is there any way to change the excerpts length to zero. No excerpts at all ?</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/quick-tips/quick-tip-8-limit-the-length-of-the_excerpt-in-wordpress/?replytocom=1226#respond' onclick='return addComment.moveForm("comment-1226", "1226", "respond", "1754")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1227">
+			<div class="comment" id="comment-1227">
+
+				<img alt='' src='http://1.gravatar.com/avatar/33e748f1958e7e4ad19a89793e5a4d37?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://kylenumann.com' rel='external nofollow' class='url'>Kyle</a> wrote on <time>9th April 2012</time></p>
+				
+				<p>Exactly what I was looking for and short, clean code. Thanks!</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/quick-tips/quick-tip-8-limit-the-length-of-the_excerpt-in-wordpress/?replytocom=1227#respond' onclick='return addComment.moveForm("comment-1227", "1227", "respond", "1754")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1228">
+			<div class="comment" id="comment-1228">
+
+				<img alt='' src='http://0.gravatar.com/avatar/6285500314d87bfedd067cc8de69d29c?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.learnwebtips.blogspot.com' rel='external nofollow' class='url'>Ashkar</a> wrote on <time>19th April 2012</time></p>
+				
+				<p>Hi great.. Helped me.. <img src="http://nouveller.com/wp/wp-includes/images/smilies/icon_smile.gif" alt=":)" class="wp-smiley" />  Looking forward for more useful tips..</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/quick-tips/quick-tip-8-limit-the-length-of-the_excerpt-in-wordpress/?replytocom=1228#respond' onclick='return addComment.moveForm("comment-1228", "1228", "respond", "1754")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1229">
+			<div class="comment" id="comment-1229">
+
+				<img alt='' src='http://0.gravatar.com/avatar/2603e3a65b8054bf3c3f869fe2245f8a?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.coffeechapters.com' rel='external nofollow' class='url'>Brenian</a> wrote on <time>8th June 2012</time></p>
+				
+				<p>hey dude,</p>
+<p>this helped me ALOT~!!!<br />
+been scratching my head for HOURS trying to reduce the text shown by excerpts,</p>
+<p>WORDPRESS should just put this function in their get_the_excerpts~!!!</p>
+<p>OMG spent like 3 hours trying out~!!!<br />
+but yours was the most straight forward!!!!</p>
+<p>OMG Thank YOU~!!!</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/quick-tips/quick-tip-8-limit-the-length-of-the_excerpt-in-wordpress/?replytocom=1229#respond' onclick='return addComment.moveForm("comment-1229", "1229", "respond", "1754")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1230">
+			<div class="comment" id="comment-1230">
+
+				<img alt='' src='http://0.gravatar.com/avatar/a518a2caf4fcca0e83fe44986f382394?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.sthaanil.com.np' rel='external nofollow' class='url'>Anil</a> wrote on <time>25th September 2012</time></p>
+				
+				<p>the content can be limited by writing the code in function.php as follow</p>
+<p>function new_excerpt_length($length) {<br />
+	return 20;<br />
+}<br />
+add_filter(&#8216;excerpt_length&#8217;, &#8216;new_excerpt_length&#8217;);</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/quick-tips/quick-tip-8-limit-the-length-of-the_excerpt-in-wordpress/?replytocom=1230#respond' onclick='return addComment.moveForm("comment-1230", "1230", "respond", "1754")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1232">
+			<div class="comment" id="comment-1232">
+
+				<img alt='' src='http://1.gravatar.com/avatar/7f0b6ba738af2efa64693ddaf2883ad4?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">Kyle wrote on <time>4th December 2012</time></p>
+				
+				<p>Great Work! easiest and simplest answer I&#8217;ve found.</p>
+<p>And to add a ellipsis at the end simply add:</p>
+<p>return implode(&#8216; &#8216;, array_slice($words, 0, $word_limit)) . &#8216;&hellip;&#8217;;</p>
+<p>Thanks!</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/quick-tips/quick-tip-8-limit-the-length-of-the_excerpt-in-wordpress/?replytocom=1232#respond' onclick='return addComment.moveForm("comment-1232", "1232", "respond", "1754")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		<ul class="children">
+		<li id="li-comment-1233">
+			<div class="comment" id="comment-1233">
+
+				<img alt='' src='http://1.gravatar.com/avatar/7f0b6ba738af2efa64693ddaf2883ad4?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">Kyle wrote on <time>5th December 2012</time></p>
+				
+				<p>Actually to make this even better use:</p>
+<p>if (count($words) &gt; $word_limit ) {$end = &#8216;&hellip;&#8217;;}</p>
+<p>return implode(&#8216; &#8216;, array_slice($words, 0, $word_limit)). $end;</p>
+<p>This way if there is no need for the ellips then it is not added.</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/quick-tips/quick-tip-8-limit-the-length-of-the_excerpt-in-wordpress/?replytocom=1233#respond' onclick='return addComment.moveForm("comment-1233", "1233", "respond", "1754")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		</ul><!-- .commentlist -->
+
+		
+		
+	</div><!-- /.comments -->
+
+<div class="comment-form">
+									<div id="respond" class="comment-respond">
+				<h3 id="reply-title" class="comment-reply-title">Add your comment <small><a rel="nofollow" id="cancel-comment-reply-link" href="/quick-tips/quick-tip-8-limit-the-length-of-the_excerpt-in-wordpress/#respond" style="display:none;">Cancel reply</a></small></h3>
+									<form action="http://nouveller.com/wp/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+																										<div class="form-details"><input id="author" name="author" class="input-text" type="text" placeholder="Name" value="">
+<input id="email" name="email" class="input-text" type="text" placeholder="Email" value="">
+<input id="url" name="url" class="input-text" type="text" placeholder="Website (optional)" value=""></div>
+												<textarea id="comment" name="comment" class="input-textarea" placeholder="Comment"></textarea>						<p class="form-allowed-tags">You may use these <abbr title="HyperText Markup Language">HTML</abbr> tags and attributes:  <code>&lt;a href=&quot;&quot; title=&quot;&quot;&gt; &lt;abbr title=&quot;&quot;&gt; &lt;acronym title=&quot;&quot;&gt; &lt;b&gt; &lt;blockquote cite=&quot;&quot;&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=&quot;&quot;&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=&quot;&quot;&gt; &lt;strike&gt; &lt;strong&gt; </code></p>						<p class="form-submit">
+							<input name="submit" type="submit" id="submit" value="Post Comment" />
+							<input type='hidden' name='comment_post_ID' value='1754' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+						</p>
+						<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="a7599d9f74" /></p><p class="comment-subscription-form"><input type="checkbox" name="subscribe_comments" id="subscribe_comments" value="subscribe" style="width: auto; -moz-appearance: checkbox; -webkit-appearance: checkbox;" /> <label class="subscribe-label" id="subscribe-label" for="subscribe_comments">Notify me of follow-up comments by email.</label></p><p class="comment-subscription-form"><input type="checkbox" name="subscribe_blog" id="subscribe_blog" value="subscribe" style="width: auto; -moz-appearance: checkbox; -webkit-appearance: checkbox;" /> <label class="subscribe-label" id="subscribe-blog-label" for="subscribe_blog">Notify me of new posts by email.</label></p><script type='text/javascript' src='http://nouveller.com/wp/wp-content/plugins/akismet/_inc/form.js?ver=3.0.0'></script>
+<p style="display: none;"><input type="hidden" id="ak_js" name="ak_js" value="149"/></p>					</form>
+							</div><!-- #respond -->
+			</div>
+	  
+	</div><!-- /.main -->
+
+	<div class="sidebar articles-sidebar">
+		<h5>Category</h5>
+<ul class="post-categories">
+	<li><a href="http://nouveller.com/category/quick-tips/" title="View all posts in Quick Tips" rel="category tag">Quick Tips</a></li></ul>
+
+
+
+<h5>Share</h5>
+<ul class="plain-list share-list">
+	<li><a data-related="nouveller,benjaminreid" data-text="Quick Tip #8 &#8211; Limit the length of &#8216;the_excerpt&#8217; in WordPress" data-url="http://nouveller.com/quick-tips/quick-tip-8-limit-the-length-of-the_excerpt-in-wordpress/" href="https://twitter.com/share" class="twitter-share-button" data-lang="en">Tweet</a></li>
+	<li><iframe src="//www.facebook.com/plugins/like.php?href=http://nouveller.com/quick-tips/quick-tip-8-limit-the-length-of-the_excerpt-in-wordpress/&amp;send=false&amp;layout=button_count&amp;width=140&amp;show_faces=false&amp;font&amp;colorscheme=light&amp;action=like&amp;height=21&amp;appId=253536277996804" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:140px; height:21px;" allowTransparency="true"></iframe></li>
+	<li><div class="g-plusone" data-size="medium"></div></li>
+</ul>	</div>
+
+</div><!-- /.content -->
+
+    <footer class="section-footer">
+      <div class="content inner-wrapper">
+
+        <div class="row">
+          <div class="about-me">
+            <h2>About</h2>
+            <p>Nouveller is a creative outlet for me to talk about what I learn and show the world what I create. I like sharing what I learn, in hope it can help others learning as well so you'll hopefully see plenty of articles on HTML, CSS, JavaScript, PHP and Ruby. There's also plenty of experiments and hidden gems to be found! <a href="http://www.youtube.com/watch?v=Zce-QT7MGSE" target="_blank">Luck dip?</a></p>
+          </div>
+          <div class="social-links">
+            <h2>You can find me on</h2>
+            <ul class="two-column-list">
+              <li><a target="_blank" href="https://twitter.com/BenjaminReid" class="twitter">Twitter</a></li>
+              <li><a target="_blank" href="https://www.facebook.com/fb.nouveller" class="facebook">Facebook</a></li>
+              <li><a target="_blank" href="http://forrst.com/people/nouveller/" class="forrst">Forrst</a></li>
+              <li><a target="_blank" href="http://www.flickr.com/photos/nouveller" class="flick">Flick<span class="r">r</span></a></li>
+              <li><a target="_blank" href="http://pinterest.com/benjaminreid/" class="pinterest">Pinterest</a></li>
+              <li><a target="_blank" href="http://www.youtube.com/user/semper0fi" class="you">You<span class="tube">Tube</span></a></li>
+              <li><a target="_blank" href="http://www.strava.com/athletes/238785" class="strava">Strava</a></li>
+              <li><a target="_blank" href="http://vimeo.com/nouveller" class="vimeo">Vimeo</a></li>
+            </ul>
+          </div><!-- /.social-links -->
+        </div><!-- /.row -->
+
+        <div class="break"></div>
+
+        <div class="twitter-feed aligncentre">
+          <img src="/static/img/twitter-logo.png" alt="Twitter logo">
+          <p><span class="twitter">@BenjaminReid:</span> Clever girl...</p>
+          <a href="https://twitter.com/BenjaminReid" class="twitter-follow-button" data-show-count="false">Follow @BenjaminReid</a>
+        </div><!-- /.twitter-feed -->
+
+      </div><!-- /.content inner-wrapper -->
+
+      <section class="section-footnotes">
+        <div class="inner-wrapper aligncentre">
+          <p>Nouveller &mdash; Seeker | <a href="mailto:benjamin@nouveller.com">benjamin@nouveller.com</a><br />
+          &copy; Nouveller 2014 | Designed &amp; built by <a href="http://www.benjaminreid.me/">Benjamin Reid</a> in the &hearts; of <a href="https://www.google.com/maps?q=Bristol,+UK">Bristol</a> | Hosted by <a href="http://www.memset.com/">Memset</a></p>
+        </div><!-- /.inner-wrapper -->
+      </section>
+
+    </footer>
+
+
+        <script src="/static/js/seeker.build.js"></script>
+    
+        	<div style="display:none">
+	<div class="grofile-hash-map-b2bfb4d42ec3e3ed3abb2b8d4754d4c6">
+	</div>
+	<div class="grofile-hash-map-f3bcfa4a2b1b0fe7adcd7c92c9baa5ef">
+	</div>
+	<div class="grofile-hash-map-f3e31e245475dc66605967f1273b138b">
+	</div>
+	<div class="grofile-hash-map-0be55853d044b3afe1efe44d4031cf06">
+	</div>
+	<div class="grofile-hash-map-483a73f3e1701c7908a4a816fa49c0a6">
+	</div>
+	<div class="grofile-hash-map-faafd2d15e6310865352ff18c708e697">
+	</div>
+	<div class="grofile-hash-map-d12d86c68b05b921e41c1a55a5cf9041">
+	</div>
+	<div class="grofile-hash-map-855d800878a9c1013b5bb85906d1857b">
+	</div>
+	<div class="grofile-hash-map-8355027ef4c8ffedc86149ddcfae1939">
+	</div>
+	<div class="grofile-hash-map-66569e4450c9eebcd3a66db014f0260c">
+	</div>
+	<div class="grofile-hash-map-ef8427564dfd4a5d6bc591c39dd5e695">
+	</div>
+	<div class="grofile-hash-map-23957b5dc049f978f18b75ce62d32d31">
+	</div>
+	<div class="grofile-hash-map-7b60f180a7ddef4b0cd3edf7784af7b8">
+	</div>
+	<div class="grofile-hash-map-3a43e7e91cc3014bc3b626da1bc74179">
+	</div>
+	<div class="grofile-hash-map-7b2d52f77635835bf2eb4573359186ed">
+	</div>
+	<div class="grofile-hash-map-7fb54c1dc7df41f70e3b106a4e3c33b7">
+	</div>
+	<div class="grofile-hash-map-d133150b12fe846c79ecbd4453d72688">
+	</div>
+	<div class="grofile-hash-map-a19132b532b87ce9a62865d1e5eb0553">
+	</div>
+	<div class="grofile-hash-map-45ebb745f2f5d6190e97a2c9a60e61c0">
+	</div>
+	<div class="grofile-hash-map-ab3791e91e7a48f435add893b6110ee6">
+	</div>
+	<div class="grofile-hash-map-3c3749620f32bde973251bf3dad27149">
+	</div>
+	<div class="grofile-hash-map-4493daefd13d49e169d7db0ba7cb40d8">
+	</div>
+	<div class="grofile-hash-map-698cfa20d46cd412781e0f9ffe2f5e63">
+	</div>
+	<div class="grofile-hash-map-f3fe2ddcdb10922c06b48d020adf2a16">
+	</div>
+	<div class="grofile-hash-map-f714aa966d4b2129ba7a610874e8c9de">
+	</div>
+	<div class="grofile-hash-map-70f22f828cedb5eb5b8440f157cf7dc4">
+	</div>
+	<div class="grofile-hash-map-407dc51634fe63a1f1658d7a217c5bfd">
+	</div>
+	<div class="grofile-hash-map-f995810ca985e95ef79e0531013aa871">
+	</div>
+	<div class="grofile-hash-map-73acfec26f5988db289e98e3992d5583">
+	</div>
+	<div class="grofile-hash-map-88cb7a6173e637003f869f19d5330e1e">
+	</div>
+	<div class="grofile-hash-map-8defe5fae947695429ac51fd2d29e0f8">
+	</div>
+	<div class="grofile-hash-map-8437f68d5b9a765c67f33e9b174e1d3d">
+	</div>
+	<div class="grofile-hash-map-33e748f1958e7e4ad19a89793e5a4d37">
+	</div>
+	<div class="grofile-hash-map-6285500314d87bfedd067cc8de69d29c">
+	</div>
+	<div class="grofile-hash-map-2603e3a65b8054bf3c3f869fe2245f8a">
+	</div>
+	<div class="grofile-hash-map-a518a2caf4fcca0e83fe44986f382394">
+	</div>
+	<div class="grofile-hash-map-7f0b6ba738af2efa64693ddaf2883ad4">
+	</div>
+	</div>
+<script type='text/javascript' src='http://s0.wp.com/wp-content/js/devicepx-jetpack.js?ver=201437'></script>
+<script type='text/javascript' src='http://s.gravatar.com/js/gprofiles.js?ver=2014Sepaa'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var WPGroHo = {"my_hash":""};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://nouveller.com/wp/wp-content/plugins/jetpack/modules/wpgroho.js?ver=3.8.3'></script>
+
+	<script src="http://stats.wordpress.com/e-201437.js" type="text/javascript"></script>
+	<script type="text/javascript">
+	st_go({v:'ext',j:'1:2.9.3',blog:'7873577',post:'1754',tz:'0'});
+	var load_cmc = function(){linktracker_init(7873577,1754,2);};
+	if ( typeof addLoadEvent != 'undefined' ) addLoadEvent(load_cmc);
+	else load_cmc();
+	</script>    
+  </body>
+</html>

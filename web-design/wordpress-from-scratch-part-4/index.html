@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7  closed balloons"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8  closed balloons"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9  closed balloons"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js  closed balloons"> <!--<![endif]-->
+  <head>
+<base href="http://nouveller.com" />
+
+    <meta charset="utf-8">
+
+    <title>WordPress from scratch : Part 4 &mdash; Nouveller</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="">
+
+    <link href="http://fonts.googleapis.com/css?family=Glegoo|Inconsolata|Open+Sans:400italic,400,700" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/screen.css">
+    
+    <script src="/static/js/libs/modernizr-2.6.2.min.js"></script>
+
+		
+<link rel='stylesheet' id='jetpack-subscriptions-css'  href='http://nouveller.com/wp/wp-content/plugins/jetpack/modules/subscriptions/subscriptions.css?ver=3.8.3' type='text/css' media='all' />
+<link rel='stylesheet' id='jetpack-widgets-css'  href='http://nouveller.com/wp/wp-content/plugins/jetpack/modules/widgets/widgets.css?ver=20121003' type='text/css' media='all' />
+<script type='text/javascript' src='http://nouveller.com/wp/wp-includes/js/jquery/jquery.js?ver=1.10.2'></script>
+<script type='text/javascript' src='http://nouveller.com/wp/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
+
+ 
+
+<link rel='next' title='WordPress plugin: WP @Twitter' href='http://nouveller.com/wordpress/plugins/wordpress-plugin-wp-twitter/' />
+<link rel='canonical' href='http://nouveller.com/web-design/wordpress-from-scratch-part-4/' />
+<link rel='shortlink' href='http://wp.me/px2hb-oB' />
+<style type='text/css'>img#wpstats{display:none}</style>
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="WordPress from scratch : Part 4" />
+<meta property="og:url" content="http://nouveller.com/web-design/wordpress-from-scratch-part-4/" />
+<meta property="og:description" content="Welcome to part four of my &#039;WordPress from scratch&#039; series! This 4th part covers setting up WordPress&#039;s amazing comment system, getting your pages (pages.php) looking like the rest of your blog, se..." />
+<meta property="article:published_time" content="2009-10-25T12:07:05+00:00" />
+<meta property="article:modified_time" content="2009-10-25T12:07:05+00:00" />
+<meta property="article:author" content="http://nouveller.com/author/benjamin/" />
+<meta property="og:site_name" content="Nouveller" />
+<meta property="og:video:type" content="application/x-shockwave-flash" />
+<meta property="og:video" content="http://vimeo.com/moogaloop.swf?clip_id=7149691" />
+<meta property="og:video:secure_url" content="https://vimeo.com/moogaloop.swf?clip_id=7149691" />
+<meta name="twitter:site" content="@jetpack" />
+<meta name="twitter:image:src" content="?w=640" />
+<meta name="twitter:card" content="summary_large_image" />
+
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-8404687-2']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+	</head>
+
+	<body class="single single-post postid-1525 single-format-standard">
+
+    <header class="page-header fixed-top">
+      <div class="wrapper">
+        
+        <a href="http://nouveller.com" class="opacity-hover offset-bottom nouveller-logo">
+        	<img src="/static/img/logo-nouveller.png" alt="Nouveller logo">
+        </a>
+
+        <nav class="offset-bottom pos-right">
+          <ul class="main-nav">
+            <li class="nav-work"><a href="http://nouveller.com/work">Work</a></li>
+            <li class="nav-articles"><a href="http://nouveller.com/articles">Articles</a></li>
+            <li class="nav-labs"><a href="http://nouveller.com/labs">Labs</a></li>
+            <li class="nav-contact"><a href="http://nouveller.com/contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <a href="" class="nav-btn" id="displayNav">Display nav</a>
+
+      </div><!-- /.wrapper -->
+    </header><!-- /.page-header .fixed-top -->
+<div class="content inner-wrapper clearfix">
+      
+  <div class="main">
+
+		
+			<header>
+	      <h1>WordPress from scratch : Part 4</h1>
+	      <p class="meta">Posted on <time>October 25, 2009</time></p>
+	    </header>
+
+	    <p>Welcome to part four of my 'WordPress from scratch' series! This 4th part covers setting up WordPress's amazing comment system, getting your pages (<code>pages.php</code>) looking like the rest of your blog, setting up your dynamic highlighting nav' and more! I've also provided code snippets below which would of bored you all to death explaining so copy and paste them at your will. If you'd still like them explaining, I could do a separate post on each snippet, sound good? If so, let me know below.</p>
+<h2>Series contents</h2>
+<p><a href="http://nouveller.com/web-design/wordpress-from-scratch-part-1/">WordPress from scratch : Part 1</a><br />
+<a href="http://nouveller.com/web-design/wordpress-from-scratch-part-2/">WordPress from scratch : Part 2</a><br />
+<a href="http://nouveller.com/web-design/wordpress-from-scratch-part-3/">WordPress from scratch : Part 3</a><br />
+<a href="http://nouveller.com/web-design/wordpress-from-scratch-part-4/">WordPress from scratch : Part 4</a></p>
+<div class='embed-vimeo' style='text-align:center;'><iframe src='http://player.vimeo.com/video/7149691' width='400' height='300' frameborder='0'></iframe></div>
+<h2>Code snippets from WordPress from scratch : Part 4</h2>
+<p><strong>comments.php</strong></p>
+<pre lang="PHP"><?php
+/**
+ * @package WordPress
+ * @subpackage Default_Theme
+ */
+
+// Do not delete these lines
+	if (!empty($_SERVER['SCRIPT_FILENAME']) &#038;& 'comments.php' == basename($_SERVER['SCRIPT_FILENAME']))
+		die ('Please do not load this page directly. Thanks!');
+
+	if ( post_password_required() ) { ?>
+		<p class="nocomments">This post is password protected. Enter the password to view comments.</p>
+	<?php
+		return;
+	}
+?>
+
+
+	<?php if ( have_comments() ) : ?>
+	
+     <a name="comments"></a>
+     
+	<img src="<?php bloginfo('template_directory'); ?>/images/titles/comments-left-by-other-wizards.jpg" width="420" height="50" alt="Comments left by other wizards" title="Comments left by other wizards" />
+	
+	<h2><?php comments_number('No Responses so far, leave comment please :)', 'One Response, yes you are first!', '% Responses' );?> | <a href="#reply" title="Clickage this to make a comment">Make a comment</a></h2>
+	
+     <p><?php previous_comments_link() ?> <?php next_comments_link() ?></p>
+     
+	<ul class="commentlist">
+	
+		<?php wp_list_comments('type=all&#038;callback=mytheme_comment'); ?>
+     
+     </ul>
+     
+     <p><?php previous_comments_link() ?> <?php next_comments_link() ?></p>
+     
+     <div class="clear"></div>
+     
+
+ 	<?php else : // this is displayed if there are no comments so far ?>
+
+	<?php if ('open' == $post->comment_status) : ?>
+	
+	<!-- If comments are open, but there are no comments. -->
+	<h2>No comments so far, why not make one?</h2>
+
+	<?php else : // comments are closed ?>
+	<!-- If comments are closed. -->
+	<h2>Comments are closed.</h2>
+
+	<?php endif; ?>
+	
+	<?php endif; ?>
+
+
+	<?php if ('open' == $post->comment_status) : ?>
+
+	<div id="respond">
+	
+		<div class="clear"></div>
+		
+		<img src="<?php bloginfo('template_directory'); ?>/images/titles/leave-your-words-of-wisdom.jpg" width="420" height="50" alt="Leave your words of wisdom" title="Leave a nice comment for Jamin" />
+
+		<h2><?php comment_form_title( 'Leave a Reply', 'Leave a Reply to %s' ); ?></h2>
+		
+		<div class="clear10"></div>
+		
+		<div class="cancel-comment-reply">
+		
+			<p><?php cancel_comment_reply_link('You are replying to the comment above, if you did this my mistake, cancel it!'); ?></p>
+			
+		</div><!-- /cancel-comment-reply -->
+
+		<?php if ( get_option('comment_registration') &#038;& !$user_ID ) : ?>
+		
+		<p>You must be <a href="<?php echo get_option('siteurl'); ?>/wp-login.php?redirect_to=<?php echo urlencode(get_permalink()); ?>">logged in</a> to post a comment.</p>
+		
+		<?php else : ?>
+		
+		<div class="meta">
+	         
+	         	<a href="http://gravatar.com/" target="_blank"></a><img src="<?php bloginfo('template_directory'); ?>/images/global/gravatar.gif" width="50" height="50" alt="This is a Gravatar" title="Get yourself a Gravatar if you haven't already." /></a>
+			
+			<p>Your name</p>
+				
+	     </div><!-- /meta -->
+	      
+	    	<div id="comment-form">
+	    		
+	    		<a name="reply"></a>
+
+			<form action="<?php echo get_option('siteurl'); ?>/wp-comments-post.php" method="post" id="commentform">
+			
+				<?php if ( $user_ID ) : ?>
+				
+				<p>Logged in as <a href="<?php echo get_option('siteurl'); ?>/wp-admin/profile.php"><?php echo $user_identity; ?></a>. <a href="<?php echo wp_logout_url(get_permalink()); ?>" title="Log out of this account">Log out &raquo;</a></p>
+				
+				<?php else : ?>
+				
+				<p><input type="text" name="author" id="author" value="<?php echo $comment_author; ?>" size="22" tabindex="1" <?php if ($req) echo "aria-required='true'"; ?> />
+				<label for="author"><small>Name <?php if ($req) echo "(required)"; ?></small></label></p>
+				
+				<p><input type="text" name="email" id="email" value="<?php echo $comment_author_email; ?>" size="22" tabindex="2" <?php if ($req) echo "aria-required='true'"; ?> />
+				<label for="email"><small>Mail (will not be published) <?php if ($req) echo "(required)"; ?></small></label></p>
+				
+				<p><input type="text" name="url" id="url" value="<?php echo $comment_author_url; ?>" size="22" tabindex="3" />
+				<label for="url"><small>Website</small></label></p>
+				
+				<?php endif; ?>
+				
+				<!--<p><small><strong>XHTML:</strong> You can use these tags: <code><?php echo allowed_tags(); ?></code></small></p>-->
+				
+				<p><textarea name="comment" id="comment" cols="100%" rows="10" tabindex="4"></textarea></p>
+				
+				<p><input name="submit" type="submit" id="submit" tabindex="5" value="Submit Comment" />
+				<?php comment_id_fields(); ?>
+				</p>
+				<?php do_action('comment_form', $post->ID); ?>
+			
+			</form>
+		
+		</div><!-- /comment-form -->
+
+		<?php endif; // If registration required and not logged in ?>
+		
+	</div>
+
+	<?php endif; // if you delete this the sky will fall on your head ?>
+</pre>
+<p><strong>Customised comments function</strong></p>
+<pre lang="PHP"><?php
+
+// Function for customised comments
+function mytheme_comment($comment, $args, $depth) {
+   $GLOBALS['comment'] = $comment; ?>
+   	<li <?php comment_class(); ?> id="li-comment-<?php comment_ID() ?>">
+   	
+	     <div id="comment-<?php comment_ID(); ?>">
+	      	
+	      	<div class="meta comment-author vcard">
+	         
+	         		<?php echo get_avatar($comment,$size='50',$default='<path_to_url>' ); ?>
+				
+	      	</div><!-- /meta -->
+	
+                <div class="user-comment comment-meta commentmetadata">
+                
+                    <p class="user-name"><?php printf(__('%s'), get_comment_author_link()) ?> <span class="small pink italic">wrote on <?php comment_date(); ?></small></p>
+                
+                    <?php if ($comment->comment_approved == '0') : ?>
+                
+                        <p class="moderation"><?php _e('Your comment is awaiting moderation, hold tight.') ?></p>
+
+                     <?php endif; ?>
+                    
+                     <?php comment_text() ?>
+                     
+                     <p><?php comment_reply_link(array_merge( $args, array('depth' => $depth, 'max_depth' => $args['max_depth']))) ?> <?php edit_comment_link(__('(Edit)'),'  ','') ?></p>
+                
+                </div>
+
+		</div><!-- /comment-<?php comment_ID(); ?> -->
+
+     
+<?php } ?>
+</pre>
+
+	    
+<div class="comments">
+
+			
+		<h3>27 comments</h3>
+
+		<ul class="comments-list">
+					<li class="pingback even thread-even depth-1" id="comment-1055">
+			<p>Pingback: <a href='http://wp-popular.com/popular-word-press-websites/wordpress-from-scratch-part-4-nouveller/' rel='external nofollow' class='url'>WordPress from scratch : Part 4 | Nouveller</a> </p>
+		</li><!-- #comment-## -->
+		<li id="li-comment-1056">
+			<div class="comment" id="comment-1056">
+
+				<img alt='' src='http://1.gravatar.com/avatar/717ba34d5724f179f61b04aff14df0ab?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">Joseph wrote on <time>22nd December 2009</time></p>
+				
+				<p>Hi, very nice tutorial.<br />
+Would it be possible for you to send me the PSD.</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/web-design/wordpress-from-scratch-part-4/?replytocom=1056#respond' onclick='return addComment.moveForm("comment-1056", "1056", "respond", "1525")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1057">
+			<div class="comment" id="comment-1057">
+
+				<img alt='' src='http://1.gravatar.com/avatar/701590404c76cf2588a4b4d9384cbf37?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://none4themoment' rel='external nofollow' class='url'>WLuis Martinez</a> wrote on <time>2nd February 2010</time></p>
+				
+				<p>Hey bro how can i get the files of this tutorial 4 codding the website that u make? i wish i could have it 4 start doing this awsome tut. </p>
+<p>PD:im from latinamerica &#8211; Venezuela</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/web-design/wordpress-from-scratch-part-4/?replytocom=1057#respond' onclick='return addComment.moveForm("comment-1057", "1057", "respond", "1525")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1058">
+			<div class="comment" id="comment-1058">
+
+				<img alt='' src='http://0.gravatar.com/avatar/0e214ef25ebd5f81fbed87e7c5359854?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.linkdir.eu' rel='external nofollow' class='url'>Elin Liesman</a> wrote on <time>24th August 2011</time></p>
+				
+				<p>I think other site proprietors should take this website as an model, very clean and great user friendly style and design, as well as the content. You are an expert in this topic!</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/web-design/wordpress-from-scratch-part-4/?replytocom=1058#respond' onclick='return addComment.moveForm("comment-1058", "1058", "respond", "1525")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1059">
+			<div class="comment" id="comment-1059">
+
+				<img alt='' src='http://0.gravatar.com/avatar/68597282a2f22d5efc20e31846d287d9?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.testing.com' rel='external nofollow' class='url'>testing</a> wrote on <time>27th August 2011</time></p>
+				
+				<p>Once I initially commented I clicked the -Notify me when new comments are added- checkbox and now every time a remark is added I get 4 emails with the identical comment. Is there any way you may remove me from that service? Thanks!</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/web-design/wordpress-from-scratch-part-4/?replytocom=1059#respond' onclick='return addComment.moveForm("comment-1059", "1059", "respond", "1525")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1060">
+			<div class="comment" id="comment-1060">
+
+				<img alt='' src='http://0.gravatar.com/avatar/0ad8b6c8335cefb7449c982a00ca34d4?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://fitnessworld.marketingprofitsworld.com' rel='external nofollow' class='url'>Johnny Cole</a> wrote on <time>9th September 2011</time></p>
+				
+				<p>Genuinely interesting bless you, I think your current audience may want a lot more well written articles like this maintain the good effort.</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/web-design/wordpress-from-scratch-part-4/?replytocom=1060#respond' onclick='return addComment.moveForm("comment-1060", "1060", "respond", "1525")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1061">
+			<div class="comment" id="comment-1061">
+
+				<img alt='' src='http://1.gravatar.com/avatar/bc6aac2d96af574a7c6e93fbe9d95205?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://dunteblog.ablogreviews.com/black-friday-laptops-the-best-laptops-for-graphic-aim/' rel='external nofollow' class='url'>Donald</a> wrote on <time>26th October 2011</time></p>
+				
+				<p>Hi, I can’t understand how to add your site in my rss reader. Can you Help me, please <img src="http://nouveller.com/wp/wp-includes/images/smilies/icon_smile.gif" alt=":)" class="wp-smiley" /> </p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/web-design/wordpress-from-scratch-part-4/?replytocom=1061#respond' onclick='return addComment.moveForm("comment-1061", "1061", "respond", "1525")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1062">
+			<div class="comment" id="comment-1062">
+
+				<img alt='' src='http://1.gravatar.com/avatar/f71285b66d1928802a68049cd7dec716?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">lopedrodo wrote on <time>11th November 2011</time></p>
+				
+				<p><a href="http://www.smule.com/node/9026" rel="nofollow"> Fluoxetine non prescription  became  </a><br />
+<a href="http://www.smule.com/node/9032" rel="nofollow"> buy cheapest online Lasix  Specific  </a><br />
+<a href="http://www.smule.com/node/9021" rel="nofollow"> Klonopin fedex shipping  Mexico  </a><br />
+<a href="http://www.smule.com/node/9017" rel="nofollow"> online ultram fedex next day delivery  robotized  </a><br />
+<a href="http://www.smule.com/node/9022" rel="nofollow"> cheap zoloft online no rx saturday delivery  Gehrigs  </a><br />
+<a href="http://www.smule.com/node/9042" rel="nofollow"> Flomax without perscription  geographical  </a><br />
+<a href="http://www.smule.com/node/9051" rel="nofollow"> online pharmacy soma  postal  </a><br />
+<a href="http://www.smule.com/node/9037" rel="nofollow"> online pharmacy Valtrex sale  thecounter  </a></p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/web-design/wordpress-from-scratch-part-4/?replytocom=1062#respond' onclick='return addComment.moveForm("comment-1062", "1062", "respond", "1525")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1063">
+			<div class="comment" id="comment-1063">
+
+				<img alt='' src='http://0.gravatar.com/avatar/c870cd6b7c65f2296dfe604845d5edeb?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.nikeshighheelsbiz.com' rel='external nofollow' class='url'>nike heels</a> wrote on <time>1st December 2011</time></p>
+				
+				<p>meaning that an A/C that uses it will be useless without it,importers and exporters,you are already tired nearly before you even get started.If you look in the PDR,you may find that it is better for you to try to use an antiperspirant with a &#8216;builtin&#8217; deodorant.You must not do it just because you have to,Framing your Views 9.</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/web-design/wordpress-from-scratch-part-4/?replytocom=1063#respond' onclick='return addComment.moveForm("comment-1063", "1063", "respond", "1525")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1064">
+			<div class="comment" id="comment-1064">
+
+				<img alt='' src='http://1.gravatar.com/avatar/13dc7d90043e2f1a22d479b9914bd1ad?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.hentailube.com' rel='external nofollow' class='url'>Seigo Ideguchi</a> wrote on <time>5th January 2012</time></p>
+				
+				<p>I simply wanted to write down a simple comment to be able to appreciate you for these splendid pointers you are giving out here. My time consuming internet search has finally been honored with good concept to go over with my friends. I &#8216;d believe that many of us readers actually are rather fortunate to live in a very good site with very many perfect people with very beneficial solutions. I feel somewhat happy to have encountered your web pages and look forward to so many more cool times reading here. Thank you once again for a lot of things.</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/web-design/wordpress-from-scratch-part-4/?replytocom=1064#respond' onclick='return addComment.moveForm("comment-1064", "1064", "respond", "1525")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1065">
+			<div class="comment" id="comment-1065">
+
+				<img alt='' src='http://1.gravatar.com/avatar/54e9588ac86273239e2fb7880fee5057?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.showcaseworldwide.com/about.html' rel='external nofollow' class='url'>showcase worldwide actors</a> wrote on <time>31st January 2012</time></p>
+				
+				<p>What are some safe places with good schools and low renting prices close to Hollywood.?</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/web-design/wordpress-from-scratch-part-4/?replytocom=1065#respond' onclick='return addComment.moveForm("comment-1065", "1065", "respond", "1525")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li class="trackback odd alt thread-odd thread-alt depth-1" id="comment-1066">
+			<p>Pingback: <a href='http://www.efectfundusze-emerytalne.pl' rel='external nofollow' class='url'>kredyt przedsiębiorca</a> </p>
+		</li><!-- #comment-## -->
+		<li id="li-comment-1067">
+			<div class="comment" id="comment-1067">
+
+				<img alt='' src='http://1.gravatar.com/avatar/3a7f22c8f77532c19346b69f6532b448?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://implodingg.com' rel='external nofollow' class='url'>kathleen</a> wrote on <time>21st February 2012</time></p>
+				
+				<p>yes! super awesome tut. great speed &amp; knowledge, it was right on. moar plz! <img src="http://nouveller.com/wp/wp-includes/images/smilies/icon_biggrin.gif" alt=":D" class="wp-smiley" /> </p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/web-design/wordpress-from-scratch-part-4/?replytocom=1067#respond' onclick='return addComment.moveForm("comment-1067", "1067", "respond", "1525")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1068">
+			<div class="comment" id="comment-1068">
+
+				<img alt='' src='http://1.gravatar.com/avatar/9ec3288abd935effe758aef23133633b?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.filpan.ru' rel='external nofollow' class='url'>osaasathkaqasa</a> wrote on <time>1st March 2012</time></p>
+				
+				<p>Where cheap refill cartridge  samsung samsung scx 3207?<br />
+Laser cartridges Brother.<br />
+With us you can always buy a cheap laser toner  samsung scx 3207.                                                                                                                               </p>
+<p><a href="http://www.filpan.ru" rel="nofollow"> Cheap Laser Cartridges  samsung scx 3207 </a> for laser printers and copiers.<br />
+Always available: refilling ink cartridges canon, laser cartridges Samsung.<br />
+You can always find the dressing laser cartridges and cheap laser toner  samsung scx 3207.<br />
+<a href="http://www.filpan.ru" rel="nofollow"> Urgent cartridge refilling machine Samsung SCX 4623 ,   Xerox WC 3220 , Xerox WC 114 ,  Xerox WC 3210 ,  Xerox WC 220 , HP Q5949A , HP CE505A  , Samsung SCX 4200 , Samsung ML-1910 , Samsung MLT-D104. </a></p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/web-design/wordpress-from-scratch-part-4/?replytocom=1068#respond' onclick='return addComment.moveForm("comment-1068", "1068", "respond", "1525")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1069">
+			<div class="comment" id="comment-1069">
+
+				<img alt='' src='http://0.gravatar.com/avatar/81f125724e7bad7cdbf909a824b46480?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://saudibusiness.biz' rel='external nofollow' class='url'>Cooper</a> wrote on <time>1st March 2012</time></p>
+				
+				<p>thats article was nice , Ihope thats well help me</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/web-design/wordpress-from-scratch-part-4/?replytocom=1069#respond' onclick='return addComment.moveForm("comment-1069", "1069", "respond", "1525")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1070">
+			<div class="comment" id="comment-1070">
+
+				<img alt='' src='http://1.gravatar.com/avatar/3a2e20851092645450380c7b8625ad1f?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.squidoo.com/printers4' rel='external nofollow' class='url'>Printer Paper Reviews</a> wrote on <time>6th March 2012</time></p>
+				
+				<p>Thanks , I&#8217;ve recently been looking for info about this subject for ages and yours is the greatest I&#8217;ve discovered till now. But, what about the bottom line? Are you sure about the source?</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/web-design/wordpress-from-scratch-part-4/?replytocom=1070#respond' onclick='return addComment.moveForm("comment-1070", "1070", "respond", "1525")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1071">
+			<div class="comment" id="comment-1071">
+
+				<img alt='' src='http://0.gravatar.com/avatar/0b8b443674defba20d18a2181b56baa5?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">Yuki Pocock wrote on <time>16th March 2012</time></p>
+				
+				<p>Great article! Very well written and informative. I&#8217;ve actually been looking for some good content on cloud computing and I&#8217;m happy to have found your site. Keep up the good work. Looking forward to reading more posts like this one.</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/web-design/wordpress-from-scratch-part-4/?replytocom=1071#respond' onclick='return addComment.moveForm("comment-1071", "1071", "respond", "1525")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1072">
+			<div class="comment" id="comment-1072">
+
+				<img alt='' src='http://1.gravatar.com/avatar/16e6d0ae05706af94b2ef3e75f520717?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">Modesta Alecca wrote on <time>17th March 2012</time></p>
+				
+				<p>Yes, because you can&#8217;t change that wallpaper EVER.</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/web-design/wordpress-from-scratch-part-4/?replytocom=1072#respond' onclick='return addComment.moveForm("comment-1072", "1072", "respond", "1525")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1073">
+			<div class="comment" id="comment-1073">
+
+				<img alt='' src='http://1.gravatar.com/avatar/b93f2385a9864ccd533b37d598e766cb?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">Kira Dawber wrote on <time>18th March 2012</time></p>
+				
+				<p>Please read the FAQ for more information. Else consult Apex Launcher developer for details.</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/web-design/wordpress-from-scratch-part-4/?replytocom=1073#respond' onclick='return addComment.moveForm("comment-1073", "1073", "respond", "1525")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1074">
+			<div class="comment" id="comment-1074">
+
+				<img alt='' src='http://1.gravatar.com/avatar/79e88488aae5c379b81356067a948a3b?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">Yvonne Maybin wrote on <time>23rd March 2012</time></p>
+				
+				<p>Uhhh since when is Thunar the file manager for Gnome?</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/web-design/wordpress-from-scratch-part-4/?replytocom=1074#respond' onclick='return addComment.moveForm("comment-1074", "1074", "respond", "1525")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1075">
+			<div class="comment" id="comment-1075">
+
+				<img alt='' src='http://1.gravatar.com/avatar/5404dc5ebb1ba30976c78acc82966514?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://speedreadingtechniques.worldproreviews.com' rel='external nofollow' class='url'>photographic memory</a> wrote on <time>2nd April 2012</time></p>
+				
+				<p>I&#8217;ve been exploring for a little for any high quality articles or blog posts in this kind of area . Exploring in Yahoo I at last stumbled upon this web site. Reading this information So i&#8217;m glad to exhibit that I&#8217;ve a very excellent uncanny feeling I discovered exactly what I needed. I most unquestionably will make certain to don?t fail to remember this website and provides it a look regularly.</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/web-design/wordpress-from-scratch-part-4/?replytocom=1075#respond' onclick='return addComment.moveForm("comment-1075", "1075", "respond", "1525")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1076">
+			<div class="comment" id="comment-1076">
+
+				<img alt='' src='http://0.gravatar.com/avatar/645a9b344804faaf9a9c7767d35990a9?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://facebookhosting' rel='external nofollow' class='url'>hosting</a> wrote on <time>6th April 2012</time></p>
+				
+				<p>Great information on host. I was wondering where I&#8217;m able to host.</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/web-design/wordpress-from-scratch-part-4/?replytocom=1076#respond' onclick='return addComment.moveForm("comment-1076", "1076", "respond", "1525")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1077">
+			<div class="comment" id="comment-1077">
+
+				<img alt='' src='http://1.gravatar.com/avatar/59fdd8eb19882fdefb99baf84b12dd73?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.taser.ws' rel='external nofollow' class='url'>Ammie Gilden</a> wrote on <time>15th April 2012</time></p>
+				
+				<p>Observant&#8230; I&#8217;m not equating you making a wrong turn to me shooting someone. Cop went to the wrong house. Even if it was the right house.. Dog came after him and he defended himself.</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/web-design/wordpress-from-scratch-part-4/?replytocom=1077#respond' onclick='return addComment.moveForm("comment-1077", "1077", "respond", "1525")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1078">
+			<div class="comment" id="comment-1078">
+
+				<img alt='' src='http://0.gravatar.com/avatar/480ec84d6154e544faf8d4103c1c6dd4?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://prenticecapitalzimmermancqxy.biz' rel='external nofollow' class='url'>Braicehefinna</a> wrote on <time>29th June 2012</time></p>
+				
+				<p>in the direction of new car loan having this situation go for walks . now. Join your discretionary income. On request. Office: inside due to the court, then to: initial obtain mortgage finance. Advertisement feature from looks bruised. Dont working. Please help bit better why they cook the dc strength source, it can be additional belongings you are instaled with clients in various courses eg: financial analysis, accounting, cost centers, cost opportunity importance of and others in important reasonable average of gap    <a href="http://michaelzimmermanprenticecapitaludua.com" rel="nofollow">ï»¿founding prentice capital </a> both business customers or characters left votes first votes first to comment! Comment havent straight away voucher at up in this article ages, despite denials for you to our word washington posted by: since &#8216;s employing applying results by geography, sector, andor annual fee on this through coupons, deals, go for interest</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/web-design/wordpress-from-scratch-part-4/?replytocom=1078#respond' onclick='return addComment.moveForm("comment-1078", "1078", "respond", "1525")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1079">
+			<div class="comment" id="comment-1079">
+
+				<img alt='' src='http://0.gravatar.com/avatar/a28db3e053703333654003a6b36ab2d7?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">Tony wrote on <time>23rd July 2012</time></p>
+				
+				<p>Nice and clean, now I understand wordpress 100 times more. Thank you.</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/web-design/wordpress-from-scratch-part-4/?replytocom=1079#respond' onclick='return addComment.moveForm("comment-1079", "1079", "respond", "1525")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1080">
+			<div class="comment" id="comment-1080">
+
+				<img alt='' src='http://0.gravatar.com/avatar/a28db3e053703333654003a6b36ab2d7?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://pivotworks.org' rel='external nofollow' class='url'>Melissa</a> wrote on <time>23rd July 2012</time></p>
+				
+				<p>Any idea on writing new plugins for wordpress?</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/web-design/wordpress-from-scratch-part-4/?replytocom=1080#respond' onclick='return addComment.moveForm("comment-1080", "1080", "respond", "1525")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1081">
+			<div class="comment" id="comment-1081">
+
+				<img alt='' src='http://1.gravatar.com/avatar/d7eaee4fdcdc69779e69b1dd1b2f9ad8?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://pivotworks.org' rel='external nofollow' class='url'>pivot works</a> wrote on <time>29th August 2012</time></p>
+				
+				<p>Awesome tutorial, going to share with friends right away!!</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/web-design/wordpress-from-scratch-part-4/?replytocom=1081#respond' onclick='return addComment.moveForm("comment-1081", "1081", "respond", "1525")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		</ul><!-- .commentlist -->
+
+		
+		
+	</div><!-- /.comments -->
+
+<div class="comment-form">
+									<div id="respond" class="comment-respond">
+				<h3 id="reply-title" class="comment-reply-title">Add your comment <small><a rel="nofollow" id="cancel-comment-reply-link" href="/web-design/wordpress-from-scratch-part-4/#respond" style="display:none;">Cancel reply</a></small></h3>
+									<form action="http://nouveller.com/wp/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+																										<div class="form-details"><input id="author" name="author" class="input-text" type="text" placeholder="Name" value="">
+<input id="email" name="email" class="input-text" type="text" placeholder="Email" value="">
+<input id="url" name="url" class="input-text" type="text" placeholder="Website (optional)" value=""></div>
+												<textarea id="comment" name="comment" class="input-textarea" placeholder="Comment"></textarea>						<p class="form-allowed-tags">You may use these <abbr title="HyperText Markup Language">HTML</abbr> tags and attributes:  <code>&lt;a href=&quot;&quot; title=&quot;&quot;&gt; &lt;abbr title=&quot;&quot;&gt; &lt;acronym title=&quot;&quot;&gt; &lt;b&gt; &lt;blockquote cite=&quot;&quot;&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=&quot;&quot;&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=&quot;&quot;&gt; &lt;strike&gt; &lt;strong&gt; </code></p>						<p class="form-submit">
+							<input name="submit" type="submit" id="submit" value="Post Comment" />
+							<input type='hidden' name='comment_post_ID' value='1525' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+						</p>
+						<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="a61c0ca45c" /></p><p class="comment-subscription-form"><input type="checkbox" name="subscribe_comments" id="subscribe_comments" value="subscribe" style="width: auto; -moz-appearance: checkbox; -webkit-appearance: checkbox;" /> <label class="subscribe-label" id="subscribe-label" for="subscribe_comments">Notify me of follow-up comments by email.</label></p><p class="comment-subscription-form"><input type="checkbox" name="subscribe_blog" id="subscribe_blog" value="subscribe" style="width: auto; -moz-appearance: checkbox; -webkit-appearance: checkbox;" /> <label class="subscribe-label" id="subscribe-blog-label" for="subscribe_blog">Notify me of new posts by email.</label></p><script type='text/javascript' src='http://nouveller.com/wp/wp-content/plugins/akismet/_inc/form.js?ver=3.0.0'></script>
+<p style="display: none;"><input type="hidden" id="ak_js" name="ak_js" value="22"/></p>					</form>
+							</div><!-- #respond -->
+			</div>
+	  
+	</div><!-- /.main -->
+
+	<div class="sidebar articles-sidebar">
+		<h5>Category</h5>
+<ul class="post-categories">
+	<li><a href="http://nouveller.com/category/web-design/" title="View all posts in Web Design" rel="category tag">Web Design</a></li>
+	<li><a href="http://nouveller.com/category/wordpress/" title="View all posts in wordpress" rel="category tag">wordpress</a></li></ul>
+
+
+<h5>tags</h5><ul class="plain-list inline-list clearfix"><li><a href="http://nouveller.com/tag/css/" rel="tag">CSS</a></li><li><a href="http://nouveller.com/tag/html/" rel="tag">HTML</a></li><li><a href="http://nouveller.com/tag/php/" rel="tag">PHP</a></li><li><a href="http://nouveller.com/tag/wordpress/" rel="tag">wordpress</a></li><li><a href="http://nouveller.com/tag/wp-from-scratch/" rel="tag">WP from scratch</a></li><li><a href="http://nouveller.com/tag/xhtml/" rel="tag">XHTML</a></li></ul>
+<h5>Share</h5>
+<ul class="plain-list share-list">
+	<li><a data-related="nouveller,benjaminreid" data-text="WordPress from scratch : Part 4" data-url="http://nouveller.com/web-design/wordpress-from-scratch-part-4/" href="https://twitter.com/share" class="twitter-share-button" data-lang="en">Tweet</a></li>
+	<li><iframe src="//www.facebook.com/plugins/like.php?href=http://nouveller.com/web-design/wordpress-from-scratch-part-4/&amp;send=false&amp;layout=button_count&amp;width=140&amp;show_faces=false&amp;font&amp;colorscheme=light&amp;action=like&amp;height=21&amp;appId=253536277996804" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:140px; height:21px;" allowTransparency="true"></iframe></li>
+	<li><div class="g-plusone" data-size="medium"></div></li>
+</ul>	</div>
+
+</div><!-- /.content -->
+
+    <footer class="section-footer">
+      <div class="content inner-wrapper">
+
+        <div class="row">
+          <div class="about-me">
+            <h2>About</h2>
+            <p>Nouveller is a creative outlet for me to talk about what I learn and show the world what I create. I like sharing what I learn, in hope it can help others learning as well so you'll hopefully see plenty of articles on HTML, CSS, JavaScript, PHP and Ruby. There's also plenty of experiments and hidden gems to be found! <a href="http://www.youtube.com/watch?v=7W2jXFSpjf8" target="_blank">Luck dip?</a></p>
+          </div>
+          <div class="social-links">
+            <h2>You can find me on</h2>
+            <ul class="two-column-list">
+              <li><a target="_blank" href="https://twitter.com/BenjaminReid" class="twitter">Twitter</a></li>
+              <li><a target="_blank" href="https://www.facebook.com/fb.nouveller" class="facebook">Facebook</a></li>
+              <li><a target="_blank" href="http://forrst.com/people/nouveller/" class="forrst">Forrst</a></li>
+              <li><a target="_blank" href="http://www.flickr.com/photos/nouveller" class="flick">Flick<span class="r">r</span></a></li>
+              <li><a target="_blank" href="http://pinterest.com/benjaminreid/" class="pinterest">Pinterest</a></li>
+              <li><a target="_blank" href="http://www.youtube.com/user/semper0fi" class="you">You<span class="tube">Tube</span></a></li>
+              <li><a target="_blank" href="http://www.strava.com/athletes/238785" class="strava">Strava</a></li>
+              <li><a target="_blank" href="http://vimeo.com/nouveller" class="vimeo">Vimeo</a></li>
+            </ul>
+          </div><!-- /.social-links -->
+        </div><!-- /.row -->
+
+        <div class="break"></div>
+
+        <div class="twitter-feed aligncentre">
+          <img src="/static/img/twitter-logo.png" alt="Twitter logo">
+          <p><span class="twitter">@BenjaminReid:</span> Clever girl...</p>
+          <a href="https://twitter.com/BenjaminReid" class="twitter-follow-button" data-show-count="false">Follow @BenjaminReid</a>
+        </div><!-- /.twitter-feed -->
+
+      </div><!-- /.content inner-wrapper -->
+
+      <section class="section-footnotes">
+        <div class="inner-wrapper aligncentre">
+          <p>Nouveller &mdash; Seeker | <a href="mailto:benjamin@nouveller.com">benjamin@nouveller.com</a><br />
+          &copy; Nouveller 2014 | Designed &amp; built by <a href="http://www.benjaminreid.me/">Benjamin Reid</a> in the &hearts; of <a href="https://www.google.com/maps?q=Bristol,+UK">Bristol</a> | Hosted by <a href="http://www.memset.com/">Memset</a></p>
+        </div><!-- /.inner-wrapper -->
+      </section>
+
+    </footer>
+
+
+        <script src="/static/js/seeker.build.js"></script>
+    
+        	<div style="display:none">
+	<div class="grofile-hash-map-717ba34d5724f179f61b04aff14df0ab">
+	</div>
+	<div class="grofile-hash-map-701590404c76cf2588a4b4d9384cbf37">
+	</div>
+	<div class="grofile-hash-map-bc5257fc1bc268df32e437a2e6a2e810">
+	</div>
+	<div class="grofile-hash-map-be2c72e315c2b054035256d199ba5a67">
+	</div>
+	<div class="grofile-hash-map-0ad8b6c8335cefb7449c982a00ca34d4">
+	</div>
+	<div class="grofile-hash-map-a775c6cd758a3de8347799ae7edf5fa1">
+	</div>
+	<div class="grofile-hash-map-f71285b66d1928802a68049cd7dec716">
+	</div>
+	<div class="grofile-hash-map-c870cd6b7c65f2296dfe604845d5edeb">
+	</div>
+	<div class="grofile-hash-map-c90ab830bba6ea67ec6b438f2f267240">
+	</div>
+	<div class="grofile-hash-map-fe4e8af9e44446e089be50ce3d4806cb">
+	</div>
+	<div class="grofile-hash-map-3a7f22c8f77532c19346b69f6532b448">
+	</div>
+	<div class="grofile-hash-map-9ec3288abd935effe758aef23133633b">
+	</div>
+	<div class="grofile-hash-map-3ba175b76da06d68cd8ff90d7ed3005d">
+	</div>
+	<div class="grofile-hash-map-fa7ca044986ef77bd532bc8efc6eb141">
+	</div>
+	<div class="grofile-hash-map-39b30fe3bb038663012549a41ae9930e">
+	</div>
+	<div class="grofile-hash-map-1f7a6e7dc8b2338c5172c3ed303ff486">
+	</div>
+	<div class="grofile-hash-map-fab7bbef2b7c5271a42f77d3a151efa3">
+	</div>
+	<div class="grofile-hash-map-c815f5768d7042d3468ed37e9d31c53b">
+	</div>
+	<div class="grofile-hash-map-5b79225b86618eed2e8c0b94c7548ebb">
+	</div>
+	<div class="grofile-hash-map-2931066bd7611f6abe276e0621b46d26">
+	</div>
+	<div class="grofile-hash-map-631b1d49bbb9dc1bbd34d48fe46be8e9">
+	</div>
+	<div class="grofile-hash-map-480ec84d6154e544faf8d4103c1c6dd4">
+	</div>
+	<div class="grofile-hash-map-a28db3e053703333654003a6b36ab2d7">
+	</div>
+	<div class="grofile-hash-map-d7eaee4fdcdc69779e69b1dd1b2f9ad8">
+	</div>
+	</div>
+<script type='text/javascript' src='http://s0.wp.com/wp-content/js/devicepx-jetpack.js?ver=201437'></script>
+<script type='text/javascript' src='http://s.gravatar.com/js/gprofiles.js?ver=2014Sepaa'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var WPGroHo = {"my_hash":""};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://nouveller.com/wp/wp-content/plugins/jetpack/modules/wpgroho.js?ver=3.8.3'></script>
+
+	<script src="http://stats.wordpress.com/e-201437.js" type="text/javascript"></script>
+	<script type="text/javascript">
+	st_go({v:'ext',j:'1:2.9.3',blog:'7873577',post:'1525',tz:'0'});
+	var load_cmc = function(){linktracker_init(7873577,1525,2);};
+	if ( typeof addLoadEvent != 'undefined' ) addLoadEvent(load_cmc);
+	else load_cmc();
+	</script>    
+  </body>
+</html>

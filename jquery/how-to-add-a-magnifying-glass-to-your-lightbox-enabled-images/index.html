@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7  closed balloons"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8  closed balloons"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9  closed balloons"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js  closed balloons"> <!--<![endif]-->
+  <head>
+<base href="http://nouveller.com" />
+
+    <meta charset="utf-8">
+
+    <title>How to add a magnifying glass to your lightbox enabled images &mdash; Nouveller</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="">
+
+    <link href="http://fonts.googleapis.com/css?family=Glegoo|Inconsolata|Open+Sans:400italic,400,700" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/screen.css">
+    
+    <script src="/static/js/libs/modernizr-2.6.2.min.js"></script>
+
+		
+<link rel='stylesheet' id='jetpack-subscriptions-css'  href='http://nouveller.com/wp/wp-content/plugins/jetpack/modules/subscriptions/subscriptions.css?ver=3.8.3' type='text/css' media='all' />
+<link rel='stylesheet' id='jetpack-widgets-css'  href='http://nouveller.com/wp/wp-content/plugins/jetpack/modules/widgets/widgets.css?ver=20121003' type='text/css' media='all' />
+<script type='text/javascript' src='http://nouveller.com/wp/wp-includes/js/jquery/jquery.js?ver=1.10.2'></script>
+<script type='text/javascript' src='http://nouveller.com/wp/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
+
+ 
+
+<link rel='next' title='12 red &amp; yellow dyed paper textures' href='http://nouveller.com/downloads/12-red-yellow-dyed-paper-textures/' />
+<link rel='canonical' href='http://nouveller.com/jquery/how-to-add-a-magnifying-glass-to-your-lightbox-enabled-images/' />
+<link rel='shortlink' href='http://wp.me/px2hb-mf' />
+<style type='text/css'>img#wpstats{display:none}</style>
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="How to add a magnifying glass to your lightbox enabled images" />
+<meta property="og:url" content="http://nouveller.com/jquery/how-to-add-a-magnifying-glass-to-your-lightbox-enabled-images/" />
+<meta property="og:description" content="I&#039;ve recently installed Fancybox (my new favourite lightbox plugin for jQuery) so you guys can zoom in on selected images on the blog rather than squinting and trying to view images that are only 4..." />
+<meta property="article:published_time" content="2009-09-22T12:56:31+00:00" />
+<meta property="article:modified_time" content="2009-09-22T12:56:31+00:00" />
+<meta property="article:author" content="http://nouveller.com/author/benjamin/" />
+<meta property="og:site_name" content="Nouveller" />
+<meta property="og:image" content="http://nouveller.com/wp/wp-content/uploads/2009/09/large-droplet-448x252.jpg" />
+<meta property="og:image" content="http://nouveller.com/wp/wp-content/themes/maroon-moon/images/icons/magnify.png" />
+<meta name="twitter:site" content="@jetpack" />
+<meta name="twitter:image" content="http://nouveller.com/wp/wp-content/uploads/2009/09/large-droplet-448x252.jpg?w=240" />
+<meta name="twitter:card" content="summary" />
+
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-8404687-2']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+	</head>
+
+	<body class="single single-post postid-1379 single-format-standard">
+
+    <header class="page-header fixed-top">
+      <div class="wrapper">
+        
+        <a href="http://nouveller.com" class="opacity-hover offset-bottom nouveller-logo">
+        	<img src="/static/img/logo-nouveller.png" alt="Nouveller logo">
+        </a>
+
+        <nav class="offset-bottom pos-right">
+          <ul class="main-nav">
+            <li class="nav-work"><a href="http://nouveller.com/work">Work</a></li>
+            <li class="nav-articles"><a href="http://nouveller.com/articles">Articles</a></li>
+            <li class="nav-labs"><a href="http://nouveller.com/labs">Labs</a></li>
+            <li class="nav-contact"><a href="http://nouveller.com/contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <a href="" class="nav-btn" id="displayNav">Display nav</a>
+
+      </div><!-- /.wrapper -->
+    </header><!-- /.page-header .fixed-top -->
+<div class="content inner-wrapper clearfix">
+      
+  <div class="main">
+
+		
+			<header>
+	      <h1>How to add a magnifying glass to your lightbox enabled images</h1>
+	      <p class="meta">Posted on <time>September 22, 2009</time></p>
+	    </header>
+
+	    <p>I've recently installed <a href="http://fancybox.net/" target="_blank">Fancybox</a> (my new favourite lightbox plugin for <a href="http://jquery.com/" target="_blank">jQuery</a>) so you guys can zoom in on selected images on the blog rather than squinting and trying to view images that are only 448px wide. The only problem was, it wasn't obvious that you could click an image to zoom in on it.</p>
+<p>So I thought it'd be nice that when you roll over an image that you could zoom in on, a magnifying glass icon would appear on top of the image indicating you can zoom in. I did a few searches first to check that I wasn't re-inventing the wheel but had no luck, I'm sure there is something similar or better out there though, if there is let me know.</p>
+<h2>An example of what the code does</h2>
+<p>Go ahead, roll over the image, see the magnifying glass, then click the image to zoom in. Please remember, my code doesn't do the image zooming, <a href="http://fancybox.net/" target="_blank">Fancybox</a> does.</p>
+<p><a class="zoom" href="http://nouveller.com/wp/wp-content/uploads/2009/09/large-droplet.jpg"><img class="alignnone size-medium wp-image-1388" title="large-droplet" src="http://nouveller.com/wp/wp-content/uploads/2009/09/large-droplet-448x252.jpg" alt="large-droplet" width="448" height="252" /></a></p>
+<h2>The jQuery code</h2>
+<p>This is the full code, but I suggest you read on for an explanation. If you just want to get this to work on your own site, change the <code>img src</code> (on line 7) to your own magnifying glass image, add this around your images : <code>&lt;a class="zoom"&gt;...image code...&lt;/a&gt;</code> and make sure you've got the jQuery code below on your page somewhere.</p>
+<pre lang="JavaScript">var loadGlass = 1;
+
+$('a.zoom img').hover(function(){
+
+	if(loadGlass == 1) {
+
+		$('body').prepend('<img id="magnify" style="position: absolute;" src="http://nouveller.com/wp/wp-content/themes/maroon-moon/images/icons/magnify.png" alt="" width="32" height="32" />');
+
+	}
+
+	var p = $(this);
+
+	var position = p.position();
+
+	$('img#magnify').css({'top' : position.top+20, 'left' : position.left+20});
+
+	$('img#magnify').show();
+
+},function(){
+
+	$('img#magnify').hide();
+
+	loadGlass = 2;
+
+});</pre>
+<h2>The explanation</h2>
+<p>Right first we create a variable. This will make sure that we don't load the magnifying image onto the page more than once as we use jQuery to load the image on line 7.</p>
+<pre lang="JavaScript">var loadGlass = 1;</pre>
+<p>Now we create a function that will activate when we hover over an image that has a link around it with the class of <strong>zoom</strong></p>
+<pre lang="JavaScript">$('a.zoom img').hover(function(){</pre>
+<p>If the <code>loadGlass</code> variable is equal to 1 we will load the magnifying image.</p>
+<pre lang="JavaScript">	if(loadGlass == 1) {
+
+		$('body').prepend('<img id="magnify" style="position: absolute;" src="http://nouveller.com/wp/wp-content/themes/maroon-moon/images/icons/magnify.png" alt="" width="32" height="32" />');
+
+	}</pre>
+<p>Then we get the position of the image using these two variables.</p>
+<pre lang="JavaScript">	var p = $(this);
+
+	var position = p.position();</pre>
+<p>All that's left for the roll over to do is to position the magnifying image 20 pixels more the than rolled over image's y position and 20 pixels more than it's x position, then show it, if it's been previously loaded and hidden.</p>
+<pre lang="JavaScript">	$('img#magnify').css({'top' : position.top+20, 'left' : position.left+20});
+
+	$('img#magnify').show();</pre>
+<p>Lastly we set a function to run for when you roll off the image. We hide the maginifying image and then set <code>loadGlass</code> to 2 so that the if statement on line 5 won't load the image again. As the image is a transparent PNG it will add several images over the top of each other causing the transparent black to become solid.</p>
+<pre lang="JavaScript">},function(){
+
+	$('img#magnify').hide();
+
+	loadGlass = 2;
+
+});</pre>
+
+	    
+<div class="comments">
+
+			
+		<h3>31 comments</h3>
+
+		<ul class="comments-list">
+					<li id="li-comment-970">
+			<div class="comment" id="comment-970">
+
+				<img alt='' src='http://0.gravatar.com/avatar/6c34c686e15a9e252ee70c95d2d07e7c?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://circleboxblog.com/' rel='external nofollow' class='url'>Callum Chapman</a> wrote on <time>22nd September 2009</time></p>
+				
+				<p>Great little tutorial <img src="http://nouveller.com/wp/wp-includes/images/smilies/icon_smile.gif" alt=":)" class="wp-smiley" /> </p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/jquery/how-to-add-a-magnifying-glass-to-your-lightbox-enabled-images/?replytocom=970#respond' onclick='return addComment.moveForm("comment-970", "970", "respond", "1379")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-971">
+			<div class="comment" id="comment-971">
+
+				<img alt='' src='http://0.gravatar.com/avatar/a681f0cee0798eadb4eee939640f29fc?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.youtube.com/ChimpanzeePS3' rel='external nofollow' class='url'>Chimpanzee</a> wrote on <time>28th September 2009</time></p>
+				
+				<p>That&#8217;s really nice and very useful. Just one thing &#8211; the magnifying glass flickers as you move your cursor over the actual icon. I guess this is because the mouse is no longer over the picture but is instead over the icon &#8211; this causes the icon to disappear, leaving the mouse over the picture again, making the icon re-appear. (Firefox 3.5)</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/jquery/how-to-add-a-magnifying-glass-to-your-lightbox-enabled-images/?replytocom=971#respond' onclick='return addComment.moveForm("comment-971", "971", "respond", "1379")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-972">
+			<div class="comment" id="comment-972">
+
+				<img alt='' src='http://1.gravatar.com/avatar/b085cea2846699f181e28ccbd4932641?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">Leonardo wrote on <time>3rd October 2009</time></p>
+				
+				<p>I think, but please correct me if I&#8217;m wrong, that the flickering of the magnifying glass can be taken care of if the image is placed in a DIV and then the DIV is used as the trigger for the hover event.</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/jquery/how-to-add-a-magnifying-glass-to-your-lightbox-enabled-images/?replytocom=972#respond' onclick='return addComment.moveForm("comment-972", "972", "respond", "1379")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		<ul class="children">
+		<li id="li-comment-973">
+			<div class="comment" id="comment-973">
+
+				<img alt='' src='http://1.gravatar.com/avatar/f3bcfa4a2b1b0fe7adcd7c92c9baa5ef?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.nouveller.com/' rel='external nofollow' class='url'>Nouveller</a> wrote on <time>4th October 2009</time></p>
+				
+				<p>Yeah that would work, it&#8217;d just mean more work for the browser.</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/jquery/how-to-add-a-magnifying-glass-to-your-lightbox-enabled-images/?replytocom=973#respond' onclick='return addComment.moveForm("comment-973", "973", "respond", "1379")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li id="li-comment-974">
+			<div class="comment" id="comment-974">
+
+				<img alt='' src='http://0.gravatar.com/avatar/a1f621f6e2cb4857b185c1e00efd6fa8?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.twe4ked.com' rel='external nofollow' class='url'>twe4ked</a> wrote on <time>10th October 2009</time></p>
+				
+				<p>Cheers, just chucked this in the photo theme for evoke <img src="http://nouveller.com/wp/wp-includes/images/smilies/icon_smile.gif" alt=":)" class="wp-smiley" /> </p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/jquery/how-to-add-a-magnifying-glass-to-your-lightbox-enabled-images/?replytocom=974#respond' onclick='return addComment.moveForm("comment-974", "974", "respond", "1379")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li class="pingback even thread-even depth-1" id="comment-975">
+			<p>Pingback: <a href='http://desizntech.info/2009/12/15-handpicked-fresh-and-useful-jquery-tutorials/' rel='external nofollow' class='url'>15 Handpicked Fresh and Useful jQuery Tutorials</a> </p>
+		</li><!-- #comment-## -->
+		<li id="li-comment-976">
+			<div class="comment" id="comment-976">
+
+				<img alt='' src='http://0.gravatar.com/avatar/24e08a9ea84deb17ae121074d0f17125?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://mathiasbynens.be/' rel='external nofollow' class='url'>Mathias Bynens</a> wrote on <time>3rd December 2009</time></p>
+				
+				<p>It sucks you can’t just click the magnifying glass to magnify the picture, though.</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/jquery/how-to-add-a-magnifying-glass-to-your-lightbox-enabled-images/?replytocom=976#respond' onclick='return addComment.moveForm("comment-976", "976", "respond", "1379")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		<ul class="children">
+		<li id="li-comment-977">
+			<div class="comment" id="comment-977">
+
+				<img alt='' src='http://1.gravatar.com/avatar/f3bcfa4a2b1b0fe7adcd7c92c9baa5ef?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.nouveller.com/' rel='external nofollow' class='url'>Nouveller</a> wrote on <time>3rd December 2009</time></p>
+				
+				<p>It would be possible. I&#8217;ll do a revised version that doesn&#8217;t have the buggy flash magnifying glass and the ability to click it too!</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/jquery/how-to-add-a-magnifying-glass-to-your-lightbox-enabled-images/?replytocom=977#respond' onclick='return addComment.moveForm("comment-977", "977", "respond", "1379")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="pingback odd alt thread-odd thread-alt depth-1" id="comment-978">
+			<p>Pingback: <a href='http://blog.reflexstock.com/2009/12/15-hand-picked-jquery-tutorials/' rel='external nofollow' class='url'>15 hand picked Jquery Tutorials :: Reflex Stock Photo Blog</a> </p>
+		</li><!-- #comment-## -->
+		<li id="li-comment-979">
+			<div class="comment" id="comment-979">
+
+				<img alt='' src='http://0.gravatar.com/avatar/8d5f843636f5e4ee703a2a2b7feadad2?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">fenderflip wrote on <time>19th January 2010</time></p>
+				
+				<p>I can&#8217;t get the code to work, let&#8217;s start with where do you put the code?</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/jquery/how-to-add-a-magnifying-glass-to-your-lightbox-enabled-images/?replytocom=979#respond' onclick='return addComment.moveForm("comment-979", "979", "respond", "1379")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		<ul class="children">
+		<li id="li-comment-980">
+			<div class="comment" id="comment-980">
+
+				<img alt='' src='http://1.gravatar.com/avatar/f3bcfa4a2b1b0fe7adcd7c92c9baa5ef?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.nouveller.com/' rel='external nofollow' class='url'>Nouveller</a> wrote on <time>20th January 2010</time></p>
+				
+				<p>It needs to be included in script tags in the head, check mine for an example. <a href="http://www.nouveller.com/wordpress/wp-content/themes/maroon-moon/scripts/global.js" rel="nofollow">http://www.nouveller.com/wordpress/wp-content/themes/maroon-moon/scripts/global.js</a></p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/jquery/how-to-add-a-magnifying-glass-to-your-lightbox-enabled-images/?replytocom=980#respond' onclick='return addComment.moveForm("comment-980", "980", "respond", "1379")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		<ul class="children">
+		<li id="li-comment-981">
+			<div class="comment" id="comment-981">
+
+				<img alt='' src='http://0.gravatar.com/avatar/8d5f843636f5e4ee703a2a2b7feadad2?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">fenderflip wrote on <time>22nd January 2010</time></p>
+				
+				<p> <img src="http://nouveller.com/wp/wp-includes/images/smilies/icon_smile.gif" alt=":)" class="wp-smiley" />  Thank you so much!</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li id="li-comment-982">
+			<div class="comment" id="comment-982">
+
+				<img alt='' src='http://0.gravatar.com/avatar/c19f075b875721bd2474659d4aaa72a7?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://olsonfamilymatters.blogspot.com' rel='external nofollow' class='url'>Troy Olson</a> wrote on <time>12th March 2010</time></p>
+				
+				<p>Hmm, am I doing something wrong here?  The magnifying glass shows up, but near the header and not over the image.  It&#8217;s like there is a problem with the position, but I&#8217;m not quite sure what to edit.  Any ideas/help would be fantastic.</p>
+<p>Example: <a href="http://olsonfamilymatters.blogspot.com/2010/03/new-picture-of-madelyn.html" rel="nofollow">http://olsonfamilymatters.blogspot.com/2010/03/new-picture-of-madelyn.html</a></p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/jquery/how-to-add-a-magnifying-glass-to-your-lightbox-enabled-images/?replytocom=982#respond' onclick='return addComment.moveForm("comment-982", "982", "respond", "1379")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		<ul class="children">
+		<li id="li-comment-983">
+			<div class="comment" id="comment-983">
+
+				<img alt='' src='http://1.gravatar.com/avatar/f3bcfa4a2b1b0fe7adcd7c92c9baa5ef?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.nouveller.com/' rel='external nofollow' class='url'>Nouveller</a> wrote on <time>12th March 2010</time></p>
+				
+				<p>It may be due to the parent div of the image&#8217;s anchor tag set to either absolute or relative position, as this may affect the positions picked up by the jQuery.</p>
+<p>I&#8217;m working on a plugin similar to this, so keep an eye out.<br />
+ <img src="http://nouveller.com/wp/wp-includes/images/smilies/icon_wink.gif" alt=";)" class="wp-smiley" /> </p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/jquery/how-to-add-a-magnifying-glass-to-your-lightbox-enabled-images/?replytocom=983#respond' onclick='return addComment.moveForm("comment-983", "983", "respond", "1379")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li id="li-comment-984">
+			<div class="comment" id="comment-984">
+
+				<img alt='' src='http://0.gravatar.com/avatar/67be3cd3784079a21f780020d0ed7b40?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://l1d.de' rel='external nofollow' class='url'>Webmaster Blog</a> wrote on <time>21st June 2010</time></p>
+				
+				<p>Works Great! Thanks for this, will write an article about it on my Blog!</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/jquery/how-to-add-a-magnifying-glass-to-your-lightbox-enabled-images/?replytocom=984#respond' onclick='return addComment.moveForm("comment-984", "984", "respond", "1379")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-985">
+			<div class="comment" id="comment-985">
+
+				<img alt='' src='http://0.gravatar.com/avatar/208e4333e48e278dfa4b753a15426ee1?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">Rob S. wrote on <time>20th July 2010</time></p>
+				
+				<p>I am using the &#8220;FancyBox for WordPress&#8221; plugin to add the lightbox functionality to my blog (I agree it is the best lightbox effect out there&#8230; super smooth). Anyway I added your script to the header of my theme but to no avail. Thought maybe the plugin was loading its scripts to my header after the your script already loaded so I moved your script to the footer but that didn&#8217;t work either. I feel like I am missing something simple here but I just can&#8217;t figure out what that is.</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/jquery/how-to-add-a-magnifying-glass-to-your-lightbox-enabled-images/?replytocom=985#respond' onclick='return addComment.moveForm("comment-985", "985", "respond", "1379")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-986">
+			<div class="comment" id="comment-986">
+
+				<img alt='' src='http://0.gravatar.com/avatar/67fdad595a71ea0317318ea59b150587?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">Zuzu wrote on <time>2nd August 2010</time></p>
+				
+				<p>Hello. Great tut. <img src="http://nouveller.com/wp/wp-includes/images/smilies/icon_smile.gif" alt=":)" class="wp-smiley" />  But I don&#8217;t know where I should apply the codes to. I&#8217;m using blogger.</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/jquery/how-to-add-a-magnifying-glass-to-your-lightbox-enabled-images/?replytocom=986#respond' onclick='return addComment.moveForm("comment-986", "986", "respond", "1379")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-987">
+			<div class="comment" id="comment-987">
+
+				<img alt='' src='http://0.gravatar.com/avatar/a42bae0f8f9750d21266ee769aef1b73?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://fedupphoto.com' rel='external nofollow' class='url'>James</a> wrote on <time>12th August 2010</time></p>
+				
+				<p>This would be a sweet WordPress plugin.</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/jquery/how-to-add-a-magnifying-glass-to-your-lightbox-enabled-images/?replytocom=987#respond' onclick='return addComment.moveForm("comment-987", "987", "respond", "1379")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-988">
+			<div class="comment" id="comment-988">
+
+				<img alt='' src='http://0.gravatar.com/avatar/0531cb6eef4c8d7188968d2a38ce34d7?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://gyuto.blogspot.com' rel='external nofollow' class='url'>Roy</a> wrote on <time>7th September 2010</time></p>
+				
+				<p>Just what I was looking for. But I have the same problem too the magnifying glass appears on the header.</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/jquery/how-to-add-a-magnifying-glass-to-your-lightbox-enabled-images/?replytocom=988#respond' onclick='return addComment.moveForm("comment-988", "988", "respond", "1379")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-989">
+			<div class="comment" id="comment-989">
+
+				<img alt='' src='http://1.gravatar.com/avatar/940b183907b47df51b3ed1a11e67363a?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">thumbnail wrote on <time>4th April 2011</time></p>
+				
+				<p>what you also could do is a ajax callback to a php script, that makes a magnifying glass onto your image, saves it in a thumbnail folder.<br />
+and on a hover it just changes the src attribute, to the one with the magnifying glass.<br />
+maybe with a little fade in/out <img src="http://nouveller.com/wp/wp-includes/images/smilies/icon_biggrin.gif" alt=":D" class="wp-smiley" /> </p>
+<p>would cost way more server load anyway&#8230;</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/jquery/how-to-add-a-magnifying-glass-to-your-lightbox-enabled-images/?replytocom=989#respond' onclick='return addComment.moveForm("comment-989", "989", "respond", "1379")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-990">
+			<div class="comment" id="comment-990">
+
+				<img alt='' src='http://1.gravatar.com/avatar/940b183907b47df51b3ed1a11e67363a?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">thumbnail wrote on <time>4th April 2011</time></p>
+				
+				<p>just got another thought, can&#8217;t you just set the [code]$('a.zoom img').hover(function(){[/code] for the magnifying glass div as well?</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/jquery/how-to-add-a-magnifying-glass-to-your-lightbox-enabled-images/?replytocom=990#respond' onclick='return addComment.moveForm("comment-990", "990", "respond", "1379")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li class="pingback even thread-even depth-1" id="comment-991">
+			<p>Pingback: <a href='http://designersdare.com/10-must-see-jquery-latest-tutorials/' rel='external nofollow' class='url'>10 Must See JQuery Latest Tutorials Beginners and Advance Level</a> </p>
+		</li><!-- #comment-## -->
+		<li class="pingback odd alt thread-odd thread-alt depth-1" id="comment-992">
+			<p>Pingback: <a href='http://blog.zukhz.com/?p=208' rel='external nofollow' class='url'>10个既绚又实用的JQuery特效教程 | 末路深蓝</a> </p>
+		</li><!-- #comment-## -->
+		<li id="li-comment-993">
+			<div class="comment" id="comment-993">
+
+				<img alt='' src='http://1.gravatar.com/avatar/df2df6b0cdf8b2b53b0ca26bd31fe698?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.toppa.co.uk' rel='external nofollow' class='url'>Ross</a> wrote on <time>16th August 2011</time></p>
+				
+				<p>Thanks, perfect colour magnifying glass image that I wanted too! Thank you very much Ben</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/jquery/how-to-add-a-magnifying-glass-to-your-lightbox-enabled-images/?replytocom=993#respond' onclick='return addComment.moveForm("comment-993", "993", "respond", "1379")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-994">
+			<div class="comment" id="comment-994">
+
+				<img alt='' src='http://1.gravatar.com/avatar/9f8d699f0e16525638ab8020798f6d7c?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.popcorndesign.co.uk' rel='external nofollow' class='url'>Popcorn Design</a> wrote on <time>17th October 2011</time></p>
+				
+				<p>Thanks for the great resources, I am just getting stuck into jQuery.</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/jquery/how-to-add-a-magnifying-glass-to-your-lightbox-enabled-images/?replytocom=994#respond' onclick='return addComment.moveForm("comment-994", "994", "respond", "1379")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-995">
+			<div class="comment" id="comment-995">
+
+				<img alt='' src='http://1.gravatar.com/avatar/9e5d36c07e4fad6b991af191f33edf8c?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://phonetown.tk' rel='external nofollow' class='url'>Привет.. здесь можно не плохо скачать на телефон</a> wrote on <time>4th November 2011</time></p>
+				
+				<p>I?m no longer sure the place you&#8217;re getting your info, however good topic. I must spend some time finding out much more or working out more. Thank you for wonderful info I was in search of this info for my mission.</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/jquery/how-to-add-a-magnifying-glass-to-your-lightbox-enabled-images/?replytocom=995#respond' onclick='return addComment.moveForm("comment-995", "995", "respond", "1379")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li class="trackback even thread-even depth-1" id="comment-996">
+			<p>Pingback: <a href='http://xn--9dbaak2de7a.com/%d7%9e%d7%93%d7%a8%d7%99%d7%9a-%d7%9c%d7%94%d7%95%d7%a1%d7%a4%d7%aa-%d7%9e%d7%91%d7%a8%d7%a9%d7%95%d7%aa-%d7%9c%d7%a4%d7%95%d7%98%d7%95%d7%a9%d7%95%d7%a4/' rel='external nofollow' class='url'>Photoshop</a> </p>
+		</li><!-- #comment-## -->
+		<li class="pingback odd alt thread-odd thread-alt depth-1" id="comment-997">
+			<p>Pingback: <a href='http://isvee.com/2011/06/25/120/' rel='external nofollow' class='url'>雁南飞的博客 &raquo; 10个既绚又实用的jQuery特效教程</a> </p>
+		</li><!-- #comment-## -->
+		<li class="trackback even thread-even depth-1" id="comment-998">
+			<p>Pingback: <a href='http://aidforirritablebowelsyndrome.com/tag/quick/' rel='external nofollow' class='url'>what are the effects Of smoking to Irritable Bowel Syndrome sufferers</a> </p>
+		</li><!-- #comment-## -->
+		<li id="li-comment-999">
+			<div class="comment" id="comment-999">
+
+				<img alt='' src='http://0.gravatar.com/avatar/22c9648aa168c1f829ec0452123a8b59?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://somewifi.com/' rel='external nofollow' class='url'>wifi printer</a> wrote on <time>1st March 2012</time></p>
+				
+				<p>whoah this blog is wonderful i like studying your posts. Keep up the great work! You know, lots of persons are looking round for this info, you could aid them greatly.</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/jquery/how-to-add-a-magnifying-glass-to-your-lightbox-enabled-images/?replytocom=999#respond' onclick='return addComment.moveForm("comment-999", "999", "respond", "1379")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1000">
+			<div class="comment" id="comment-1000">
+
+				<img alt='' src='http://1.gravatar.com/avatar/11e7a7aca857d8726a91304871bdfef2?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://offpeakdesign.com/wp12' rel='external nofollow' class='url'>dave</a> wrote on <time>1st May 2012</time></p>
+				
+				<p>hi, i wasn&#8217;t able to get it to work.  could you help?  not sure what I&#8217;m doing wrong.  I&#8217;ve tried adding to a js file (see below) and also tried putting it on the post.php page, since I want this to work with posts.</p>
+<p>here is a sample page: <a href="http://www.offpeakdesign.com/wp12/michael-shulman/" rel="nofollow">http://www.offpeakdesign.com/wp12/michael-shulman/</a></p>
+<p>/* &lt;![CDATA[ */</p>
+<p>var jqu = jQuery.noConflict();</p>
+<p>jqu( function () {</p>
+<p>	/* Fancybox */<br />
+	/*jqu( "a[href$='.jpg'], a[href$='.jpeg'], a[href$='.png'], a[href$='.gif']&#8221; ).attr( &#8216;rel&#8217;, &#8216;lightbox&#8217; );<br />
+	jqu( &#8220;a[rel^='lightbox']&#8221; ).fancybox( { titleShow: false, overlayOpacity: .8, overlayColor: &#8216;#000&#8242; } );	*/</p>
+<p>	/* FitVids */<br />
+	jqu( &#8220;.entry-content&#8221; ).fitVids();</p>
+<p>} );</p>
+<p>	/*magnify glass*/<br />
+var loadGlass = 1;</p>
+<p>$(&#8216;a.zoom img&#8217;).hover(function(){</p>
+<p>	if(loadGlass == 1) {</p>
+<p>		$(&#8216;body&#8217;).prepend(&#8221;);</p>
+<p>	}</p>
+<p>	var p = $(this);</p>
+<p>	var position = p.position();</p>
+<p>	$(&#8216;img#magnify&#8217;).css({&#8216;top&#8217; : position.top+20, &#8216;left&#8217; : position.left+20});</p>
+<p>	$(&#8216;img#magnify&#8217;).show();</p>
+<p>},function(){</p>
+<p>	$(&#8216;img#magnify&#8217;).hide();</p>
+<p>	loadGlass = 2;</p>
+<p>});</p>
+<p>/* ]]&gt; */</p>
+				
+				<div class="reply">
+					<a class='comment-reply-link' href='/jquery/how-to-add-a-magnifying-glass-to-your-lightbox-enabled-images/?replytocom=1000#respond' onclick='return addComment.moveForm("comment-1000", "1000", "respond", "1379")'>Reply</a>				</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		</ul><!-- .commentlist -->
+
+		
+		
+	</div><!-- /.comments -->
+
+<div class="comment-form">
+									<div id="respond" class="comment-respond">
+				<h3 id="reply-title" class="comment-reply-title">Add your comment <small><a rel="nofollow" id="cancel-comment-reply-link" href="/jquery/how-to-add-a-magnifying-glass-to-your-lightbox-enabled-images/#respond" style="display:none;">Cancel reply</a></small></h3>
+									<form action="http://nouveller.com/wp/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+																										<div class="form-details"><input id="author" name="author" class="input-text" type="text" placeholder="Name" value="">
+<input id="email" name="email" class="input-text" type="text" placeholder="Email" value="">
+<input id="url" name="url" class="input-text" type="text" placeholder="Website (optional)" value=""></div>
+												<textarea id="comment" name="comment" class="input-textarea" placeholder="Comment"></textarea>						<p class="form-allowed-tags">You may use these <abbr title="HyperText Markup Language">HTML</abbr> tags and attributes:  <code>&lt;a href=&quot;&quot; title=&quot;&quot;&gt; &lt;abbr title=&quot;&quot;&gt; &lt;acronym title=&quot;&quot;&gt; &lt;b&gt; &lt;blockquote cite=&quot;&quot;&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=&quot;&quot;&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=&quot;&quot;&gt; &lt;strike&gt; &lt;strong&gt; </code></p>						<p class="form-submit">
+							<input name="submit" type="submit" id="submit" value="Post Comment" />
+							<input type='hidden' name='comment_post_ID' value='1379' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+						</p>
+						<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="af3c8a0c52" /></p><p class="comment-subscription-form"><input type="checkbox" name="subscribe_comments" id="subscribe_comments" value="subscribe" style="width: auto; -moz-appearance: checkbox; -webkit-appearance: checkbox;" /> <label class="subscribe-label" id="subscribe-label" for="subscribe_comments">Notify me of follow-up comments by email.</label></p><p class="comment-subscription-form"><input type="checkbox" name="subscribe_blog" id="subscribe_blog" value="subscribe" style="width: auto; -moz-appearance: checkbox; -webkit-appearance: checkbox;" /> <label class="subscribe-label" id="subscribe-blog-label" for="subscribe_blog">Notify me of new posts by email.</label></p><script type='text/javascript' src='http://nouveller.com/wp/wp-content/plugins/akismet/_inc/form.js?ver=3.0.0'></script>
+<p style="display: none;"><input type="hidden" id="ak_js" name="ak_js" value="188"/></p>					</form>
+							</div><!-- #respond -->
+			</div>
+	  
+	</div><!-- /.main -->
+
+	<div class="sidebar articles-sidebar">
+		<h5>Category</h5>
+<ul class="post-categories">
+	<li><a href="http://nouveller.com/category/jquery/" title="View all posts in jQuery" rel="category tag">jQuery</a></li></ul>
+
+
+<h5>tags</h5><ul class="plain-list inline-list clearfix"><li><a href="http://nouveller.com/tag/glass/" rel="tag">Glass</a></li><li><a href="http://nouveller.com/tag/jquery/" rel="tag">jQuery</a></li><li><a href="http://nouveller.com/tag/lightbox/" rel="tag">Lightbox</a></li><li><a href="http://nouveller.com/tag/magnifying/" rel="tag">Magnifying</a></li><li><a href="http://nouveller.com/tag/zoom/" rel="tag">Zoom</a></li></ul>
+<h5>Share</h5>
+<ul class="plain-list share-list">
+	<li><a data-related="nouveller,benjaminreid" data-text="How to add a magnifying glass to your lightbox enabled images" data-url="http://nouveller.com/jquery/how-to-add-a-magnifying-glass-to-your-lightbox-enabled-images/" href="https://twitter.com/share" class="twitter-share-button" data-lang="en">Tweet</a></li>
+	<li><iframe src="//www.facebook.com/plugins/like.php?href=http://nouveller.com/jquery/how-to-add-a-magnifying-glass-to-your-lightbox-enabled-images/&amp;send=false&amp;layout=button_count&amp;width=140&amp;show_faces=false&amp;font&amp;colorscheme=light&amp;action=like&amp;height=21&amp;appId=253536277996804" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:140px; height:21px;" allowTransparency="true"></iframe></li>
+	<li><div class="g-plusone" data-size="medium"></div></li>
+</ul>	</div>
+
+</div><!-- /.content -->
+
+    <footer class="section-footer">
+      <div class="content inner-wrapper">
+
+        <div class="row">
+          <div class="about-me">
+            <h2>About</h2>
+            <p>Nouveller is a creative outlet for me to talk about what I learn and show the world what I create. I like sharing what I learn, in hope it can help others learning as well so you'll hopefully see plenty of articles on HTML, CSS, JavaScript, PHP and Ruby. There's also plenty of experiments and hidden gems to be found! <a href="http://www.youtube.com/watch?feature=player_detailpage&v=MEbm-xLjEwk#t=9s" target="_blank">Luck dip?</a></p>
+          </div>
+          <div class="social-links">
+            <h2>You can find me on</h2>
+            <ul class="two-column-list">
+              <li><a target="_blank" href="https://twitter.com/BenjaminReid" class="twitter">Twitter</a></li>
+              <li><a target="_blank" href="https://www.facebook.com/fb.nouveller" class="facebook">Facebook</a></li>
+              <li><a target="_blank" href="http://forrst.com/people/nouveller/" class="forrst">Forrst</a></li>
+              <li><a target="_blank" href="http://www.flickr.com/photos/nouveller" class="flick">Flick<span class="r">r</span></a></li>
+              <li><a target="_blank" href="http://pinterest.com/benjaminreid/" class="pinterest">Pinterest</a></li>
+              <li><a target="_blank" href="http://www.youtube.com/user/semper0fi" class="you">You<span class="tube">Tube</span></a></li>
+              <li><a target="_blank" href="http://www.strava.com/athletes/238785" class="strava">Strava</a></li>
+              <li><a target="_blank" href="http://vimeo.com/nouveller" class="vimeo">Vimeo</a></li>
+            </ul>
+          </div><!-- /.social-links -->
+        </div><!-- /.row -->
+
+        <div class="break"></div>
+
+        <div class="twitter-feed aligncentre">
+          <img src="/static/img/twitter-logo.png" alt="Twitter logo">
+          <p><span class="twitter">@BenjaminReid:</span> Clever girl...</p>
+          <a href="https://twitter.com/BenjaminReid" class="twitter-follow-button" data-show-count="false">Follow @BenjaminReid</a>
+        </div><!-- /.twitter-feed -->
+
+      </div><!-- /.content inner-wrapper -->
+
+      <section class="section-footnotes">
+        <div class="inner-wrapper aligncentre">
+          <p>Nouveller &mdash; Seeker | <a href="mailto:benjamin@nouveller.com">benjamin@nouveller.com</a><br />
+          &copy; Nouveller 2014 | Designed &amp; built by <a href="http://www.benjaminreid.me/">Benjamin Reid</a> in the &hearts; of <a href="https://www.google.com/maps?q=Bristol,+UK">Bristol</a> | Hosted by <a href="http://www.memset.com/">Memset</a></p>
+        </div><!-- /.inner-wrapper -->
+      </section>
+
+    </footer>
+
+
+        <script src="/static/js/seeker.build.js"></script>
+    
+        	<div style="display:none">
+	<div class="grofile-hash-map-6c34c686e15a9e252ee70c95d2d07e7c">
+	</div>
+	<div class="grofile-hash-map-a681f0cee0798eadb4eee939640f29fc">
+	</div>
+	<div class="grofile-hash-map-b085cea2846699f181e28ccbd4932641">
+	</div>
+	<div class="grofile-hash-map-f3bcfa4a2b1b0fe7adcd7c92c9baa5ef">
+	</div>
+	<div class="grofile-hash-map-a1f621f6e2cb4857b185c1e00efd6fa8">
+	</div>
+	<div class="grofile-hash-map-24e08a9ea84deb17ae121074d0f17125">
+	</div>
+	<div class="grofile-hash-map-8d5f843636f5e4ee703a2a2b7feadad2">
+	</div>
+	<div class="grofile-hash-map-c19f075b875721bd2474659d4aaa72a7">
+	</div>
+	<div class="grofile-hash-map-67be3cd3784079a21f780020d0ed7b40">
+	</div>
+	<div class="grofile-hash-map-208e4333e48e278dfa4b753a15426ee1">
+	</div>
+	<div class="grofile-hash-map-67fdad595a71ea0317318ea59b150587">
+	</div>
+	<div class="grofile-hash-map-a42bae0f8f9750d21266ee769aef1b73">
+	</div>
+	<div class="grofile-hash-map-0531cb6eef4c8d7188968d2a38ce34d7">
+	</div>
+	<div class="grofile-hash-map-940b183907b47df51b3ed1a11e67363a">
+	</div>
+	<div class="grofile-hash-map-df2df6b0cdf8b2b53b0ca26bd31fe698">
+	</div>
+	<div class="grofile-hash-map-9f8d699f0e16525638ab8020798f6d7c">
+	</div>
+	<div class="grofile-hash-map-2d2f96e9c9befa7fdf58d0cd8aed51c3">
+	</div>
+	<div class="grofile-hash-map-c588ae7ea7140a8e363be1a98e9a4279">
+	</div>
+	<div class="grofile-hash-map-11e7a7aca857d8726a91304871bdfef2">
+	</div>
+	</div>
+<script type='text/javascript' src='http://s0.wp.com/wp-content/js/devicepx-jetpack.js?ver=201437'></script>
+<script type='text/javascript' src='http://s.gravatar.com/js/gprofiles.js?ver=2014Sepaa'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var WPGroHo = {"my_hash":""};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://nouveller.com/wp/wp-content/plugins/jetpack/modules/wpgroho.js?ver=3.8.3'></script>
+
+	<script src="http://stats.wordpress.com/e-201437.js" type="text/javascript"></script>
+	<script type="text/javascript">
+	st_go({v:'ext',j:'1:2.9.3',blog:'7873577',post:'1379',tz:'0'});
+	var load_cmc = function(){linktracker_init(7873577,1379,2);};
+	if ( typeof addLoadEvent != 'undefined' ) addLoadEvent(load_cmc);
+	else load_cmc();
+	</script>    
+  </body>
+</html>

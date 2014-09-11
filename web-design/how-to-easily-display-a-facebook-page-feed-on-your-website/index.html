@@ -1,0 +1,1981 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7  closed balloons"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8  closed balloons"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9  closed balloons"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js  closed balloons"> <!--<![endif]-->
+  <head>
+<base href="http://nouveller.com" />
+
+    <meta charset="utf-8">
+
+    <title>How to easily display a Facebook page&#8217;s feed on your website &mdash; Nouveller</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="">
+
+    <link href="http://fonts.googleapis.com/css?family=Glegoo|Inconsolata|Open+Sans:400italic,400,700" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/screen.css">
+    
+    <script src="/static/js/libs/modernizr-2.6.2.min.js"></script>
+
+		
+<link rel='stylesheet' id='jetpack-subscriptions-css'  href='http://nouveller.com/wp/wp-content/plugins/jetpack/modules/subscriptions/subscriptions.css?ver=3.8.3' type='text/css' media='all' />
+<link rel='stylesheet' id='jetpack-widgets-css'  href='http://nouveller.com/wp/wp-content/plugins/jetpack/modules/widgets/widgets.css?ver=20121003' type='text/css' media='all' />
+<script type='text/javascript' src='http://nouveller.com/wp/wp-includes/js/jquery/jquery.js?ver=1.10.2'></script>
+<script type='text/javascript' src='http://nouveller.com/wp/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
+
+ 
+
+<link rel='next' title='Quick Tip #10 &#8211; How to get HTML5&#8242;s placeholder working across all browsers' href='http://nouveller.com/quick-tips/html5-placeholder-all-browsers/' />
+<link rel='canonical' href='http://nouveller.com/web-design/how-to-easily-display-a-facebook-page-feed-on-your-website/' />
+<link rel='shortlink' href='http://wp.me/px2hb-x2' />
+<style type='text/css'>img#wpstats{display:none}</style>
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="How to easily display a Facebook page&#039;s feed on your website" />
+<meta property="og:url" content="http://nouveller.com/web-design/how-to-easily-display-a-facebook-page-feed-on-your-website/" />
+<meta property="og:description" content="I&#039;ve only really had to do this myself a couple of times and each time I&#039;m asked I&#039;m always left thinking, now, where do I begin? For one thing getting the Facebook page&#039;s RSS feed URL is hard enou..." />
+<meta property="article:published_time" content="2010-11-16T13:35:36+00:00" />
+<meta property="article:modified_time" content="2013-02-03T17:50:07+00:00" />
+<meta property="article:author" content="http://nouveller.com/author/benjamin/" />
+<meta property="og:site_name" content="Nouveller" />
+<meta property="og:image" content="http://nouveller.com/wp/wp-content/uploads/2010/11/fb.jpg" />
+<meta name="twitter:site" content="@jetpack" />
+<meta name="twitter:image:src" content="http://nouveller.com/wp/wp-content/uploads/2010/11/fb.jpg?w=640" />
+<meta name="twitter:card" content="summary_large_image" />
+
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-8404687-2']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+	</head>
+
+	<body class="single single-post postid-2048 single-format-standard">
+
+    <header class="page-header fixed-top">
+      <div class="wrapper">
+        
+        <a href="http://nouveller.com" class="opacity-hover offset-bottom nouveller-logo">
+        	<img src="/static/img/logo-nouveller.png" alt="Nouveller logo">
+        </a>
+
+        <nav class="offset-bottom pos-right">
+          <ul class="main-nav">
+            <li class="nav-work"><a href="http://nouveller.com/work">Work</a></li>
+            <li class="nav-articles"><a href="http://nouveller.com/articles">Articles</a></li>
+            <li class="nav-labs"><a href="http://nouveller.com/labs">Labs</a></li>
+            <li class="nav-contact"><a href="http://nouveller.com/contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <a href="" class="nav-btn" id="displayNav">Display nav</a>
+
+      </div><!-- /.wrapper -->
+    </header><!-- /.page-header .fixed-top -->
+<div class="content inner-wrapper clearfix">
+      
+  <div class="main">
+
+		
+			<header>
+	      <h1>How to easily display a Facebook page&#8217;s feed on your website</h1>
+	      <p class="meta">Posted on <time>November 16, 2010</time></p>
+	    </header>
+
+	    <p>I've only really had to do this myself a couple of times and each time I'm asked I'm always left thinking, now, where do I begin? For one thing getting the Facebook page's RSS feed URL is hard enough, so I thought I'd write a little post on how to get that URL, parse it using PHP and then make it look all fancy with CSS.</p>
+<div class="download demo"><a title="View the demo" href="/demo-box/facebook-page-feed-url/" target="_blank">View the demo for the Facebook RSS feed</a></div>
+<p>First things first, getting the Facebook page's RSS feed URL. Log into your Facebook account and then head over to the page that you want to turn into a feed. Click on the 'Notes' tab and then in the left hand column at the bottom there should be a 'Subscribe' section with a link to the RSS feed for the page's notes. Clicking this, should give you a URL looking a little like the one below:</p>
+<p><strong>Facebook notes RSS URL</strong><br />
+<code>http://www.facebook.com/feeds/notes.php?id=XXX&amp;viewer=XXX&amp;key=XXX&amp;format=rss20</code></p>
+<p>Now all you need to do is change 'notes' in that URL to 'page' and you will have a full blown RSS feed of your Facebook page. I'm not sure exactly why this URL isn't very accessible, perhaps someone can shed some light on the matter?</p>
+<p><strong>Facebook page RSS URL</strong><br />
+<code>http://www.facebook.com/feeds/page.php?id=XXX&amp;viewer=XXX&amp;key=XXX&amp;format=rss20</code></p>
+<p>This isn't the final stage in the URL fetching process though. The PHP method I wanted to use (which I'll come onto in just a few minutes) to parse this feed didn't like it one bit. So after a bit of mucking around I thought about using FeedBurner to verify the feed and parse the new FeedBurner URL, and what do you know it worked!</p>
+<p>So head on over to <a href="http://feedburner.google.com/" target="_blank">FeedBurner</a> and burn that Facebook page RSS URL into a more friendly looking FeedBurner URL and you should be all set.</p>
+<h2>Onto the PHP</h2>
+<p>First lets set up a few things.</p>
+<pre lang="php">$feed_burner_url = 'http://feeds.feedburner.com/FacebookPage';
+
+$doc = new DOMDocument();
+$doc-&gt;load($feed_burner_url);
+
+$feeds = array();
+
+$limit = 2;
+$counter = 0;</pre>
+<p>First we put our new fangled RSS feed URL into a variable. Load in the feed using PHP's DOMDocument class, declare an array to store our feed into, a limit for the amount of posts you want to display (minus one, in actual fact I want to display 3 but the counter beneath is starting at 0) and a counter, to see how what position we are in the loop we are about to write.</p>
+<h2>Building the RSS feed into the $feeds array</h2>
+<p>Now I'm going to go through each item in the RSS feed and stick it into our feeds array.</p>
+<pre lang="php">foreach ($doc-&gt;getElementsByTagName('item') as $node) {
+
+	if	($counter &lt;= $limit)
+	{
+	$items = array (
+			'title' =&gt; $node-&gt;getElementsByTagName('title')-&gt;item(0)-&gt;nodeValue,
+			'link' =&gt; $node-&gt;getElementsByTagName('link')-&gt;item(0)-&gt;nodeValue,
+			'description' =&gt; $node-&gt;getElementsByTagName('description')-&gt;item(0)-&gt;nodeValue,
+			'pubDate' =&gt; $node-&gt;getElementsByTagName('pubDate')-&gt;item(0)-&gt;nodeValue
+		);
+
+	array_push($feeds, $items);
+	}
+	$counter++;
+}</pre>
+<p>You'll see above that we're building up the keys in the array with values from the RSS feed. The key part you need to notice is here: <code>getElementsByTagName('pubDate')</code></p>
+<p>This is the name of the node in the RSS feed, if you view the source of original RSS feed, you should be able to see all the different nodes available for you to use but here they are for you anyway: title, pubDate, author, link and description.</p>
+<h2>Actually displaying the feed</h2>
+<p>Well now the feed is an array we simply have to loop through it and we'll have are RSS feed in an unordered list (or whatever format you want) on our page!</p>
+<pre lang="php">echo "</pre>
+<ul>"; foreach ($feeds as $feed) { $date = strtotime($feed['pubDate']); echo '</p>
+<li>'; echo ' <strong><a href="http://www.facebook.com/'. $feed['link'] .'">FacebookPage</a></strong> '. $feed['description'] . ' '. date('jS F Y G:H' ,$date) .' '; echo '</li>
+<p>'; } echo '</ul>
+<pre lang="php">';</pre>
+<h2>Don't forget to style it up</h2>
+<p>I've written a few lines of CSS to make the feed look more 'Facebook like' if you so desire.</p>
+<pre lang="css">ul#facebook {
+	padding: 10px 0 10px 0;
+	margin: 0;
+	list-style: none;
+	font-size: 12px;
+	font-family: "lucida grande",tahoma,verdana,arial,sans-serif;
+}
+
+ul#facebook img { margin-right: 5px; }
+
+ul#facebook li {
+	padding: 10px 0 10px 0;
+	margin: 0;
+	overflow: hidden;
+	border-bottom: solid 1px #E9E9E9;
+}
+
+ul#facebook li p {
+	padding: 3px 0 3px 0;
+	margin: 0;
+	line-height: 18px;
+}
+
+ul#facebook a {
+
+}
+
+ul#facebook li a { color: #3B5998 !important; text-decoration: none; }
+
+ul#facebook li a:hover { text-decoration: underline; }</pre>
+<p>Anyway, I hope you find this useful, 'cause I know I'll be coming back to look at it soon enough. Leave any questions in the comments!</p>
+
+	    
+<div class="comments">
+
+			
+		<h3>123 comments</h3>
+
+		<ul class="comments-list">
+					<li id="li-comment-1390">
+			<div class="comment" id="comment-1390">
+
+				<img alt='' src='http://0.gravatar.com/avatar/46e7aeb55c5db6147322074093b8e0cc?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">wqd3r wrote on <time>9th February 2011</time></p>
+				
+				<p>pretty neat</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1391">
+			<div class="comment" id="comment-1391">
+
+				<img alt='' src='http://1.gravatar.com/avatar/f6f23ff265f2d860c7fd58fca693a72e?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">Donkeyfourthumbs wrote on <time>9th February 2011</time></p>
+				
+				<p>Doesn&#8217;t seem to work? Displays a blank page? Any ideas?</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		<ul class="children">
+		<li id="li-comment-1392">
+			<div class="comment" id="comment-1392">
+
+				<img alt='' src='http://1.gravatar.com/avatar/f3bcfa4a2b1b0fe7adcd7c92c9baa5ef?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.nouveller.com/' rel='external nofollow' class='url'>Nouveller</a> wrote on <time>10th February 2011</time></p>
+				
+				<p>It might not work if you didn&#8217;t specify you&#8217;re own FeedBurner URL. Or make sure you&#8217;ve got PHP error&#8217;s turned on and let me know the error message.</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		<ul class="children">
+		<li id="li-comment-1407">
+			<div class="comment" id="comment-1407">
+
+				<img alt='' src='http://0.gravatar.com/avatar/265a3506613c402f16d05b6693d43ddf?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://BrandonC' rel='external nofollow' class='url'>Brandon</a> wrote on <time>17th August 2011</time></p>
+				
+				<p>I Keep Getting This Error On Like 14 And 21<br />
+&#8220;Parse error: syntax error, unexpected &#8216;&amp;&#8217; in /index.php on line 14&#8243;</p>
+<p>These 2 Lines<br />
+&#8220;foreach ($doc-&gt;getElementsByTagName(&#8216;item&#8217;) as $node) {&#8221;<br />
+And<br />
+&#8220;$doc-&gt;load($feed_burner_url);&#8221;</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li id="li-comment-1393">
+			<div class="comment" id="comment-1393">
+
+				<img alt='' src='http://1.gravatar.com/avatar/f6f23ff265f2d860c7fd58fca693a72e?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">Donkeyfourthumbs wrote on <time>10th February 2011</time></p>
+				
+				<p>I did specify my own Feedburner URL, and don&#8217;t get any error messages. It is a facebook RSS feed converted to Feedburner. Don&#8217;t know if that matters? Seems to work as an RSS feed in a reader, just not this way?</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1394">
+			<div class="comment" id="comment-1394">
+
+				<img alt='' src='http://0.gravatar.com/avatar/441d301bff7106affcdb0e4ad7170a31?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">Franky wrote on <time>14th February 2011</time></p>
+				
+				<p>Hello! Thank you for the codes. I did it with your codes. How can I show comments and likes under each feed item? Is there a way to do that? What should I do?</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1395">
+			<div class="comment" id="comment-1395">
+
+				<img alt='' src='http://1.gravatar.com/avatar/5a410d5dc3dadb86f239fa19e42b9831?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">Armin wrote on <time>8th March 2011</time></p>
+				
+				<p>benjamin how we took it to a static html website ?</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1396">
+			<div class="comment" id="comment-1396">
+
+				<img alt='' src='http://0.gravatar.com/avatar/241e6dc2965e2964f89d4b3715e28c9a?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.e-siber.com' rel='external nofollow' class='url'>E-Siber</a> wrote on <time>10th March 2011</time></p>
+				
+				<p>Ok. This is very perfect method. But why could not we get feed of our sites &#8216;like&#8217;s or feed of recommandations box?</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1397">
+			<div class="comment" id="comment-1397">
+
+				<img alt='' src='http://0.gravatar.com/avatar/81ada4c701720da46bca1043b2b571c8?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.ericekman.com' rel='external nofollow' class='url'>Eric</a> wrote on <time>4th May 2011</time></p>
+				
+				<p>I may just be out-dated or out of practice with my knowledge of PHP but the part where you have:</p>
+<p>$doc-&gt;</p>
+<p>is receiving an error message with my server, stating it&#8217;s an unexpected &#8216;&amp;&#8217; . I don&#8217;t really understand how that portion functions anyhow, maybe estimate what might be the problem?</p>
+<p>Thanks, other than that, this script looks to be exactly what I want!</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		<ul class="children">
+		<li id="li-comment-1398">
+			<div class="comment" id="comment-1398">
+
+				<img alt='' src='http://0.gravatar.com/avatar/81ada4c701720da46bca1043b2b571c8?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.ericekman.com' rel='external nofollow' class='url'>Eric</a> wrote on <time>4th May 2011</time></p>
+				
+				<p>nvm, i see what happened now&#8230; i&#8217;m dumb.</p>
+<p>cheers!</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		<ul class="children">
+		<li id="li-comment-1405">
+			<div class="comment" id="comment-1405">
+
+				<img alt='' src='http://0.gravatar.com/avatar/68bdedc9d96af69b2d720db1bfd4a822?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">E.J. wrote on <time>16th August 2011</time></p>
+				
+				<p>What did you see? I cannot figure out what is going on.. It continually says &#8220;Parse error: syntax error, unexpected &#8216;&amp;&#8217;&#8221;on this line.</p>
+<p>$doc-&gt;load($feed_burner_url);</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1406">
+			<div class="comment" id="comment-1406">
+
+				<img alt='' src='http://0.gravatar.com/avatar/68bdedc9d96af69b2d720db1bfd4a822?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">E.J. wrote on <time>16th August 2011</time></p>
+				
+				<p>ah i got it&#8230; it took posting here but the less than and greater than signs were replaced with HTML Entities. thanks for the post!</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li id="li-comment-1399">
+			<div class="comment" id="comment-1399">
+
+				<img alt='' src='http://1.gravatar.com/avatar/5a0ef8cbc936f130af8480d3c95cfcc1?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">Chris wrote on <time>12th June 2011</time></p>
+				
+				<p>I am getting this error as well, do you know how to fix it at all?</p>
+<p>Cheers</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		<ul class="children">
+		<li id="li-comment-1438">
+			<div class="comment" id="comment-1438">
+
+				<img alt='' src='http://1.gravatar.com/avatar/94eef62a74e9176c1f3c40aef0cceced?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">josh stevens wrote on <time>13th January 2012</time></p>
+				
+				<p>$doc-&gt;load($feed_burner_url);</p>
+<p>is erroring for me as well</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li id="li-comment-1400">
+			<div class="comment" id="comment-1400">
+
+				<img alt='' src='http://0.gravatar.com/avatar/68f073204146567678957dca7e62fa30?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.simplylinks.co.za' rel='external nofollow' class='url'>John</a> wrote on <time>7th July 2011</time></p>
+				
+				<p>Thanks for the article. Not sure if I overlooked it, but where do I get the &#8220;key&#8221; value:</p>
+<p><a href="http://www.facebook.com/feeds/page.php?id=XXX&#038;viewer=XXX&#038;key=" rel="nofollow">http://www.facebook.com/feeds/page.php?id=XXX&#038;viewer=XXX&#038;key=</a>{XXX}&amp;format=rss20</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1401">
+			<div class="comment" id="comment-1401">
+
+				<img alt='' src='http://1.gravatar.com/avatar/757d8e285308e5fc18f4539d66c2d884?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">Jon wrote on <time>18th July 2011</time></p>
+				
+				<p>Just tried to burn my facebook page RSS, it comes up as invalid and won&#8217;t allow it &#8211; any one else found this or a way around it?</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		<ul class="children">
+		<li id="li-comment-1485">
+			<div class="comment" id="comment-1485">
+
+				<img alt='' src='http://0.gravatar.com/avatar/e63139c265a8dd8fa8e92f8dee49b989?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">JJ wrote on <time>24th May 2012</time></p>
+				
+				<p>I had this problem too, I fixed it by dropping the &#8220;HTTPS://&#8221;</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li id="li-comment-1402">
+			<div class="comment" id="comment-1402">
+
+				<img alt='' src='http://1.gravatar.com/avatar/faa7cdc7476a75110a91f2c70b0bb9f1?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.trm-dsgns.com' rel='external nofollow' class='url'>Erik</a> wrote on <time>1st August 2011</time></p>
+				
+				<p>Working to get your script working in a custom build cms.. thanks for the work don&#8230; i was kinda left blinded.. could not figure out how to get the facebook feed in to the page.. your tut is already helping alot!</p>
+<p>greetings! </p>
+<p>Erik</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1403">
+			<div class="comment" id="comment-1403">
+
+				<img alt='' src='http://1.gravatar.com/avatar/36cb674203c281c66b866f176845f9f7?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.hoganschuhe.net' rel='external nofollow' class='url'>Hogan Schuhe</a> wrote on <time>11th August 2011</time></p>
+				
+				<p><a href="http://www.hoganschuhe.net" rel="nofollow">Hogan Schuhe</a></p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1404">
+			<div class="comment" id="comment-1404">
+
+				<img alt='' src='http://0.gravatar.com/avatar/0bc49689031f8a4d624d2c2531e219de?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.glorydayscup.com' rel='external nofollow' class='url'>Kelly</a> wrote on <time>11th August 2011</time></p>
+				
+				<p>Thanks for your help! You helped me get my FB page to show on our website (a free sharesite on Shutterfly). Just like magic!</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1408">
+			<div class="comment" id="comment-1408">
+
+				<img alt='' src='http://0.gravatar.com/avatar/6c9ef42688c2118e5aa7be51faa38049?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.eatatelmers.com' rel='external nofollow' class='url'>Erik</a> wrote on <time>23rd August 2011</time></p>
+				
+				<p>Thank you for this post. I am not a programer, but I have a couple questions. </p>
+<p>I am following the steps you have outlined, I am just not sure WHERE to put the code you have provided. Where in the page structure do I put it? We are building the site in Drupal 7. </p>
+<p>Thank you, really appreciate it!</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1409">
+			<div class="comment" id="comment-1409">
+
+				<img alt='' src='http://0.gravatar.com/avatar/6806f328606cee0f98d2de14357d8a73?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">Al wrote on <time>5th September 2011</time></p>
+				
+				<p>I think the facebook feed provides you with 29 30 items. Do you know if a ways where you could get more.</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1410">
+			<div class="comment" id="comment-1410">
+
+				<img alt='' src='http://1.gravatar.com/avatar/7671a0be8963cbd49eba6237da9e6d6b?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.steveroberts.co' rel='external nofollow' class='url'>steve roberts</a> wrote on <time>27th September 2011</time></p>
+				
+				<p>And where does this code go?</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1412">
+			<div class="comment" id="comment-1412">
+
+				<img alt='' src='http://0.gravatar.com/avatar/4a38dac3358b2419aadd432bc6977501?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://pixel.pixel.com' rel='external nofollow' class='url'>saba</a> wrote on <time>19th October 2011</time></p>
+				
+				<p>Thank you so much! it works:)</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li class="trackback even thread-even depth-1" id="comment-1413">
+			<p>Pingback: <a href='http://www.promotingpanda.com/uploads/9/3/0/6/9306892/1944168_orig.png?4051077?6902745' rel='external nofollow' class='url'>Cheap views</a> </p>
+		</li><!-- #comment-## -->
+		<li id="li-comment-1414">
+			<div class="comment" id="comment-1414">
+
+				<img alt='' src='http://0.gravatar.com/avatar/a696e64bdb0850ff6e6b66ebb0149d07?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://aumenta.se' rel='external nofollow' class='url'>facebook, twitter, google +1</a> wrote on <time>3rd November 2011</time></p>
+				
+				<p>I&#8217;m extremely inspired with your writing talents and also with the structure on your weblog. Is that this a paid subject matter or did you customize it your self? Either way stay up the excellent quality writing, it?s uncommon to see a nice blog like this one today..</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li class="trackback odd alt thread-odd thread-alt depth-1" id="comment-1415">
+			<p>Pingback: <a href='http://grocerycouponslist.com/2011/public-relation-vacancy-2011-at-bara-indah/7032.html' rel='external nofollow' class='url'>Double coupons</a> </p>
+		</li><!-- #comment-## -->
+		<li class="trackback even thread-even depth-1" id="comment-1416">
+			<p>Pingback: <a href='http://www.gatorwebconsulting.com/google-places-maps-optimization/top-3-ways-to-boost-your-affiliate-commissions-overnight/' rel='external nofollow' class='url'>High Quality Web Design</a> </p>
+		</li><!-- #comment-## -->
+		<li id="li-comment-1417">
+			<div class="comment" id="comment-1417">
+
+				<img alt='' src='http://1.gravatar.com/avatar/74c1881de397da5b19159356fb4e4c89?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://riekerschuhe.schuhekaufenbillig.de/Stiefel/' rel='external nofollow' class='url'>Billig Rieker Schuhe</a> wrote on <time>20th November 2011</time></p>
+				
+				<p>hi!,I like your writing so a lot! proportion we keep in touch more about your article on AOL? I need an expert in this space to unravel my problem. Maybe that&#8217;s you! Having a look ahead to look you.</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1418">
+			<div class="comment" id="comment-1418">
+
+				<img alt='' src='http://1.gravatar.com/avatar/1bf1a3761524c2ae4e2f8b70b700d8a4?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://emoticonsdofacebook.blogspot.com/' rel='external nofollow' class='url'>emoticons do facebook</a> wrote on <time>21st November 2011</time></p>
+				
+				<p>I will right away grab your rss feed as I can&#8217;t in finding your email subscription hyperlink or e-newsletter service. Do you&#8217;ve any? Kindly let me understand so that I may just subscribe. Thanks.</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1419">
+			<div class="comment" id="comment-1419">
+
+				<img alt='' src='http://0.gravatar.com/avatar/c4605eef17df46d95e62883233e1470e?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.ohiocolumbus.net/user_detail.php?u=rq11' rel='external nofollow' class='url'>apple ipad 2</a> wrote on <time>28th November 2011</time></p>
+				
+				<p>I just like the valuable info you provide in your articles. I will bookmark your blog and check once more right here frequently. I&#8217;m rather sure I will be informed many new stuff proper here! Good luck for the following!</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li class="trackback odd alt thread-odd thread-alt depth-1" id="comment-1420">
+			<p>Pingback: <a href='http://like-o-meter.com/report.php?id=55278' rel='external nofollow' class='url'>like on facebook</a> </p>
+		</li><!-- #comment-## -->
+		<li id="li-comment-1421">
+			<div class="comment" id="comment-1421">
+
+				<img alt='' src='http://0.gravatar.com/avatar/28557e33d898d97d00de98e0a6d51e6a?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">Stephen Costello wrote on <time>9th December 2011</time></p>
+				
+				<p>Can&#8217;t get this working to save my life. Keep getting an error related to &#8216;DOMDocument::load&#8217;. Its in the line $doc = new</p>
+<p>Any help would be great!!</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1422">
+			<div class="comment" id="comment-1422">
+
+				<img alt='' src='http://0.gravatar.com/avatar/8babda5b20a4b74370abe668e6335c19?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.appmedia.co.il' rel='external nofollow' class='url'>dan leci</a> wrote on <time>10th December 2011</time></p>
+				
+				<p>רציתי לספר לך על בניית אתר איכותית ,ואני מקווה שאתה מבין למה אני מתכוון ,אתר איכותי אמין מאוד ויש גם בניית אתר טוב מאוד אצלנו המערכת קלה ומיוחדת הבנקים משתשמים בה</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li class="trackback even thread-even depth-1" id="comment-1423">
+			<p>Pingback: <a href='http://templatebroker.net/facebook-flash-cms-templates-type' rel='external nofollow' class='url'>lowest prices on facebook templates</a> </p>
+		</li><!-- #comment-## -->
+		<li id="li-comment-1424">
+			<div class="comment" id="comment-1424">
+
+				<img alt='' src='http://0.gravatar.com/avatar/e9a6c3ce84011e39048890f3068914fb?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.facebook.com/notes/transformers/hot-xmas-special-cheap-offer-transformers-city-fight-curtainsdrapes-blue-boy-roo/323954137623748?ref=nf' rel='external nofollow' class='url'>Hasbro Year 2001 Transformers Robots In Disgu</a> wrote on <time>22nd December 2011</time></p>
+				
+				<p>weblog and had to write. I&#8217;m a latest school grad, journalism major if you need to know, and I absolutely adore images. I&#8217;ve received my website</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li class="trackback odd alt thread-odd thread-alt depth-1" id="comment-1425">
+			<p>Pingback: <a href='http://www.jennymotors.com/wp/?cat=4' rel='external nofollow' class='url'>超跑</a> </p>
+		</li><!-- #comment-## -->
+		<li id="li-comment-1426">
+			<div class="comment" id="comment-1426">
+
+				<img alt='' src='http://0.gravatar.com/avatar/4f1f5baa06ffa41c2a1a3cc08706a0f3?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://lajkuj.org' rel='external nofollow' class='url'>Facebook like</a> wrote on <time>30th December 2011</time></p>
+				
+				<p>Unquestionably believe that which you stated. Your favorite reason appeared to be at the internet the simplest thing to take note of. I say to you, I certainly get irked at the same time as other folks consider worries that they just do not know about. You controlled to hit the nail upon the highest as neatly as outlined out the entire thing with no need side effect , other people could take a signal. Will probably be back to get more. Thank you</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1427">
+			<div class="comment" id="comment-1427">
+
+				<img alt='' src='http://1.gravatar.com/avatar/560c7a52c1c89d3f661ffd627ff2b146?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.sites2b.com' rel='external nofollow' class='url'>Tony</a> wrote on <time>30th December 2011</time></p>
+				
+				<p>Everyone please note that when you put the php on your page change &gt; to (Greater Than Sign) change &lt; to (Less Than Sign)</p>
+<p>For the newbies place the first 3 blocks of code above ALL html inside php tags. </p>
+<p>Place the last block of code in your css style sheet or inside style tags somewhere between the head and body tags.</p>
+<p>Hope this helps.</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1428">
+			<div class="comment" id="comment-1428">
+
+				<img alt='' src='http://1.gravatar.com/avatar/560c7a52c1c89d3f661ffd627ff2b146?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.sites2b.com' rel='external nofollow' class='url'>Tony</a> wrote on <time>30th December 2011</time></p>
+				
+				<p>EDIT: Ok the comment box edited my post. I am going to use spaces here.</p>
+<p>Change (&amp; l t <img src="http://nouveller.com/wp/wp-includes/images/smilies/icon_wink.gif" alt=";)" class="wp-smiley" />  No spaces to less than sign.</p>
+<p>Change (&amp; g t <img src="http://nouveller.com/wp/wp-includes/images/smilies/icon_wink.gif" alt=";)" class="wp-smiley" />  No spaces to less than sign.</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1429">
+			<div class="comment" id="comment-1429">
+
+				<img alt='' src='http://1.gravatar.com/avatar/560c7a52c1c89d3f661ffd627ff2b146?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.sites2b.com' rel='external nofollow' class='url'>Tony</a> wrote on <time>30th December 2011</time></p>
+				
+				<p>Change &amp; l t ; No spaces to less than sign.</p>
+<p>Change &amp; g t ; No spaces to less than sign.</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1430">
+			<div class="comment" id="comment-1430">
+
+				<img alt='' src='http://0.gravatar.com/avatar/cefaf3d0606819e3b2ff109dd3bc7326?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">Micke wrote on <time>2nd January 2012</time></p>
+				
+				<p>What if you dont want to show pictures? Can you remove them in any way?</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1431">
+			<div class="comment" id="comment-1431">
+
+				<img alt='' src='http://1.gravatar.com/avatar/f62465d5334b2968fe86a65d5c3be799?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.machinapub.pl' rel='external nofollow' class='url'>damogari</a> wrote on <time>3rd January 2012</time></p>
+				
+				<p>Hi! I really like your script, but it doesn&#8217;t work for me &#8211; it&#8217;s shoe me error:</p>
+<p>Parse error: syntax error, unexpected &#8216;&amp;&#8217; in /home/arielo/public_html/machinan/burner_feed.php on line 7</p>
+<p>what I have to do to make things work?</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		<ul class="children">
+		<li id="li-comment-1437">
+			<div class="comment" id="comment-1437">
+
+				<img alt='' src='http://1.gravatar.com/avatar/bac53f9724544af14ee246676ff4e2d5?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.facebook.com/' rel='external nofollow' class='url'>Tori</a> wrote on <time>13th January 2012</time></p>
+				
+				<p>That&#8217;s cleared my thoughts. Thanks for cotnrbuiting.</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1439">
+			<div class="comment" id="comment-1439">
+
+				<img alt='' src='http://0.gravatar.com/avatar/ec30ed50640b2f7d8c99085c108477a4?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://nqkxgieyjtps.com/' rel='external nofollow' class='url'>qvwpvzjqhgj</a> wrote on <time>14th January 2012</time></p>
+				
+				<p>SpThjI  <a href="http://tiqcptipxlqk.com/" rel="nofollow">tiqcptipxlqk</a></p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1440">
+			<div class="comment" id="comment-1440">
+
+				<img alt='' src='http://1.gravatar.com/avatar/bf7a6f1dc2d44b37fcf4744152c4ed2c?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://gszcmymdljxm.com/' rel='external nofollow' class='url'>jxwhhtbosp</a> wrote on <time>16th January 2012</time></p>
+				
+				<p>lh1uh0  <a href="http://twxtlerfmtuu.com/" rel="nofollow">twxtlerfmtuu</a></p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li id="li-comment-1432">
+			<div class="comment" id="comment-1432">
+
+				<img alt='' src='http://1.gravatar.com/avatar/f62465d5334b2968fe86a65d5c3be799?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.machinapub.pl' rel='external nofollow' class='url'>damogari</a> wrote on <time>3rd January 2012</time></p>
+				
+				<p>in this line I have this:</p>
+<p>$doc-&gt;load($feed_burner_url);</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1433">
+			<div class="comment" id="comment-1433">
+
+				<img alt='' src='http://1.gravatar.com/avatar/f62465d5334b2968fe86a65d5c3be799?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.machinapub.pl' rel='external nofollow' class='url'>damogari</a> wrote on <time>3rd January 2012</time></p>
+				
+				<p>solved for now &#8211; this comments show how code has to be written in editor <img src="http://nouveller.com/wp/wp-includes/images/smilies/icon_wink.gif" alt=";)" class="wp-smiley" /> </p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1434">
+			<div class="comment" id="comment-1434">
+
+				<img alt='' src='http://1.gravatar.com/avatar/f62465d5334b2968fe86a65d5c3be799?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.machinapub.pl' rel='external nofollow' class='url'>damogari</a> wrote on <time>3rd January 2012</time></p>
+				
+				<p>solution was to change every &#8220;&amp; g t ;&#8221; to &gt; etc which was posted before by Tony <img src="http://nouveller.com/wp/wp-includes/images/smilies/icon_wink.gif" alt=";)" class="wp-smiley" />  thx!</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1435">
+			<div class="comment" id="comment-1435">
+
+				<img alt='' src='http://0.gravatar.com/avatar/a000b0cde54d3e6cdb4e560a1a6c4720?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">David Ruiz wrote on <time>8th January 2012</time></p>
+				
+				<p>This worked great! This provided all the functionality I needed and with some of my tweaks it did it all.</p>
+<p>Thanks for sharing.</p>
+<p>David</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li class="trackback even thread-even depth-1" id="comment-1436">
+			<p>Pingback: <a href='http://www.ephptraining.com/features.php' rel='external nofollow' class='url'>php training videos</a> </p>
+		</li><!-- #comment-## -->
+		<li class="trackback odd alt thread-odd thread-alt depth-1" id="comment-1441">
+			<p>Pingback: <a href='http://www.voddie.com/services/' rel='external nofollow' class='url'>social media</a> </p>
+		</li><!-- #comment-## -->
+		<li id="li-comment-1442">
+			<div class="comment" id="comment-1442">
+
+				<img alt='' src='http://0.gravatar.com/avatar/405d49a99ff9a6d09028b12b00ae2fec?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">Wouter wrote on <time>23rd January 2012</time></p>
+				
+				<p>Looks like Facebook has a link to get a page&#8217;s RSS feed. Open your Facebook page, and look in the left column at the bottom. There you will see a &#8220;Get updates via RSS&#8221; link. There you go.</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li class="trackback even thread-even depth-1" id="comment-1443">
+			<p>Pingback: <a href='http://www.microplus.co.uk/new-page-2.html' rel='external nofollow' class='url'>marketing internet</a> </p>
+		</li><!-- #comment-## -->
+		<li class="trackback odd alt thread-odd thread-alt depth-1" id="comment-1444">
+			<p>Pingback: <a href='http://pitzipoance.tk/category/amuzante/' rel='external nofollow' class='url'>pitipoance</a> </p>
+		</li><!-- #comment-## -->
+		<li id="li-comment-1446">
+			<div class="comment" id="comment-1446">
+
+				<img alt='' src='http://1.gravatar.com/avatar/19b03bcd9a3a226a45c52b7c983bc824?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.facebook.com/directory/pages/X-90721-92400' rel='external nofollow' class='url'>facebook</a> wrote on <time>2nd February 2012</time></p>
+				
+				<p>I like the valuable information you provide to your articles. I&#8217;ll bookmark your weblog and take a look at once more right here regularly. I&#8217;m reasonably certain I will be informed lots of new stuff right here! Best of luck for the following!</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1447">
+			<div class="comment" id="comment-1447">
+
+				<img alt='' src='http://0.gravatar.com/avatar/8b8c1520104df71df61cb92fbcd64583?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://error-651.com/support.php' rel='external nofollow' class='url'>error 651</a> wrote on <time>4th February 2012</time></p>
+				
+				<p>Thank you for every other informative website. The place else may just I am getting that type of information written in such an ideal manner? I&#8217;ve a undertaking that I&#8217;m just now operating on, and I&#8217;ve been on the glance out for such information.</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1448">
+			<div class="comment" id="comment-1448">
+
+				<img alt='' src='http://0.gravatar.com/avatar/8b4892bdc5e35f79ea84e7899ae35c94?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.chevellesforsale.net' rel='external nofollow' class='url'>monk</a> wrote on <time>7th February 2012</time></p>
+				
+				<p>it is easy you just need to add the code or use a plugin to add the fb to your page.</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1449">
+			<div class="comment" id="comment-1449">
+
+				<img alt='' src='http://1.gravatar.com/avatar/b9d5301bff94247df71ba474715cc202?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.growpopular.com' rel='external nofollow' class='url'>facebook likes,twitter followers,free twitter followers,free facebook likes</a> wrote on <time>7th February 2012</time></p>
+				
+				<p>Thank you a lot for sharing this with all people you actually realize what you are speaking about! Bookmarked. Kindly additionally discuss with my site =). We could have a hyperlink change contract among us</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li class="trackback even thread-even depth-1" id="comment-1450">
+			<p>Pingback: <a href='http://darmowefilmyonline.eu/pobierz,471,vorstadtkrokodile-3-2011.html' rel='external nofollow' class='url'>filmy download</a> </p>
+		</li><!-- #comment-## -->
+		<li id="li-comment-1451">
+			<div class="comment" id="comment-1451">
+
+				<img alt='' src='http://0.gravatar.com/avatar/69188d92835db19ae32cfec5bcba6279?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">Home Shirt wrote on <time>15th February 2012</time></p>
+				
+				<p>I just could not leave your website before suggesting that I extremely loved the standard information an individual supply for your visitors? Is going to be again incessantly to check out new posts</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1452">
+			<div class="comment" id="comment-1452">
+
+				<img alt='' src='http://1.gravatar.com/avatar/d85d5055c0c36ffff477efac3c3c1698?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">Jazzy wrote on <time>15th February 2012</time></p>
+				
+				<p>there is no &#8216;Subscribe&#8217; button. The notes tab just shows the notes i&#8217;ve posted??</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li class="trackback odd alt thread-odd thread-alt depth-1" id="comment-1453">
+			<p>Pingback: <a href='http://www.sabsoft.com/TotallyFreeBurner.htm' rel='external nofollow' class='url'>burning software</a> </p>
+		</li><!-- #comment-## -->
+		<li id="li-comment-1454">
+			<div class="comment" id="comment-1454">
+
+				<img alt='' src='http://0.gravatar.com/avatar/6213fd8baa6142ea24d76c423177fb16?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">Mavent wrote on <time>20th February 2012</time></p>
+				
+				<p>It seems like maybe the simple answer would be to post the code correctly,</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1455">
+			<div class="comment" id="comment-1455">
+
+				<img alt='' src='http://1.gravatar.com/avatar/9284efc3780e95ff46a9bf3c5c3de870?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://gweeby.com/flex/emploi-sur-internet-on-this-page-we-are-exploring-the-12-hour-toothache-cure/' rel='external nofollow' class='url'>sondages payants</a> wrote on <time>21st February 2012</time></p>
+				
+				<p>I am really impressed with your writing skills and also with the layout on your weblog. Is this a paid theme or did you customize it yourself? Anyway keep up the excellent quality writing, it is rare to see a great blog like this one these days..</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1456">
+			<div class="comment" id="comment-1456">
+
+				<img alt='' src='http://1.gravatar.com/avatar/744f6949bca9e0051787e8eda0322099?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://3countiestravel.co.uk' rel='external nofollow' class='url'>mini bus hire hertfordshire</a> wrote on <time>26th February 2012</time></p>
+				
+				<p>Hi there friends, how is the whole thing, and what you would like to say about this paragraph, in my view its really awesome for me.</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1457">
+			<div class="comment" id="comment-1457">
+
+				<img alt='' src='http://0.gravatar.com/avatar/c798a10d77ec733834a44c2bc3be5794?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.efaucetscoupon.org/' rel='external nofollow' class='url'>Efaucets Coupon</a> wrote on <time>28th February 2012</time></p>
+				
+				<p>Great article! That is the kind of information that should be shared around the internet. Disgrace on the search engines for now not positioning this submit higher! Come on over and consult with my website . Thanks =)</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1458">
+			<div class="comment" id="comment-1458">
+
+				<img alt='' src='http://0.gravatar.com/avatar/ef87e658cd41cbe8707870c592a286c1?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.poundsandinchesaway.com/utica/' rel='external nofollow' class='url'>MIchigan HCG Diet</a> wrote on <time>1st March 2012</time></p>
+				
+				<p>Hello Dear, are you in fact visiting this website regularly, if so after that you will absolutely take fastidious knowledge.</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1459">
+			<div class="comment" id="comment-1459">
+
+				<img alt='' src='http://0.gravatar.com/avatar/e34e869bda7970fcdb48ee06c17939a4?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://iendorseronpaul.com/2012/03/5-tips-to-build-confidence-with-ultimate-demon/' rel='external nofollow' class='url'>Barb Kristek</a> wrote on <time>1st March 2012</time></p>
+				
+				<p>Who would seek to demonize a theory that way? Will we not just have fun with the ultimate part and just not discount tougher than aluminum .?</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1460">
+			<div class="comment" id="comment-1460">
+
+				<img alt='' src='http://1.gravatar.com/avatar/fc050e3e9e2cfc4b6aa3f347ac97f62d?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://legko.stop-ves.ru' rel='external nofollow' class='url'>datInfonson</a> wrote on <time>1st March 2012</time></p>
+				
+				<p>Привет!<br />
+программа расчета калорийности диета 25 кадр бесплатно метод похудения авто гипноз диета онлайн официальный сайт 300 калорий если вызывать рвоту можно похудеть вобэнзим похудеть пояс для похудения в минске как похудеть упражнения как найти стимул для похудения упражнения для похудения утяшевой 5 кг за неделю похудеть снижение веса симптом бриджи для похудения в аптеке худеем в офисе   </p>
+<p><a href="http://legko.stop-ves.ru/skachat-telefonniy-spravochnik-lida-cat/zhurnal-pohudey-ofitsialniy-sayt.php" rel="nofollow">журнал похудей официальный сайт</a><br />
+<a href="http://legko.stop-ves.ru/travi-dlya-pohudeniya-malahov-cat/raschet-idealnogo-vesa-po-dyukanu.php" rel="nofollow">расчет идеального веса по дюкану</a><br />
+<a href="http://legko.stop-ves.ru/onlayn-dieta-besplatno-bez-sms-cat/aromamasla-dlya-pohudeniya.php" rel="nofollow">аромамасла для похудения</a><br />
+<a href="http://legko.stop-ves.ru/diski-bormental-cat/rastitelniy-chay-dlya-pohudeniya.php" rel="nofollow">растительный чай для похудения</a><br />
+<a href="http://legko.stop-ves.ru/bodifleks-na-russkom-yazike-cat/otzivi-pohudevshih-na-grechnevoy-diete.php" rel="nofollow">отзывы похудевших на гречневой диете</a><br />
+<a href="http://legko.stop-ves.ru/dieta-doktora-volkova-cat/retsept-dieticheskoy-zapekanki.php" rel="nofollow">рецепт диетической запеканки</a><br />
+<a href="http://legko.stop-ves.ru/chay-dlya-pohudeniya-edelstar-cat/uprazhneniya-dlya-pohudeniya-dlya-beremennih.php" rel="nofollow">упражнения для похудения для беременных</a></p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li class="trackback even thread-even depth-1" id="comment-1461">
+			<p>Pingback: <a href='http://www.uniquedailyarticles.com/Art/269192/152/Wolves-Manager-Furious-At-Idiotic-Fans.html' rel='external nofollow' class='url'>wolves information</a> </p>
+		</li><!-- #comment-## -->
+		<li class="trackback odd alt thread-odd thread-alt depth-1" id="comment-1462">
+			<p>Pingback: <a href='http://agynous-bombycidae-azophen.com/' rel='external nofollow' class='url'>angioma asor indicate</a> </p>
+		</li><!-- #comment-## -->
+		<li id="li-comment-1463">
+			<div class="comment" id="comment-1463">
+
+				<img alt='' src='http://0.gravatar.com/avatar/a7f1d52bb805b1c4603876a7f7e1d773?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://yougetfudge.com/forum/index.php?action=profile;u=210629' rel='external nofollow' class='url'>visibilit</a> wrote on <time>6th March 2012</time></p>
+				
+				<p>i was just browsing along and came upon your site. just wanted to say great blog and this page really helped me.</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1464">
+			<div class="comment" id="comment-1464">
+
+				<img alt='' src='http://0.gravatar.com/avatar/8e0bde70fa39cb6b240fa11b61291b86?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://Claudia' rel='external nofollow' class='url'>Me</a> wrote on <time>6th March 2012</time></p>
+				
+				<p>I can not get pass the following step:<br />
+I&#8217;m in facebook and want to display the latest feeds from FB into my website. </p>
+<p>&#8230;Click on the ‘Notes’ tab and then in the left hand column at the bottom there should be a ‘Subscribe’ section with a link to the RSS feed for the page’s notes. Clicking this, should give you a URL&#8230;</p>
+<p>I can not see a subscription link. Please help</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1465">
+			<div class="comment" id="comment-1465">
+
+				<img alt='' src='http://1.gravatar.com/avatar/b43db7793602b288f8dd76123ce71761?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">Shamick Gaworski wrote on <time>7th March 2012</time></p>
+				
+				<p>you are a smart cookie! thanks!</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1466">
+			<div class="comment" id="comment-1466">
+
+				<img alt='' src='http://1.gravatar.com/avatar/b43db7793602b288f8dd76123ce71761?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">Shamick Gaworski wrote on <time>8th March 2012</time></p>
+				
+				<p>This code does NOT work with Facebook RSS feed </p>
+<p>Ex, <a href="http://www.facebook.com/feeds/page.php?id=176775888693&#038;format=rss20" rel="nofollow">http://www.facebook.com/feeds/page.php?id=176775888693&#038;format=rss20</a></p>
+<p>Any ideas why?</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1467">
+			<div class="comment" id="comment-1467">
+
+				<img alt='' src='http://1.gravatar.com/avatar/de8a8efe836243d43140b502197a19da?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">Jeff wrote on <time>8th March 2012</time></p>
+				
+				<p>Thanks for sharing. But I&#8217;m getting an error message:<br />
+Parse error: syntax error, unexpected T_OBJECT_OPERATOR, expecting &#8216;)&#8217; in</p>
+<p>line: &#8216;title&#8217; =&gt; $node-&gt;getElementsByTagName(&#8216;title&#8217;)-&gt;item(0)-&gt;nodeValue,</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		<ul class="children">
+		<li id="li-comment-1478">
+			<div class="comment" id="comment-1478">
+
+				<img alt='' src='http://0.gravatar.com/avatar/27a8a1e7a666fb0d6385d99151c1f59a?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">Jason wrote on <time>2nd May 2012</time></p>
+				
+				<p>Have this exact issue.  Would appreciate some help resolving it! Thanks.</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li id="li-comment-1468">
+			<div class="comment" id="comment-1468">
+
+				<img alt='' src='http://1.gravatar.com/avatar/9ff15e4f9c9f130d5f8ff3f8bd3d4c6f?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://ProjectData' rel='external nofollow' class='url'>Wii Games Review</a> wrote on <time>9th March 2012</time></p>
+				
+				<p>Asking questions are genuinely fastidious thing if you are not understanding something fully, except this post presents good understanding yet.</p>
+<p>Arranged, goblet photo slides less difficult more calm, and maybe<br />
+have a bit significantly less keep. Metal slideshow<br />
+change substantially influenced by just what exactly metallic they&#8217;re produced from, and it&#8217;s really size.  Quite normally you may well be supplied some sort of chromed steel glide in the dude driving the particular counter-top.  My advice will be to steer clear of all these.  Chromed precious metal 35mm slides gives you a new slimmer, cooler seem, that may be quite missing in character.  It&#8217;s like guitar features shed a little it is internal. I as well discovered that I purchase fewer keep out there photo slides.  The greatest go I have can be metal, a couple of 1/8&#8243; long, (perfect for the ring finger, the tip ought to be only observable) and also.5mm solid (ould like).  This form of move provides you with your bigger hotter sound, far more mid-range, along with, IMHO, improved keep.</p>
+<p>Also check out your length of the fall, it must be tight adequate not to ever throw regarding, yet huge plenty of that you should be capable of prepare a person&#8217;s little finger contrary to the inside of the idea, to have with additional control in the strain you put onto the actual guitar strings.</p>
+<p>As i commenced taking part in slip I needed any too short, very broad a glass fall, as well as a to much time, as well firm chrome move. Lots of people involving poorer good quality components, in addition to negative fit, decide to put myself out of fall for a long time. </p>
+<p>Should you be set on discovering move, think about raising the experience a little, and make sure to get the appropriate move for you.  A undesirable slide is usually a problem and quite often (unless you are fortuitous) the people from the songs outlets are not usually in which informed about the particular disparities.  You&#8217;ll end up getting something which looks trendy but will be tougher than it will be to use and appears dreadful!</p>
+<p>I&#8217;m not that will within video games unless of course they involve everyone really accomplishing a thing other than pushing switches by using my own thumbs. I love Rock-band due to the fact I could sing and take part in the drums (on the semi sensible drum kit.) And that i love The nintendi wifit since it truly can make working out fun. Simply no seriously, that will do! </p>
+<p>Along with Wifit you may create a character (and will also be assessed about the &#8220;balance board&#8221;) and therefore identity will be based with your serious peak and also bodyweight. Seeing that you need to do actions how well you&#8217;re progressing are going to be noted. </p>
+<p>Which are the exercises? Nicely there are plenty of to choose from. Everything from running to help yoga and fitness. There are actions aimed at burning energy and also things to do targeted at strengthening your whole body and also bettering your balance. Undoubtedly you&#8217;ll discover a number of actions to be more enjoyable than others nevertheless fortunately there are numerous available and that means you will certainly obtain a few you delight in (and also which often of course as well boost your health and fitness.) </p>
+<p>One of many neat things about buying the Wifit is that it carries a &#8220;balance board&#8221; which often can also be used with numerous additional very cool Nintendo wii online games in which are now being released. A lot of with the some other Wii system games that will use a stability panel will not really incorporate the item. It&#8217;s essential to choose the Wifit to obtain this specific equilibrium aboard. Consequently whether or not for some reason mafia wars won&#8217;t mouse click together with you (and i believe it&#8217;s going to) you may nevertheless get a priceless piece of equipment that accompany that in addition to can be used for some other video games. </p>
+<p>All over again, I&#8217;m not a large gaming admirer. It is not really a regular game. It really is whatever can fascinate people of age range. This is the particular scarce video game which is not the spend of your time. In reality We encourage you to &#8220;play&#8221; your current Wii Fit up to you&#8217;ll be able to just about every day! You won&#8217;t just have a good time, additionally, you will improve your own exercise.<br />
+.<br />
+What goes on when you combine one of the major gaming console brands, as well as best activities application designer? You actually come with an hard to beat crew! Which is strictly just what exactly Expert advisor Sporting activities has taken on the kitchen table, make a mistake Nintendo wii in addition to The nentendo wifit. The superior designer involving sports games creates their particular competence for the Nintendo wii entertainment system along with your result is absolutely nothing less as compared to excellent. </p>
+<p>When everyone is convinced baseball or even basketball, they believe Electronic arts buys (Electronic digital Disciplines). Immediately after getting whip by simply Sega&#8217;s ESPN NATIONAL FOOTBALL LEAGUE 2K5, Electronic arts buys signed key accreditation deals with your Nhl, ESPN together with CLC with regard to exceptional proper rights to help written content. Strong certification promotions, in addition to superb game play helped drive EA to the front regarding activities video gaming along with video games with some other types. </p>
+<p>Electronic arts buys Sporting activities writes all the authentic sports-based game titles, including FIFA Soccer, Madden NATIONAL FOOTBALL LEAGUE, Steve stricker PGA, Dale earnhardt jr . in addition to Rugby to mention a number of. </p>
+<p>It&#8217;s hardly surprising then that will Purchases angry birds publisher Sports Active has become a 2010 strike along with avid gamers. Amazon consumers have got given this identify a number of begins out of your five &#8212; that is usually 768 testimonials, therefore it retains a substantial amount of significance. In reality in your sports activities class this identify is rated quantity Twelve with regard to more than a year considering that it has been launched. </p>
+<p>Just what exactly makes Twenty million Athletics Dynamic one of the most pointed out online games? The result fot it will be basic. Among the essential online game options could be the 20-minute tracks that focus on the upper and reduced physique as well as aerobic exercise. Being a real work out center, you commence away using a light-weight jolt, get through bicep doing curls and definitely get those cardiovascular system conquering along with cardio exercise kickboxing. </p>
+<p>If you want to commence swiftly, your 30-day concern allows you to course calorie consumption, severeness plus your advance by 20-minute workouts which can be customized along with that you adhere to with regard to 30-days. Several reading user reviews praise this function and also say is it doesn&#8217;t fastest technique to get started having Purchases angry birds publisher Sports Dynamic. </p>
+<p>Your other crucial feature is definitely that you purchase the main benefit of an online fitness expert. A instructor will probably present you with opinions all over your exercise, assisting you in remain to normal to attain ones fitness goals. </p>
+<p>Though this Wii console won&#8217;t be capable of contend with some sort of real-life personal trainer, the program will be accelerating plus precisely what is now available should help those which aren&#8217;t able to achieve the bonus on the fitness expert. While using Wii system allows individuals to exercise and get feedback to help you them advancement effortlessly.</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1469">
+			<div class="comment" id="comment-1469">
+
+				<img alt='' src='http://0.gravatar.com/avatar/4f4167d064c2d10d50ced593d767b8a0?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.linns.com/howto/refresher/expertization_20040322/refreshercourse.aspx' rel='external nofollow' class='url'>American Philatelic Foundation</a> wrote on <time>29th March 2012</time></p>
+				
+				<p>If some one wants expert view regarding blogging and<br />
+site-building after that i suggest him/her to go to see this weblog,<br />
+Keep up the nice work.</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li class="trackback even thread-even depth-1" id="comment-1470">
+			<p>Pingback: <a href='http://inforss.net/submit.php' rel='external nofollow' class='url'>Rss Generator</a> </p>
+		</li><!-- #comment-## -->
+		<li id="li-comment-1471">
+			<div class="comment" id="comment-1471">
+
+				<img alt='' src='http://1.gravatar.com/avatar/5c47b8218950d5be77feae9527b8902f?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">MH wrote on <time>2nd April 2012</time></p>
+				
+				<p>I think you need akismet or some similar thing- otherwise you&#8217;ll be overrun with penis enhancing, viagra selling bots&#8230; (which you have already)</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li class="trackback odd alt thread-odd thread-alt depth-1" id="comment-1472">
+			<p>Pingback: <a href='http://www.intercambiosocial.com/register.php' rel='external nofollow' class='url'>Incrementra tus visitas a tu sitio web blog o pagina de facebook totalmente gratis.</a> </p>
+		</li><!-- #comment-## -->
+		<li id="li-comment-1473">
+			<div class="comment" id="comment-1473">
+
+				<img alt='' src='http://0.gravatar.com/avatar/6cb20389137aee74bca1f9aa60f287d0?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.followlike.net' rel='external nofollow' class='url'>facebook follows</a> wrote on <time>4th April 2012</time></p>
+				
+				<p>You actually make it seem so easy together with your presentation however I to find this matter to be really something which I think I might never understand. It kind of feels too complicated and very large for me. I am having a look forward on your subsequent submit, I will try to get the hang of it!</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1474">
+			<div class="comment" id="comment-1474">
+
+				<img alt='' src='http://1.gravatar.com/avatar/f6af26c6219f932b7f74e943da912c0a?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.klanmop8932c.com' rel='external nofollow' class='url'>Lane Samoyoa</a> wrote on <time>4th April 2012</time></p>
+				
+				<p>Youre so cool! I dont suppose Ive read anything like this before. So nice to seek out any individual with some original ideas on this subject. realy thanks for beginning this up. this web site is something that&#8217;s wanted on the web, somebody with a bit originality. helpful job for bringing one thing new to the web!</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1475">
+			<div class="comment" id="comment-1475">
+
+				<img alt='' src='http://1.gravatar.com/avatar/f9b8b42770b999febc765b7256ae9745?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">Sean wrote on <time>12th April 2012</time></p>
+				
+				<p>Much Obliged</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1476">
+			<div class="comment" id="comment-1476">
+
+				<img alt='' src='http://0.gravatar.com/avatar/675c1342841200b43650810078389fca?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://schuhe-blogging.tumblr.com' rel='external nofollow' class='url'>Berenice Ozenne</a> wrote on <time>17th April 2012</time></p>
+				
+				<p>Good morning, i like your article! I subscribed to your feed.</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1477">
+			<div class="comment" id="comment-1477">
+
+				<img alt='' src='http://1.gravatar.com/avatar/57008dd8791f7d7f4b7d1fff74279bf4?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">Aneeq wrote on <time>23rd April 2012</time></p>
+				
+				<p>There are several ways to read RSS feed in PHP, but this one is surely one of the easiest.</p>
+<p>channel-&gt;item as $entry) {<br />
+echo “<a href="’$entry-" rel="nofollow">link’ title=’$entry-&gt;title’&gt;” . $entry-&gt;title . “</a>”;<br />
+}</p>
+<p>?&gt;</p>
+<p>Source:<br />
+<a href="http://phphelp.co/2012/04/23/how-to-read-rss-feed-in-php/" rel="nofollow">http://phphelp.co/2012/04/23/how-to-read-rss-feed-in-php/</a><br />
+OR<br />
+<a href="http://addr.pk/a0401" rel="nofollow">http://addr.pk/a0401</a></p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li class="trackback even thread-even depth-1" id="comment-1479">
+			<p>Pingback: <a href='http://hertfordshirewebdesigner.com/seo-hertfordshire/' rel='external nofollow' class='url'>business web design hertfordshire</a> </p>
+		</li><!-- #comment-## -->
+		<li id="li-comment-1480">
+			<div class="comment" id="comment-1480">
+
+				<img alt='' src='http://1.gravatar.com/avatar/d93538f5cd4eaa7ca7aebf87c1344ae7?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://giveaways4rs.com' rel='external nofollow' class='url'>gold 4rs</a> wrote on <time>6th May 2012</time></p>
+				
+				<p>I like the helpful information you provide in your articles.<br />
+I&#8217;ll bookmark your weblog and check again here frequently. I am quite sure I will learn many new stuff right here! Good luck for the next!</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li class="trackback odd alt thread-odd thread-alt depth-1" id="comment-1481">
+			<p>Pingback: <a href='http://e-kotly.ru/gazogeneratornyy-kotel-kupit.html' rel='external nofollow' class='url'>электрические котлы отопления протерм</a> </p>
+		</li><!-- #comment-## -->
+		<li id="li-comment-1482">
+			<div class="comment" id="comment-1482">
+
+				<img alt='' src='http://1.gravatar.com/avatar/f64b7c4d6ef9642371fc5bc4a123d17f?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://fifitheninja.com' rel='external nofollow' class='url'>Felicia</a> wrote on <time>22nd May 2012</time></p>
+				
+				<p>I&#8217;m having a hard time finding the &#8220;notes&#8221; tab to get the Facebook page RSS, is it moved because of Timeline, or am I just missing it somewhere?</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li class="trackback even thread-even depth-1" id="comment-1483">
+			<p>Pingback: <a href='http://www.iraaqna.com/index.html' rel='external nofollow' class='url'>شات ودردشة عراقنا</a> </p>
+		</li><!-- #comment-## -->
+		<li id="li-comment-1484">
+			<div class="comment" id="comment-1484">
+
+				<img alt='' src='http://0.gravatar.com/avatar/a5b75d25db40c02a03438e45449713f0?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.aol.com/df284d2cd7ae7864ff651160f4c2ce0bedbc016d' rel='external nofollow' class='url'>source</a> wrote on <time>23rd May 2012</time></p>
+				
+				<p>Fantastic Stuff, do you currently have a twitter account?</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1486">
+			<div class="comment" id="comment-1486">
+
+				<img alt='' src='http://0.gravatar.com/avatar/46534c408f1c12d9d24f7900cfd92806?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.aol.com/333b5cc3678e72e456acee98d15e8ee138d63673' rel='external nofollow' class='url'>site</a> wrote on <time>25th May 2012</time></p>
+				
+				<p>Have you considered including some social bookmarking buttons to these blogs. At least for facebook.</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li class="trackback odd alt thread-odd thread-alt depth-1" id="comment-1487">
+			<p>Pingback: <a href='http://www.affordablesmallbusinesswebdesign.co.uk/website-design-wolverhampton.html' rel='external nofollow' class='url'>Website Design Wolverhampton</a> </p>
+		</li><!-- #comment-## -->
+		<li id="li-comment-1488">
+			<div class="comment" id="comment-1488">
+
+				<img alt='' src='http://1.gravatar.com/avatar/10af55d129a518bed0178b7374032422?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.webfield.com.br' rel='external nofollow' class='url'>Guto Foletto</a> wrote on <time>1st June 2012</time></p>
+				
+				<p>To solve the problem with facebook feed url, and skip feedBurner you should use this code.</p>
+<p>ini_set(&#8220;user_agent&#8221;,&#8221;my_awesome_magic_user_agent_which_can_be_anyhing&#8221;);</p>
+<p>Facebook check for an agent to fetch information, if you don&#8217;t set one it&#8217;ll not give you the rss.</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1489">
+			<div class="comment" id="comment-1489">
+
+				<img alt='' src='http://0.gravatar.com/avatar/c781ed2f1d149a681bbec2a256956c6f?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">Rohan wrote on <time>5th June 2012</time></p>
+				
+				<p>Thanks a ton.<br />
+But since facebook url does not mention page/user ID any longer..</p>
+<p><a href="http://graph.facebook.com/YOURSCRRENNAME" rel="nofollow">http://graph.facebook.com/YOURSCRRENNAME</a></p>
+<p>might help anyone interested</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1490">
+			<div class="comment" id="comment-1490">
+
+				<img alt='' src='http://1.gravatar.com/avatar/137b74fbfcd9600e82ff900e1eda34e8?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://desichatforum.com/social/blogs/viewstory/88' rel='external nofollow' class='url'>Irish</a> wrote on <time>1st July 2012</time></p>
+				
+				<p>Hi there, simply changed into aware of your blog via Google, and found that it&#8217;s truly informative. I&#8217;m going to be careful for brussels. I&#8217;ll appreciate in case you proceed this in future. A lot of people will probably be benefited from your writing. Cheers!</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1491">
+			<div class="comment" id="comment-1491">
+
+				<img alt='' src='http://1.gravatar.com/avatar/14dcaa5b2444c71b1f8ba50a7e7e3695?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">cork wrote on <time>3rd July 2012</time></p>
+				
+				<p>What is your Facebook feed URL that you are using? I can&#8217;t get any Facebook feeds to validate using a feed validator. Where do you find the viewer= and the key= ?</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1493">
+			<div class="comment" id="comment-1493">
+
+				<img alt='' src='http://1.gravatar.com/avatar/d14574e1e7019fcfa184595bdf8cf168?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://delete.com' rel='external nofollow' class='url'>delete</a> wrote on <time>21st July 2012</time></p>
+				
+				<p>Excellent &rho;ost. I was checking c&#1086;nstantly this blog &#1072;nd I am &#1110;m&#961;r&#1077;&#1109;&#1109;ed!<br />
+Ext&#1075;emely helpful &#1110;nform&#1072;tion spec&#1110;ally th&#1077; last part <img src="http://nouveller.com/wp/wp-includes/images/smilies/icon_smile.gif" alt=":)" class="wp-smiley" />  I c&#1072;&#1075;&#1077; for su&#1089;h info<br />
+&#1072; lot. I was &#1109;ee&kappa;ing th&#1110;s cert&#1072;in info fo&#1075; &#1072; very long time.<br />
+Th&#1072;n&kappa; y&#1086;u and go&#959;d luck.</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1494">
+			<div class="comment" id="comment-1494">
+
+				<img alt='' src='http://0.gravatar.com/avatar/c714dbf952d40a7ffdadf51989ca3546?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">Mike Tycoloski wrote on <time>6th August 2012</time></p>
+				
+				<p>Tried 6 ways from sunday to replicate the results in this tutorial, with no such luck.</p>
+<p>Nothing appears and this is mostly due I think to facebook&#8217;s ever-changing structure. </p>
+<p>Sadly though the authors example seems to function just fine. PHP &lt; etc&#8217;s have been corrected as well, yet it still refuses to pull in the wall posts from my page.</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1495">
+			<div class="comment" id="comment-1495">
+
+				<img alt='' src='http://1.gravatar.com/avatar/da0639e081892cc564595034de067b27?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">Dario wrote on <time>9th August 2012</time></p>
+				
+				<p>Thank you very much for this tutorial and code!</p>
+<p>After looking through endless WordPress plugins, your code is just what I needed! I just used it in one of the sites I am developing (not yet live) and it works as a charm.</p>
+<p>For people having trouble&#8230; The &#8220;tricky&#8221; part is getting your right FB page feed to the Feedburner, the rest is easy.</p>
+<p>The RSS link that worked with Feedburner was in the end very simple:<br />
+<a href="http://www.facebook.com/feeds/page.php?format=rss20&#038;id=INSERT_YOUR_PAGE_ID_HERE" rel="nofollow">http://www.facebook.com/feeds/page.php?format=rss20&#038;id=INSERT_YOUR_PAGE_ID_HERE</a></p>
+<p>Hope this helps a bit!</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1496">
+			<div class="comment" id="comment-1496">
+
+				<img alt='' src='http://1.gravatar.com/avatar/b61802c16a6b27a18cb272353669f087?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">rebecca peralta wrote on <time>27th August 2012</time></p>
+				
+				<p>can you please delete the news feed in facebook  FIRMED WITH SOCIAL CAM FOR IPHONE. thanks</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1497">
+			<div class="comment" id="comment-1497">
+
+				<img alt='' src='http://1.gravatar.com/avatar/b51e69cb7b603fbe17a9f135fb669d07?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://secondgenerationdesign.com/' rel='external nofollow' class='url'>Delbert Johnson</a> wrote on <time>30th August 2012</time></p>
+				
+				<p>can i get the source already put together?</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1498">
+			<div class="comment" id="comment-1498">
+
+				<img alt='' src='http://0.gravatar.com/avatar/0b9490fd9ea97c4ff2f2f8a75f782850?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">nCh6vb7FMfl wrote on <time>31st August 2012</time></p>
+				
+				<p><a href="http://www.hogan-outletonline.it/" rel="nofollow">hogan rebel</a> bp9JSli0t <a href="http://www.bagsoutletus.net/" rel="nofollow">coach purses</a> wc1IXbr5e <a href="http://www.bagsoutletus.net/" rel="nofollow">cheap coach purses</a> hn5TFqc1n <a href="http://www.handbags-outletus.net/" rel="nofollow">coach outlet</a> gd9QIyq3z</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1500">
+			<div class="comment" id="comment-1500">
+
+				<img alt='' src='http://1.gravatar.com/avatar/39252c24c3dc268fcd2b69568ef0c8bc?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.outcastsocietypaintball.ca' rel='external nofollow' class='url'>Cameron</a> wrote on <time>28th September 2012</time></p>
+				
+				<p>&#8216;; foreach ($feeds as $feed) { $date = strtotime($feed['pubDate']); echo &#8216;<br />
+&#8216;; echo &#8216; FacebookPage &#8216;. $feed['description'] . &#8216; &#8216;. date(&#8216;jS F Y G:H&#8217; ,$date) .&#8217; &#8216;; echo &#8216;<br />
+&#8216;; } echo &#8216; &#8216;; ?&gt;</p>
+<p>What in the hell does this mean?</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1501">
+			<div class="comment" id="comment-1501">
+
+				<img alt='' src='http://1.gravatar.com/avatar/f0822262860d633f55e380a0adb7483b?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://heatherpins.wordpress.com/' rel='external nofollow' class='url'>Heather Pinson</a> wrote on <time>8th October 2012</time></p>
+				
+				<p>If you want to make displaying a Facebook feed a LOT easier you might want to check out Postano. You can use their plug-in and get a very nice looking feed on your website. You can also aggregate other social media channels like Twitter and Instagram with it. Here&#8217;s a link if you&#8217;re interested <a href="http://www.postano.com/solutions/for-websites/" rel="nofollow">http://www.postano.com/solutions/for-websites/</a></p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1502">
+			<div class="comment" id="comment-1502">
+
+				<img alt='' src='http://0.gravatar.com/avatar/8c14ef808bc56b66f6391a41692cad03?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://kazaap.org/' rel='external nofollow' class='url'>Non prescription colored contacts cheap</a> wrote on <time>12th October 2012</time></p>
+				
+				<p>aumduopvwfmmfs, <a href="http://kazaap.org/" rel="nofollow">Colored Contacts</a>, MdAimqR, [url=http://kazaap.org/]Checkoutlenslt colored contacts[/url], DQhbNvI, <a href="http://kazaap.org/" rel="nofollow">http://kazaap.org/</a> Free online color contacts, HShTbEC.</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1503">
+			<div class="comment" id="comment-1503">
+
+				<img alt='' src='http://0.gravatar.com/avatar/42028e63f85239ea7bcc66ff160747ea?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.towermusicblackpool.com' rel='external nofollow' class='url'>guitars</a> wrote on <time>14th October 2012</time></p>
+				
+				<p>Hello, Neat post. There&#8217;s a problem along with your site in internet explorer, could test this? IE still is the market chief and a huge portion of other people will pass over your fantastic writing because of this problem.</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1504">
+			<div class="comment" id="comment-1504">
+
+				<img alt='' src='http://1.gravatar.com/avatar/fd12a11c2650b1e5abd8570e4811aeb9?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.sahabatbola.com/suncity' rel='external nofollow' class='url'>Michell</a> wrote on <time>16th October 2012</time></p>
+				
+				<p>Very energetic article, I enjoyed that bit. Will there be a part<br />
+2?</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1505">
+			<div class="comment" id="comment-1505">
+
+				<img alt='' src='http://0.gravatar.com/avatar/844b8001734f19dfc7939894d92f8494?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.zootoo.com/profile/border5pin/blog/entry/internetsecuritytest' rel='external nofollow' class='url'>Modesto Aluise</a> wrote on <time>16th October 2012</time></p>
+				
+				<p>Un-ban Your IP From Forums, Blogs, and other Websites &#8211; By faking your IP you can frequently access many websites you were banned from.</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1506">
+			<div class="comment" id="comment-1506">
+
+				<img alt='' src='http://0.gravatar.com/avatar/27685c34136941c3d86e6f862c3dd92a?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://snipr.com/eazpaxu80' rel='external nofollow' class='url'>hidemy ip</a> wrote on <time>16th October 2012</time></p>
+				
+				<p>Stop your private info from being stolen this kind of as your credit cards, financial institution accounts, id number, passwords, telephone numbers, and more with this sophisticated Internet packet checking software.</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1507">
+			<div class="comment" id="comment-1507">
+
+				<img alt='' src='http://0.gravatar.com/avatar/8b4c6d978adad890c49f3f581d052818?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://themetalchick.com/' rel='external nofollow' class='url'>Hcg diet protocol</a> wrote on <time>16th October 2012</time></p>
+				
+				<p>zdspeopvwfmmfs, <a href="http://themetalchick.com/" rel="nofollow">Hcg apple day</a>, yUVzBLD, [url=http://themetalchick.com/]Hcg diet program[/url], uNJXOPt, <a href="http://themetalchick.com/" rel="nofollow">http://themetalchick.com/</a> HCG Diet, GkCdvFn.</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1508">
+			<div class="comment" id="comment-1508">
+
+				<img alt='' src='http://0.gravatar.com/avatar/03be29481e055d8fef690fa8aeec5ed9?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.sandiegozooglobal.org/member/550968/' rel='external nofollow' class='url'>Free backlink tracker</a> wrote on <time>19th October 2012</time></p>
+				
+				<p>&Tau;hanks for sharing your thoughts on facebook. Regards</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1509">
+			<div class="comment" id="comment-1509">
+
+				<img alt='' src='http://1.gravatar.com/avatar/feec19016bf608beb81382e13867bb90?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://jolialeroisa.webstarts.com/?r=20120918051507' rel='external nofollow' class='url'>Elvira</a> wrote on <time>21st October 2012</time></p>
+				
+				<p>It&#8217;s actually a cool and useful piece of info. I am satisfied that you just shared this helpful information with us. Please stay us up to date like this. Thank you for sharing.</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1514">
+			<div class="comment" id="comment-1514">
+
+				<img alt='' src='http://1.gravatar.com/avatar/1ec7b692a303395aaed7d61e62a1f13f?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">Min Farinella wrote on <time>12th November 2012</time></p>
+				
+				<p>It&#8217;s the second time when i&#8217;ve seen your site. I can understand lots of hard work has gone in to it. It&#8217;s actually great.</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1524">
+			<div class="comment" id="comment-1524">
+
+				<img alt='' src='http://0.gravatar.com/avatar/467705f1e388fff0e8436465e3d3e403?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">Su Su wrote on <time>23rd November 2012</time></p>
+				
+				<p>good</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1525">
+			<div class="comment" id="comment-1525">
+
+				<img alt='' src='http://1.gravatar.com/avatar/1d088000c7fb34f88393cc2ff7cce6ec?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">Alexander wrote on <time>28th November 2012</time></p>
+				
+				<p>I get this:<br />
+Parse error: syntax error, unexpected &#8216;&amp;&#8217; on line 42, that&#8217;s the<br />
+&#8221;<br />
+$doc-&gt;load($feed_burner_url);<br />
+&#8221;<br />
+code, I&#8217;m really a noob at php, so can you please help me?</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1526">
+			<div class="comment" id="comment-1526">
+
+				<img alt='' src='http://0.gravatar.com/avatar/05cde78a2eeadf7beed74f2a54ee76e0?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">Joe wrote on <time>1st December 2012</time></p>
+				
+				<p>Hey great post, however facebook pages don&#8217;t validate in feed burner due to things like punctuation and images and each post not having an email address attached. </p>
+<p>This feed does not validate.</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1530">
+			<div class="comment" id="comment-1530">
+
+				<img alt='' src='http://0.gravatar.com/avatar/8190f756988951a5cc676ba3d187caae?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">Jan wrote on <time>22nd December 2012</time></p>
+				
+				<p>Hey, that&#8217;s exactly what i was looking for.</p>
+<p>But I get a lot of syntax errors, after copy n paste your code. Is it possible, you could upload a *.zip with the files?</p>
+<p>That&#8217;d be awesome!</p>
+<p>Thanks!</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1531">
+			<div class="comment" id="comment-1531">
+
+				<img alt='' src='http://0.gravatar.com/avatar/0a402589c630814209f9b02dabca0906?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta"><a href='http://www.nealaddy.com' rel='external nofollow' class='url'>Neal</a> wrote on <time>26th December 2012</time></p>
+				
+				<p>Thanks for the post &#8211; I got the feed working first time. The only niggle I´ve come across is the &#8216;description&#8217; element of the RSS code from Facebook contains certain characters that are not HTML coded, such as apostrophes and accented characters, while the &#8216;title&#8217; do and they display fine.</p>
+<p>Any ideas how to remedy this??</p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li id="li-comment-1533">
+			<div class="comment" id="comment-1533">
+
+				<img alt='' src='http://0.gravatar.com/avatar/8190f756988951a5cc676ba3d187caae?s=48&amp;d=&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />
+				<p class="meta">Jan wrote on <time>28th December 2012</time></p>
+				
+				<p>Hey Guys, it&#8217;s me again.</p>
+<p>I had issues implementing the code, because the code snippets had a little mistake in it. Since I just copy&#8217;n'pasted it, I&#8217;ve overlooked the problem. </p>
+<p>The greater-than symbol is escaped in the code above. Anybody having problems getting this awesome tool to work, please change &#8220;&gt;&#8221; any to &#8220;&lt;&#8221; (without &#8220;&#8221;).</p>
+<p>@Bejamin It&#8217;d be great if you change that in your article.<br />
+But thanks again for explaining this method! <img src="http://nouveller.com/wp/wp-includes/images/smilies/icon_smile.gif" alt=":)" class="wp-smiley" /> </p>
+				
+				<div class="reply">
+									</div><!-- .reply -->
+
+			</div><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		</ul><!-- .commentlist -->
+
+		
+				<p class="nocomments">Comments are closed.</p>
+		
+	</div><!-- /.comments -->
+
+<div class="comment-form">
+			</div>
+	  
+	</div><!-- /.main -->
+
+	<div class="sidebar articles-sidebar">
+		<h5>Category</h5>
+<ul class="post-categories">
+	<li><a href="http://nouveller.com/category/web-design/" title="View all posts in Web Design" rel="category tag">Web Design</a></li></ul>
+
+
+<h5>tags</h5><ul class="plain-list inline-list clearfix"><li><a href="http://nouveller.com/tag/facebook/" rel="tag">Facebook</a></li><li><a href="http://nouveller.com/tag/feed/" rel="tag">Feed</a></li><li><a href="http://nouveller.com/tag/page/" rel="tag">Page</a></li><li><a href="http://nouveller.com/tag/parse/" rel="tag">Parse</a></li><li><a href="http://nouveller.com/tag/php/" rel="tag">PHP</a></li><li><a href="http://nouveller.com/tag/url/" rel="tag">URL</a></li></ul>
+<h5>Share</h5>
+<ul class="plain-list share-list">
+	<li><a data-related="nouveller,benjaminreid" data-text="How to easily display a Facebook page&#8217;s feed on your website" data-url="http://nouveller.com/web-design/how-to-easily-display-a-facebook-page-feed-on-your-website/" href="https://twitter.com/share" class="twitter-share-button" data-lang="en">Tweet</a></li>
+	<li><iframe src="//www.facebook.com/plugins/like.php?href=http://nouveller.com/web-design/how-to-easily-display-a-facebook-page-feed-on-your-website/&amp;send=false&amp;layout=button_count&amp;width=140&amp;show_faces=false&amp;font&amp;colorscheme=light&amp;action=like&amp;height=21&amp;appId=253536277996804" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:140px; height:21px;" allowTransparency="true"></iframe></li>
+	<li><div class="g-plusone" data-size="medium"></div></li>
+</ul>	</div>
+
+</div><!-- /.content -->
+
+    <footer class="section-footer">
+      <div class="content inner-wrapper">
+
+        <div class="row">
+          <div class="about-me">
+            <h2>About</h2>
+            <p>Nouveller is a creative outlet for me to talk about what I learn and show the world what I create. I like sharing what I learn, in hope it can help others learning as well so you'll hopefully see plenty of articles on HTML, CSS, JavaScript, PHP and Ruby. There's also plenty of experiments and hidden gems to be found! <a href="http://www.youtube.com/watch?v=LrSz_ACx1Ao" target="_blank">Luck dip?</a></p>
+          </div>
+          <div class="social-links">
+            <h2>You can find me on</h2>
+            <ul class="two-column-list">
+              <li><a target="_blank" href="https://twitter.com/BenjaminReid" class="twitter">Twitter</a></li>
+              <li><a target="_blank" href="https://www.facebook.com/fb.nouveller" class="facebook">Facebook</a></li>
+              <li><a target="_blank" href="http://forrst.com/people/nouveller/" class="forrst">Forrst</a></li>
+              <li><a target="_blank" href="http://www.flickr.com/photos/nouveller" class="flick">Flick<span class="r">r</span></a></li>
+              <li><a target="_blank" href="http://pinterest.com/benjaminreid/" class="pinterest">Pinterest</a></li>
+              <li><a target="_blank" href="http://www.youtube.com/user/semper0fi" class="you">You<span class="tube">Tube</span></a></li>
+              <li><a target="_blank" href="http://www.strava.com/athletes/238785" class="strava">Strava</a></li>
+              <li><a target="_blank" href="http://vimeo.com/nouveller" class="vimeo">Vimeo</a></li>
+            </ul>
+          </div><!-- /.social-links -->
+        </div><!-- /.row -->
+
+        <div class="break"></div>
+
+        <div class="twitter-feed aligncentre">
+          <img src="/static/img/twitter-logo.png" alt="Twitter logo">
+          <p><span class="twitter">@BenjaminReid:</span> Clever girl...</p>
+          <a href="https://twitter.com/BenjaminReid" class="twitter-follow-button" data-show-count="false">Follow @BenjaminReid</a>
+        </div><!-- /.twitter-feed -->
+
+      </div><!-- /.content inner-wrapper -->
+
+      <section class="section-footnotes">
+        <div class="inner-wrapper aligncentre">
+          <p>Nouveller &mdash; Seeker | <a href="mailto:benjamin@nouveller.com">benjamin@nouveller.com</a><br />
+          &copy; Nouveller 2014 | Designed &amp; built by <a href="http://www.benjaminreid.me/">Benjamin Reid</a> in the &hearts; of <a href="https://www.google.com/maps?q=Bristol,+UK">Bristol</a> | Hosted by <a href="http://www.memset.com/">Memset</a></p>
+        </div><!-- /.inner-wrapper -->
+      </section>
+
+    </footer>
+
+
+        <script src="/static/js/seeker.build.js"></script>
+    
+        	<div style="display:none">
+	<div class="grofile-hash-map-46e7aeb55c5db6147322074093b8e0cc">
+	</div>
+	<div class="grofile-hash-map-f6f23ff265f2d860c7fd58fca693a72e">
+	</div>
+	<div class="grofile-hash-map-f3bcfa4a2b1b0fe7adcd7c92c9baa5ef">
+	</div>
+	<div class="grofile-hash-map-265a3506613c402f16d05b6693d43ddf">
+	</div>
+	<div class="grofile-hash-map-441d301bff7106affcdb0e4ad7170a31">
+	</div>
+	<div class="grofile-hash-map-5a410d5dc3dadb86f239fa19e42b9831">
+	</div>
+	<div class="grofile-hash-map-241e6dc2965e2964f89d4b3715e28c9a">
+	</div>
+	<div class="grofile-hash-map-81ada4c701720da46bca1043b2b571c8">
+	</div>
+	<div class="grofile-hash-map-68bdedc9d96af69b2d720db1bfd4a822">
+	</div>
+	<div class="grofile-hash-map-5a0ef8cbc936f130af8480d3c95cfcc1">
+	</div>
+	<div class="grofile-hash-map-94eef62a74e9176c1f3c40aef0cceced">
+	</div>
+	<div class="grofile-hash-map-68f073204146567678957dca7e62fa30">
+	</div>
+	<div class="grofile-hash-map-757d8e285308e5fc18f4539d66c2d884">
+	</div>
+	<div class="grofile-hash-map-e63139c265a8dd8fa8e92f8dee49b989">
+	</div>
+	<div class="grofile-hash-map-faa7cdc7476a75110a91f2c70b0bb9f1">
+	</div>
+	<div class="grofile-hash-map-36cb674203c281c66b866f176845f9f7">
+	</div>
+	<div class="grofile-hash-map-dfaed4f07c5a3069ffac6e32351a837c">
+	</div>
+	<div class="grofile-hash-map-6c9ef42688c2118e5aa7be51faa38049">
+	</div>
+	<div class="grofile-hash-map-6806f328606cee0f98d2de14357d8a73">
+	</div>
+	<div class="grofile-hash-map-7671a0be8963cbd49eba6237da9e6d6b">
+	</div>
+	<div class="grofile-hash-map-4a38dac3358b2419aadd432bc6977501">
+	</div>
+	<div class="grofile-hash-map-4d310e3201b0ef385b3a0a57b129d216">
+	</div>
+	<div class="grofile-hash-map-0da65ad3838a711470eef6be3965137b">
+	</div>
+	<div class="grofile-hash-map-1ddde03b8d13a9f6d50c5f0681a247c3">
+	</div>
+	<div class="grofile-hash-map-d90654c5188f008f8ebd7dff85ebd56e">
+	</div>
+	<div class="grofile-hash-map-28557e33d898d97d00de98e0a6d51e6a">
+	</div>
+	<div class="grofile-hash-map-8babda5b20a4b74370abe668e6335c19">
+	</div>
+	<div class="grofile-hash-map-e7583288d836b5d099e5f7eb697f4171">
+	</div>
+	<div class="grofile-hash-map-48db5df9d4c3bd4304d7f08d2179c7a3">
+	</div>
+	<div class="grofile-hash-map-560c7a52c1c89d3f661ffd627ff2b146">
+	</div>
+	<div class="grofile-hash-map-cefaf3d0606819e3b2ff109dd3bc7326">
+	</div>
+	<div class="grofile-hash-map-f62465d5334b2968fe86a65d5c3be799">
+	</div>
+	<div class="grofile-hash-map-bac53f9724544af14ee246676ff4e2d5">
+	</div>
+	<div class="grofile-hash-map-ec30ed50640b2f7d8c99085c108477a4">
+	</div>
+	<div class="grofile-hash-map-bf7a6f1dc2d44b37fcf4744152c4ed2c">
+	</div>
+	<div class="grofile-hash-map-a000b0cde54d3e6cdb4e560a1a6c4720">
+	</div>
+	<div class="grofile-hash-map-405d49a99ff9a6d09028b12b00ae2fec">
+	</div>
+	<div class="grofile-hash-map-ca30398a240838306626e467b665aab6">
+	</div>
+	<div class="grofile-hash-map-79e5221298a2e10cbe81ffc93ca0eef1">
+	</div>
+	<div class="grofile-hash-map-8b4892bdc5e35f79ea84e7899ae35c94">
+	</div>
+	<div class="grofile-hash-map-ac070f21ccdce4eb0956b06394306e24">
+	</div>
+	<div class="grofile-hash-map-69188d92835db19ae32cfec5bcba6279">
+	</div>
+	<div class="grofile-hash-map-d85d5055c0c36ffff477efac3c3c1698">
+	</div>
+	<div class="grofile-hash-map-6213fd8baa6142ea24d76c423177fb16">
+	</div>
+	<div class="grofile-hash-map-9284efc3780e95ff46a9bf3c5c3de870">
+	</div>
+	<div class="grofile-hash-map-744f6949bca9e0051787e8eda0322099">
+	</div>
+	<div class="grofile-hash-map-c798a10d77ec733834a44c2bc3be5794">
+	</div>
+	<div class="grofile-hash-map-ef87e658cd41cbe8707870c592a286c1">
+	</div>
+	<div class="grofile-hash-map-472f9a4fd01b8f5bec7da2c172e10083">
+	</div>
+	<div class="grofile-hash-map-fc050e3e9e2cfc4b6aa3f347ac97f62d">
+	</div>
+	<div class="grofile-hash-map-a7f1d52bb805b1c4603876a7f7e1d773">
+	</div>
+	<div class="grofile-hash-map-8e0bde70fa39cb6b240fa11b61291b86">
+	</div>
+	<div class="grofile-hash-map-b43db7793602b288f8dd76123ce71761">
+	</div>
+	<div class="grofile-hash-map-de8a8efe836243d43140b502197a19da">
+	</div>
+	<div class="grofile-hash-map-27a8a1e7a666fb0d6385d99151c1f59a">
+	</div>
+	<div class="grofile-hash-map-9ff15e4f9c9f130d5f8ff3f8bd3d4c6f">
+	</div>
+	<div class="grofile-hash-map-4f4167d064c2d10d50ced593d767b8a0">
+	</div>
+	<div class="grofile-hash-map-5c47b8218950d5be77feae9527b8902f">
+	</div>
+	<div class="grofile-hash-map-bb9786f31f0814590cb4fd5f1df4cb78">
+	</div>
+	<div class="grofile-hash-map-beca19c7085fbcb038270a5b97838228">
+	</div>
+	<div class="grofile-hash-map-f9b8b42770b999febc765b7256ae9745">
+	</div>
+	<div class="grofile-hash-map-65b5f290b381e3b0d6e3943a903e3eb7">
+	</div>
+	<div class="grofile-hash-map-57008dd8791f7d7f4b7d1fff74279bf4">
+	</div>
+	<div class="grofile-hash-map-d93538f5cd4eaa7ca7aebf87c1344ae7">
+	</div>
+	<div class="grofile-hash-map-f64b7c4d6ef9642371fc5bc4a123d17f">
+	</div>
+	<div class="grofile-hash-map-3d5f4e9431350ea3335a51de31764ad9">
+	</div>
+	<div class="grofile-hash-map-2c5ed2a7a7db9b4af0529c3855015fff">
+	</div>
+	<div class="grofile-hash-map-10af55d129a518bed0178b7374032422">
+	</div>
+	<div class="grofile-hash-map-c781ed2f1d149a681bbec2a256956c6f">
+	</div>
+	<div class="grofile-hash-map-78c86929a0d657f3698877be954d7703">
+	</div>
+	<div class="grofile-hash-map-14dcaa5b2444c71b1f8ba50a7e7e3695">
+	</div>
+	<div class="grofile-hash-map-d14574e1e7019fcfa184595bdf8cf168">
+	</div>
+	<div class="grofile-hash-map-c714dbf952d40a7ffdadf51989ca3546">
+	</div>
+	<div class="grofile-hash-map-da0639e081892cc564595034de067b27">
+	</div>
+	<div class="grofile-hash-map-b61802c16a6b27a18cb272353669f087">
+	</div>
+	<div class="grofile-hash-map-b51e69cb7b603fbe17a9f135fb669d07">
+	</div>
+	<div class="grofile-hash-map-0b9490fd9ea97c4ff2f2f8a75f782850">
+	</div>
+	<div class="grofile-hash-map-39252c24c3dc268fcd2b69568ef0c8bc">
+	</div>
+	<div class="grofile-hash-map-f0822262860d633f55e380a0adb7483b">
+	</div>
+	<div class="grofile-hash-map-8c14ef808bc56b66f6391a41692cad03">
+	</div>
+	<div class="grofile-hash-map-42028e63f85239ea7bcc66ff160747ea">
+	</div>
+	<div class="grofile-hash-map-fd12a11c2650b1e5abd8570e4811aeb9">
+	</div>
+	<div class="grofile-hash-map-7c027da1a89ee3f69eeb6d8d336760c5">
+	</div>
+	<div class="grofile-hash-map-db858d57f9b16cd4e17b75549c962c18">
+	</div>
+	<div class="grofile-hash-map-8b4c6d978adad890c49f3f581d052818">
+	</div>
+	<div class="grofile-hash-map-03be29481e055d8fef690fa8aeec5ed9">
+	</div>
+	<div class="grofile-hash-map-feec19016bf608beb81382e13867bb90">
+	</div>
+	<div class="grofile-hash-map-7cca62efb92ba9546b6183fc7178c9ce">
+	</div>
+	<div class="grofile-hash-map-467705f1e388fff0e8436465e3d3e403">
+	</div>
+	<div class="grofile-hash-map-1d088000c7fb34f88393cc2ff7cce6ec">
+	</div>
+	<div class="grofile-hash-map-05cde78a2eeadf7beed74f2a54ee76e0">
+	</div>
+	<div class="grofile-hash-map-8190f756988951a5cc676ba3d187caae">
+	</div>
+	<div class="grofile-hash-map-0a402589c630814209f9b02dabca0906">
+	</div>
+	</div>
+<script type='text/javascript' src='http://s0.wp.com/wp-content/js/devicepx-jetpack.js?ver=201437'></script>
+<script type='text/javascript' src='http://s.gravatar.com/js/gprofiles.js?ver=2014Sepaa'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var WPGroHo = {"my_hash":""};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://nouveller.com/wp/wp-content/plugins/jetpack/modules/wpgroho.js?ver=3.8.3'></script>
+
+	<script src="http://stats.wordpress.com/e-201437.js" type="text/javascript"></script>
+	<script type="text/javascript">
+	st_go({v:'ext',j:'1:2.9.3',blog:'7873577',post:'2048',tz:'0'});
+	var load_cmc = function(){linktracker_init(7873577,2048,2);};
+	if ( typeof addLoadEvent != 'undefined' ) addLoadEvent(load_cmc);
+	else load_cmc();
+	</script>    
+  </body>
+</html>
