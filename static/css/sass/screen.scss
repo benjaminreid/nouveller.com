@@ -1748,3 +1748,7 @@ li.L9 { background: transparent; }
 .clearfix:before, .clearfix:after { content: ""; display: table; }
 .clearfix:after { clear: both; }
 .clearfix { *zoom: 1; }
+
+#respond {
+  display: none !important;
+}
